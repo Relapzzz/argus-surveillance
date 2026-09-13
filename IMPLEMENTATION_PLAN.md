@@ -51,13 +51,14 @@ FIR No. 0142/2026, Police Station Kothrud, District Pune City. Date and time of 
 
 Regex (app/extract/regex.py) guarantees recall of identifiers:
 
-- Phones: optional +91 or 0, then 10 digits starting 6 to 9, spaces or hyphens allowed. Normalize to 10 digits.
+- Phones: optional literal +91 or a leading 0, then 10 digits starting 6 to 9, spaces or hyphens allowed, matched on digit boundaries. Normalize to 10 digits. A bare 12 digit run is never a phone.
 - Vehicles: two letters, one or two digits, one to three letters, four digits, spaces or hyphens optional. Normalize upper-case without spaces.
-- Sections: "u/s 379 IPC", "Section 303(2) BNS", "Sections 303(2), 351(3) BNS 2023", "IPC 420". Return act and section.
-- FIR numbers: "FIR No. 0142/2026".
+- Sections: "u/s 379 IPC", "Section 303(2) BNS", "Sections 303(2), 351(3) BNS 2023", "IPC 420", "Sections 420 and 120B IPC", "8(c) r/w 22(b) NDPS Act 1985", "66D IT Act 2000". Acts are IPC, BNS, NDPS Act and IT Act; a year after the act is ignored; commas, "and" and "r/w" join sections sharing one act. Return (act, section) pairs.
+- FIR numbers: "FIR No. 0142/2026", normalized to FIR-2026-0142.
 - Amounts: "Rs. 45,000", "Rs 45000", "INR 45,000". Return integers.
-- Dates: dd/mm/yyyy with optional time such as "at 21:30 hrs".
-- Accounts: 11 to 16 digit numbers that are not phones.
+- Dates: dd/mm/yyyy with optional time directly after it such as "at 21:30 hrs" or "at about 21:30 hrs". Return naive datetimes, midnight when no time is present.
+- Accounts: 11 to 16 digit runs on digit boundaries that no phone match consumed.
+- Every extractor returns distinct values in first-occurrence order. find_spans(text, label) returns every case-insensitive non-overlapping occurrence; callers drop empty labels first. Word-scaled amounts such as "Rs. 5 lakh" and lower-case plates are left to the LLM engine.
 
 LLM (app/extract/llm.py):
 

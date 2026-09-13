@@ -1,6 +1,6 @@
 # TASKS
 
-Current phase, Person A: Phase A2 (Phase 0 manual items still open, see Blockers)
+Current phase, Person A: Phase A3 (Phase 0 manual items still open, see Blockers)
 Current phase, Person B: Phase 0
 MVP demo: 15 September 2026
 Full project: about 12 October 2026
@@ -29,8 +29,8 @@ Update this file before ending every session. Tick items, move the current phase
 
 ## Phase A2: Regex extractors (A, 13 September)
 
-- [ ] app/extract/regex.py
-- [ ] tests/test_regex.py passing
+- [x] app/extract/regex.py
+- [x] tests/test_regex.py passing
 
 ## Phase B1: Graph canvas (B, 13 September)
 
@@ -168,3 +168,6 @@ Notes for Person A:
 - 2026-09-13: Seed corpus rules: no seed FIR names members of both gangs, each civilian is tied to one gang, the intermediary is in persons.csv with phone and account and is never named in a FIR, the extortion calls the narratives describe appear in cdr.csv, one call burst is planted for the burst_calls alert, and the burner phone is attributed to a Gang A lieutenant only in FIR text.
 - 2026-09-13: File FIR-2026-NNNN.txt carries "FIR No. NNNN/2026". cdr.csv carries tower_id T01 to T10 and the tower area name; tower coordinates stay in the generator for the Phase 5 map.
 - 2026-09-13: Every narrative template carries its own sections; 351(2) or 351(3) appears only where the text threatens, 351(3) for death or grievous hurt. Drug FIRs have a police officer complainant with one fixed station and are registered at that station. Gang members and the intermediary have male names, civilians are complainants in at most two FIRs each, amounts are round figures.
+- 2026-09-13: Regex extractors return distinct values in first-occurrence order. sections() returns (act, section) pairs with acts IPC, BNS, NDPS Act and IT Act, ignores the year after an act, and joins sections with commas, "and" and "r/w"; the corpus forms "8(c) r/w 22(b) NDPS Act 1985" and "66D IT Act 2000" are covered.
+- 2026-09-13: fir_numbers() returns the canonical FIR-YYYY-NNNN form so ingest builds case ids directly. dates() returns naive datetimes, midnight when no time follows the date, and accepts "at about HH:MM hrs". A phone needs the literal +91 or a leading 0 before its 10 digits; a bare 11 to 16 digit run that no phone match consumed is an account.
+- 2026-09-13: Known regex limits handed to Phase A3: find_spans must not be called with an empty label (it returns one empty span per position), word-scaled amounts such as "Rs. 5 lakh" and the word "hours" are not parsed, plates are matched upper-case only, and the time must directly follow the date. The LLM engine covers those.
