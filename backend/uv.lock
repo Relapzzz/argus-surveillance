@@ -54,6 +54,7 @@ dependencies = [
     { name = "pydantic-settings" },
     { name = "python-multipart" },
     { name = "scipy" },
+    { name = "truststore" },
     { name = "uvicorn", extra = ["standard"] },
 ]
 
@@ -73,6 +74,7 @@ requires-dist = [
     { name = "pydantic-settings", specifier = ">=2.15.0" },
     { name = "python-multipart", specifier = ">=0.0.32" },
     { name = "scipy", specifier = ">=1.18.1" },
+    { name = "truststore", specifier = ">=0.10.4" },
     { name = "uvicorn", extras = ["standard"], specifier = ">=0.52.4" },
 ]
 

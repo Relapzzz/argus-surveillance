@@ -11,8 +11,8 @@ Free LLM APIs, no card. All expose OpenAI-compatible endpoints, so one client se
 | Provider | Base URL | Free limits | Use |
 |---|---|---|---|
 | Google AI Studio, Gemini Flash | https://generativelanguage.googleapis.com/v1beta/openai/ | about 15 requests per minute, 1,500 per day, 1M tokens per minute | Primary |
-| Cerebras | https://api.cerebras.ai/v1 | 30 requests per minute, 60K tokens per minute, 1M tokens per day | Secondary |
-| Groq | https://api.groq.com/openai/v1 | 30 requests per minute, 6K tokens per minute, 14,400 per day | Backup |
+| Cerebras | https://api.cerebras.ai/v1 | HTTP 402 payment required on 13 September 2026 | Dropped |
+| Groq | https://api.groq.com/openai/v1 | 30 requests per minute, 6K tokens per minute, 14,400 per day | Secondary |
 | Bytez | see docs.bytez.com | one request at a time on models up to 7B | Optional |
 
 Model ids change. List them with GET {base_url}/models using a bearer key before writing LLM_MODEL. Expected names: a Gemini Flash model, gpt-oss-120b or llama-3.3-70b on Cerebras, llama-3.3-70b-versatile or openai/gpt-oss-120b on Groq.
@@ -127,7 +127,7 @@ Person A steps:
 2. Write backend/data/fixture_graph.json by hand: about 25 nodes covering every entity type with metrics filled in, about 40 edges covering every relationship type, 3 alerts, 2 cases with short narratives and spans. Push it to main immediately so B can copy it. If B needs it before it exists, B writes it following the schemas and A adopts it. Done on 13 September: 28 nodes, 53 edges, 4 alerts covering every type, 2 cases. Metrics were computed by networkx on the hand-written edges, unweighted, Louvain resolution 0.5, seed 42.
 3. uv python install 3.12. Inside backend: uv init --bare --python 3.12, then uv add fastapi "uvicorn[standard]" pydantic-settings networkx pandas openai faker python-multipart scipy, then uv add --dev pytest httpx. scipy is needed because networkx 3 delegates PageRank to it. On a laptop where an antivirus intercepts TLS, add --system-certs to every uv command.
 4. app/config.py Settings: llm_base_url, llm_api_key, llm_model, extraction_engine defaulting to llm, api_key, cors_origin defaulting to http://localhost:5173, data_dir. app/schemas.py with every schema from CLAUDE.md. app/main.py with CORSMiddleware and stub routers that read fixture_graph.json and answer every GET endpoint from it: stats counts the fixture, key-players sorts fixture persons by pagerank, path runs networkx on the fixture, cases come from the fixture. POST endpoints return 501. Done as app/stub.py, deleted in A5. Shapes fixed by the stub: node metrics sit under a metrics object; GET /entities/{id} returns {entity, metrics, neighbors: [{id, type, label, relationship, edge_id}], sources}; GET /stats returns {entities: {type: count}, relationships, cases, alerts}; a case list item carries entity_count, the number of distinct span ids, and the detail adds narrative and entities; alert evidence is a flat object of scalars and short lists.
-5. backend/.env.example with the six names. Sign up at Google AI Studio, Cerebras and Groq. Put one key in .env and confirm with curl "$LLM_BASE_URL/models" -H "Authorization: Bearer $LLM_API_KEY".
+5. backend/.env.example with the six names. Sign up at Google AI Studio, Cerebras and Groq. Put one key in .env and confirm with curl "$LLM_BASE_URL/models" -H "Authorization: Bearer $LLM_API_KEY". Done on 13 September: Gemini and Groq keys work, Cerebras answers HTTP 402 without billing. backend/.env uses gemini-3.5-flash-lite, backend/.env.groq holds the Groq backup with qwen/qwen3.8-27b; both are gitignored.
 6. Activate Azure for Students and GitHub Pro from the Student Pack. Verification may take up to 48 hours.
 
 Person B steps:
@@ -188,7 +188,7 @@ Goal: FIR text becomes validated entities and relationships, with every seed FIR
 Files: app/extract/llm.py, app/extract/engine.py, app/ingest/fir.py, scripts/seed.py, data/cache/, tests/test_fir_ingest.py.
 Steps:
 
-1. llm.extract per the extraction design, including validation and cache.
+1. llm.extract per the extraction design, including validation and cache. Call truststore.inject_into_ssl() before creating the OpenAI client, because certifi rejects the certificate Norton injects on Person A's laptop. Use temperature 0, response_format json_object and max_tokens 4000. The Groq backup allows 8k tokens per minute, so seed with a short pause between FIRs when it is the active provider.
 2. engine.extract dispatching on settings.extraction_engine.
 3. ingest/fir.py: ingest_fir(text) returning case, entities, relationships and spans per the FIR ingest rules.
 4. scripts/seed.py: loop over data/seed/fir/*.txt, call ingest_fir, print entity and relationship counts. Run it once with a real key and commit data/cache.

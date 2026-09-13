@@ -10,12 +10,12 @@ Update this file before ending every session. Tick items, move the current phase
 ## Phase 0: Setup (both, 12 September)
 
 - [x] A: git init, GitHub repo created (https://github.com/Relapzzz/argus-surveillance)
-- [ ] A: B added as collaborator, secret scanning and Dependabot enabled in repository settings
+- [x] A: B added as collaborator, secret scanning and Dependabot enabled in repository settings
 - [x] A: backend/data/fixture_graph.json written and pushed to main
 - [x] A: backend scaffold with uv, stub API serving the fixture on every GET endpoint, 17 API tests
 - [x] A: .env.example written
-- [ ] A: one LLM provider key in backend/.env confirmed with GET /models
-- [ ] A: Azure for Students and GitHub Pro activated from the Student Pack
+- [x] A: LLM keys confirmed with GET /models; backend/.env uses gemini-3.5-flash-lite, backend/.env.groq holds the Groq backup
+- [x] A: Azure for Students and GitHub Pro activated from the Student Pack
 - [ ] B: frontend scaffold with Bun, Vite, Tailwind v4, shadcn/ui, react-router, TanStack Query, react-force-graph-2d
 - [ ] B: app shell with sidebar navigation and dark theme, four empty pages
 - [ ] B: src/api/client.ts typed against the contract, fixture fallback, .env.example
@@ -134,11 +134,11 @@ Update this file before ending every session. Tick items, move the current phase
 
 ## Blockers
 
-Person A manual items, no code involved:
+Notes for Person A:
 
-- Add B as collaborator, enable Dependabot alerts and security updates, and secret scanning with push protection: repository Settings, Collaborators, then Settings, Code security. gh is not installed on this laptop.
-- Sign up at Google AI Studio (primary), Cerebras and Groq. Copy backend/.env.example to backend/.env, fill LLM_BASE_URL and LLM_API_KEY, then list models with `curl "$LLM_BASE_URL/models" -H "Authorization: Bearer $LLM_API_KEY"` and pick LLM_MODEL from that list. Base URLs: Gemini https://generativelanguage.googleapis.com/v1beta/openai, Cerebras https://api.cerebras.ai/v1, Groq https://api.groq.com/openai/v1.
-- Activate Azure for Students and GitHub Pro from the Student Pack. Verification can take 48 hours.
+- Share API_KEY from backend/.env with B privately; it becomes VITE_API_KEY on the frontend.
+- To switch the LLM provider, copy backend/.env.groq over backend/.env. Both files are gitignored. Cerebras is dropped: its API answers HTTP 402 payment required for this account.
+- Python HTTPS on this laptop fails certificate checks under Norton. The LLM client must call truststore.inject_into_ssl() before creating the OpenAI client; truststore is a dependency.
 - On this laptop Norton intercepts TLS, so every uv command needs --system-certs (uv sync --system-certs, uv add --system-certs ...). Large installs can freeze the machine, so install one package at a time and never chain long commands.
 
 ## Decisions log
@@ -158,3 +158,6 @@ Person A manual items, no code involved:
 - 2026-09-13: On the fixture, weighted Louvain put phones and accounts in their own communities away from their owners. Unweighted Louvain at resolution 0.5 gives the two gang communities. A4 settles weighting on the seed graph.
 - 2026-09-13: Fixture alerts cover all four types so the alerts UI can show every kind. Severities follow the pattern rules: burst_calls and structuring high, bridge_node and night_calls medium.
 - 2026-09-13: mentioned_in edges make a shared FIR the shortest link between any two of its entities. The stub returns that plain path; A4 skips case nodes in path search unless one is an endpoint.
+- 2026-09-13: LLM primary is gemini-3.5-flash-lite: on the two fixture narratives it took 3 seconds, found all 13 entities with every role right, used 1.5k tokens and ignored an injected instruction. gemini-3.5-flash is the quality fallback on the same key, 10 seconds because it thinks. gemini-3.8-flash answered 503 high demand and is avoided for the demo, as are preview and latest aliases. Backup provider is Groq with qwen/qwen3.8-27b, 2 seconds, 8k tokens per minute limit. Cerebras answered HTTP 402 and is dropped.
+- 2026-09-13: truststore is a dependency and the LLM client injects it into ssl before any request, because Norton intercepts TLS on Person A's laptop and certifi rejects its certificate.
+- 2026-09-13: Commits carry no Co-Authored-By trailer or Claude attribution.
