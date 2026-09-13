@@ -25,7 +25,7 @@ Custom model: GLiNER medium (about 200M parameters) fine-tunes on a Kaggle T4 in
 
 ### Synthetic dataset
 
-Fixed random seed 42. Faker en_IN for names, addresses and phone numbers. City: Pune, ten named towers with coordinates (Kothrud, Shivajinagar, Hadapsar, Warje, Kondhwa, Yerwada, Hinjewadi, Swargate, Camp, Baner). Time window: 1 June to 31 August 2026.
+Fixed random seed 42. Names from curated Marathi and mixed Indian lists, addresses from Pune street and area lists, phone numbers and account numbers drawn from the seeded generator. Faker en_IN was tried and dropped: its names, phone formats and addresses do not read as Pune. City: Pune, ten named towers with coordinates (Kothrud, Shivajinagar, Hadapsar, Warje, Kondhwa, Yerwada, Hinjewadi, Swargate, Camp, Baner). Time window: 1 June to 31 August 2026.
 
 Planted structure:
 
@@ -35,11 +35,13 @@ Planted structure:
 - Three mule accounts each receiving 6 to 10 transfers of 40,000 to 49,999 INR inside a week, forwarding the total to the account of a leader.
 - About 20 civilians as complainants, witnesses and victims.
 - Ordinary background calls and transfers so the planted patterns are not the only edges.
+- One call burst: a Gang A phone pair exchanging 12 to 20 calls inside two hours on the evening before an incident, so the burst_calls alert has data.
+- No seed FIR names members of both gangs and each civilian is tied to one gang, so the intermediary's phone and account are the only cross-gang edges. The extortion calls the narratives describe also appear in cdr.csv, which gives the demo its path from a complainant's phone to the kingpin.
 
 Outputs in backend/data/seed/:
 
-- fir/FIR-2026-0001.txt to about 0040. Register style: FIR number, police station, district, date and time of report, sections, complainant with age, address and mobile, narrative, accused with alias and address, vehicle registration, phone numbers, amounts. Six to eight narrative templates per crime type: theft, extortion, drug peddling, assault, cyber fraud. Each FIR names 1 to 4 persons, 0 to 2 vehicles, 1 to 2 phones, 1 location.
-- cdr.csv about 3,000 rows, transactions.csv about 800 rows, persons.csv with every gang member but only half of the phone ownership links; the other half appear only in FIR text so extraction visibly adds value.
+- fir/FIR-2026-0001.txt to about 0040. Register style: FIR number, police station, district, date and time of report, sections, complainant with age, address and mobile, narrative, accused with alias and address, vehicle registration, phone numbers, amounts. Six to eight narrative templates per crime type: theft, extortion, drug peddling, assault, cyber fraud. Each FIR names 1 to 4 persons, 0 to 2 vehicles, 1 to 2 phones, 1 location. The file FIR-2026-NNNN.txt carries FIR No. NNNN/2026.
+- cdr.csv about 3,000 rows, transactions.csv about 800 rows, persons.csv with every gang member but only half of the phone ownership links; the other half appear only in FIR text so extraction visibly adds value. cdr.csv carries tower_id and the tower area name; the tower coordinates stay in the generator's tower table for the Phase 5 map.
 
 Example FIR opening:
 
@@ -125,7 +127,7 @@ Person A steps:
 
 1. git init, first commit with the planning files, create the GitHub repository, add B as collaborator, enable secret scanning and Dependabot in repository settings.
 2. Write backend/data/fixture_graph.json by hand: about 25 nodes covering every entity type with metrics filled in, about 40 edges covering every relationship type, 3 alerts, 2 cases with short narratives and spans. Push it to main immediately so B can copy it. If B needs it before it exists, B writes it following the schemas and A adopts it. Done on 13 September: 28 nodes, 53 edges, 4 alerts covering every type, 2 cases. Metrics were computed by networkx on the hand-written edges, unweighted, Louvain resolution 0.5, seed 42.
-3. uv python install 3.12. Inside backend: uv init --bare --python 3.12, then uv add fastapi "uvicorn[standard]" pydantic-settings networkx pandas openai faker python-multipart scipy, then uv add --dev pytest httpx. scipy is needed because networkx 3 delegates PageRank to it. On a laptop where an antivirus intercepts TLS, add --system-certs to every uv command.
+3. uv python install 3.12. Inside backend: uv init --bare --python 3.12, then uv add fastapi "uvicorn[standard]" pydantic-settings networkx pandas openai python-multipart scipy, then uv add --dev pytest httpx. scipy is needed because networkx 3 delegates PageRank to it. On a laptop where an antivirus intercepts TLS, add --system-certs to every uv command.
 4. app/config.py Settings: llm_base_url, llm_api_key, llm_model, extraction_engine defaulting to llm, api_key, cors_origin defaulting to http://localhost:5173, data_dir. app/schemas.py with every schema from CLAUDE.local.md. app/main.py with CORSMiddleware and stub routers that read fixture_graph.json and answer every GET endpoint from it: stats counts the fixture, key-players sorts fixture persons by pagerank, path runs networkx on the fixture, cases come from the fixture. POST endpoints return 501. Done as app/stub.py, deleted in A5. Shapes fixed by the stub: node metrics sit under a metrics object; GET /entities/{id} returns {entity, metrics, neighbors: [{id, type, label, relationship, edge_id}], sources}; GET /stats returns {entities: {type: count}, relationships, cases, alerts}; a case list item carries entity_count, the number of distinct span ids, and the detail adds narrative and entities; alert evidence is a flat object of scalars and short lists.
 5. backend/.env.example with the six names. Sign up at Google AI Studio and Groq. Put one key in .env and confirm with curl "$LLM_BASE_URL/models" -H "Authorization: Bearer $LLM_API_KEY". Done on 13 September: Gemini and Groq keys work. backend/.env uses gemini-3.5-flash-lite, backend/.env.groq holds the Groq backup with qwen/qwen3.8-27b and backend/.env.nvidia the NVIDIA fallback with nvidia/nemotron-3-super-120b-a12b; all three are gitignored.
 6. Activate Azure for Students and GitHub Pro from the Student Pack. Verification may take up to 48 hours.

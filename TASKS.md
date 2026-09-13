@@ -1,6 +1,6 @@
 # TASKS
 
-Current phase, Person A: Phase A1 (Phase 0 manual items still open, see Blockers)
+Current phase, Person A: Phase A2 (Phase 0 manual items still open, see Blockers)
 Current phase, Person B: Phase 0
 MVP demo: 15 September 2026
 Full project: about 12 October 2026
@@ -23,9 +23,9 @@ Update this file before ending every session. Tick items, move the current phase
 
 ## Phase A1: Synthetic dataset (A, 13 September morning)
 
-- [ ] scripts/generate_dataset.py with fixed seed
-- [ ] data/seed/fir/*.txt (about 40), cdr.csv, transactions.csv, persons.csv
-- [ ] Planted structure verified: intermediary, burner phone, structuring accounts
+- [x] scripts/generate_dataset.py with fixed seed
+- [x] data/seed/fir/*.txt (about 40), cdr.csv, transactions.csv, persons.csv
+- [x] Planted structure verified: intermediary, burner phone, structuring accounts
 
 ## Phase A2: Regex extractors (A, 13 September)
 
@@ -140,6 +140,7 @@ Notes for Person A:
 - To switch the LLM provider, copy backend/.env.groq or backend/.env.nvidia over backend/.env. All three are gitignored. NVIDIA needs the llm_extra_body setting that Phase A3 adds, otherwise Nemotron spends its whole token budget thinking.
 - Python HTTPS on this laptop fails certificate checks under Norton. The LLM client must call truststore.inject_into_ssl() before creating the OpenAI client; truststore is a dependency.
 - On this laptop Norton intercepts TLS, so every uv command needs --system-certs (uv sync --system-certs, uv add --system-certs ...). Large installs can freeze the machine, so install one package at a time and never chain long commands.
+- CLAUDE.local.md line 8 still lists Faker in the backend stack section; update it to say Faker was dropped in Phase A1.
 
 ## Decisions log
 
@@ -164,3 +165,7 @@ Notes for Person A:
 - 2026-09-13: Third provider is NVIDIA Build with nvidia/nemotron-3-super-120b-a12b and thinking disabled through chat_template_kwargs: 10 seconds, 13/13 entities, roles right, injection ignored. Gemma 4, DeepSeek V4 Flash and GLM 5.3 Flash timed out after 75 seconds on the free endpoint; Kimi, Llama Nemotron 70B and Mistral Large 2 are not enabled for the account. 40 requests per minute, fallback only.
 - 2026-09-13: Mistral is rejected: its free mode returns 0 requests per minute on every Small, Medium and Magistral model for this account, and Ministral 14B, the only model that answers, follows injected instructions. Retest only if the Limits page in the Mistral admin panel shows those models unlocked.
 - 2026-09-13: Phase branches are deleted once fast-forwarded into main; a/phase-0 is gone.
+- 2026-09-13: Faker is dropped from the stack and removed from pyproject: its en_IN names, phone formats and addresses do not read as Pune. The generator draws names from curated Hindu Marathi and Muslim pools that are never mixed inside one name, addresses from a street-per-area map of the ten tower areas, and phones, accounts and plates from the seeded generator.
+- 2026-09-13: Seed corpus rules: no seed FIR names members of both gangs, each civilian is tied to one gang, the intermediary is in persons.csv with phone and account and is never named in a FIR, the extortion calls the narratives describe appear in cdr.csv, one call burst is planted for the burst_calls alert, and the burner phone is attributed to a Gang A lieutenant only in FIR text.
+- 2026-09-13: File FIR-2026-NNNN.txt carries "FIR No. NNNN/2026". cdr.csv carries tower_id T01 to T10 and the tower area name; tower coordinates stay in the generator for the Phase 5 map.
+- 2026-09-13: Every narrative template carries its own sections; 351(2) or 351(3) appears only where the text threatens, 351(3) for death or grievous hurt. Drug FIRs have a police officer complainant with one fixed station and are registered at that station. Gang members and the intermediary have male names, civilians are complainants in at most two FIRs each, amounts are round figures.
