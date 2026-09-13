@@ -137,7 +137,7 @@ Update this file before ending every session. Tick items, move the current phase
 Notes for Person A:
 
 - Share API_KEY from backend/.env with B privately; it becomes VITE_API_KEY on the frontend.
-- To switch the LLM provider, copy backend/.env.groq over backend/.env. Both files are gitignored. Cerebras is dropped: its API answers HTTP 402 payment required for this account.
+- To switch the LLM provider, copy backend/.env.groq over backend/.env. Both files are gitignored.
 - Python HTTPS on this laptop fails certificate checks under Norton. The LLM client must call truststore.inject_into_ssl() before creating the OpenAI client; truststore is a dependency.
 - On this laptop Norton intercepts TLS, so every uv command needs --system-certs (uv sync --system-certs, uv add --system-certs ...). Large installs can freeze the machine, so install one package at a time and never chain long commands.
 
