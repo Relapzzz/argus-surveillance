@@ -30,6 +30,5 @@ App at http://localhost:5173.
 
 ## Project files
 
-- CLAUDE.md: problem statement, stack, architecture, API contract, rules.
 - IMPLEMENTATION_PLAN.md: phased plan for Person A (backend) and Person B (frontend).
 - TASKS.md: current status.

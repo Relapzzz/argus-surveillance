@@ -14,7 +14,7 @@ Update this file before ending every session. Tick items, move the current phase
 - [x] A: backend/data/fixture_graph.json written and pushed to main
 - [x] A: backend scaffold with uv, stub API serving the fixture on every GET endpoint, 17 API tests
 - [x] A: .env.example written
-- [x] A: LLM keys confirmed with GET /models; backend/.env uses gemini-3.5-flash-lite, backend/.env.groq holds the Groq backup
+- [x] A: LLM keys confirmed with GET /models; backend/.env uses gemini-3.5-flash-lite, backend/.env.groq holds the Groq backup, backend/.env.nvidia the NVIDIA fallback
 - [x] A: Azure for Students and GitHub Pro activated from the Student Pack
 - [ ] B: frontend scaffold with Bun, Vite, Tailwind v4, shadcn/ui, react-router, TanStack Query, react-force-graph-2d
 - [ ] B: app shell with sidebar navigation and dark theme, four empty pages
@@ -137,7 +137,7 @@ Update this file before ending every session. Tick items, move the current phase
 Notes for Person A:
 
 - Share API_KEY from backend/.env with B privately; it becomes VITE_API_KEY on the frontend.
-- To switch the LLM provider, copy backend/.env.groq over backend/.env. Both files are gitignored.
+- To switch the LLM provider, copy backend/.env.groq or backend/.env.nvidia over backend/.env. All three are gitignored. NVIDIA needs the llm_extra_body setting that Phase A3 adds, otherwise Nemotron spends its whole token budget thinking.
 - Python HTTPS on this laptop fails certificate checks under Norton. The LLM client must call truststore.inject_into_ssl() before creating the OpenAI client; truststore is a dependency.
 - On this laptop Norton intercepts TLS, so every uv command needs --system-certs (uv sync --system-certs, uv add --system-certs ...). Large installs can freeze the machine, so install one package at a time and never chain long commands.
 
@@ -161,3 +161,6 @@ Notes for Person A:
 - 2026-09-13: LLM primary is gemini-3.5-flash-lite: on the two fixture narratives it took 3 seconds, found all 13 entities with every role right, used 1.5k tokens and ignored an injected instruction. gemini-3.5-flash is the quality fallback on the same key, 10 seconds because it thinks. gemini-3.8-flash answered 503 high demand and is avoided for the demo, as are preview and latest aliases. Backup provider is Groq with qwen/qwen3.8-27b, 2 seconds, 8k tokens per minute limit. Cerebras answered HTTP 402 and is dropped.
 - 2026-09-13: truststore is a dependency and the LLM client injects it into ssl before any request, because Norton intercepts TLS on Person A's laptop and certifi rejects its certificate.
 - 2026-09-13: Commits carry no Co-Authored-By trailer or Claude attribution.
+- 2026-09-13: Third provider is NVIDIA Build with nvidia/nemotron-3-super-120b-a12b and thinking disabled through chat_template_kwargs: 10 seconds, 13/13 entities, roles right, injection ignored. Gemma 4, DeepSeek V4 Flash and GLM 5.3 Flash timed out after 75 seconds on the free endpoint; Kimi, Llama Nemotron 70B and Mistral Large 2 are not enabled for the account. 40 requests per minute, fallback only.
+- 2026-09-13: Mistral is rejected: its free mode returns 0 requests per minute on every Small, Medium and Magistral model for this account, and Ministral 14B, the only model that answers, follows injected instructions. Retest only if the Limits page in the Mistral admin panel shows those models unlocked.
+- 2026-09-13: Phase branches are deleted once fast-forwarded into main; a/phase-0 is gone.
