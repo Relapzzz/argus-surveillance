@@ -3,7 +3,6 @@ name = "backend"
 version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
-    "faker>=40.38.0",
     "fastapi>=0.141.1",
     "networkx>=3.6.1",
     "openai>=3.13.0",
