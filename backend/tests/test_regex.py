@@ -56,6 +56,16 @@ def test_vehicles(text, expected):
             "Sections: 131, 3(5) BNS 2023.",
             [("BNS", "131"), ("BNS", "3(5)")],
         ),
+        ("BNS 3(5)", [("BNS", "3(5)")]),
+        ("IPC 304(2)", [("IPC", "304(2)")]),
+        ("IPC 120B", [("IPC", "120B")]),
+        ("IT Act 66D", [("IT Act", "66D")]),
+        ("Sections 420 and 120B IPC", [("IPC", "420"), ("IPC", "120B")]),
+        ("U/s 379 IPC", [("IPC", "379")]),
+        (
+            "Sections: 8(c) r/w 20(b)(ii)(C) NDPS Act 1985.",
+            [("NDPS Act", "8(c)"), ("NDPS Act", "20(b)(ii)(C)")],
+        ),
     ],
 )
 def test_sections(text, expected):
@@ -75,6 +85,7 @@ def test_fir_numbers():
         ("Rs. 1,02,800", [102800]),
         ("Rs. 1,63,000,", [163000]),
         ("demanded Rs. 4,40,000.", [440000]),
+        ("Rs. 9", [9]),
     ],
 )
 def test_amounts(text, expected):
@@ -121,10 +132,10 @@ def test_seed_corpus_yields_one_matching_fir_number(path):
     text = path.read_text()
     regex.phones(text)
     regex.vehicles(text)
-    regex.sections(text)
     regex.amounts(text)
     regex.dates(text)
     regex.accounts(text)
+    assert regex.sections(text)
     numbers = regex.fir_numbers(text)
     expected = path.stem
     assert numbers == [expected]
