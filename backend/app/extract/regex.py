@@ -72,5 +72,5 @@ def accounts(text: str) -> list[str]:
 
 
 def find_spans(text: str, label: str) -> list[tuple[int, int]]:
-    pattern = re.compile(re.escape(label), re.IGNORECASE)
+    pattern = re.compile(r"[\s-]?".join(map(re.escape, label)), re.IGNORECASE)
     return [match.span() for match in pattern.finditer(text)]

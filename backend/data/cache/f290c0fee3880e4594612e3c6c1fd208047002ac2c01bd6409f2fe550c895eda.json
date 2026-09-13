@@ -1,0 +1,92 @@
+{
+  "persons": [
+    {
+      "name": "Sunil Kamble",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Vaibhav Sawant",
+      "aliases": [],
+      "role": "accused"
+    },
+    {
+      "name": "Sachin Patil",
+      "aliases": [],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Hadapsar",
+    "Warje",
+    "Swargate"
+  ],
+  "phones": [
+    {
+      "number": "8713493618",
+      "owner": "Sunil Kamble"
+    },
+    {
+      "number": "9507527354",
+      "owner": "Vaibhav Sawant"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 12 CQ 5662",
+      "owner": "Vaibhav Sawant"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Sunil Kamble",
+      "predicate": "resides_at",
+      "object": "Hadapsar",
+      "evidence": "Complainant: Shri Sunil Kamble, aged 21, r/o H.No. 422, Sasane Nagar, Hadapsar, Pune, mobile 8713493618."
+    },
+    {
+      "subject": "Sunil Kamble",
+      "predicate": "owns",
+      "object": "8713493618",
+      "evidence": "Complainant: Shri Sunil Kamble, aged 21, r/o H.No. 422, Sasane Nagar, Hadapsar, Pune, mobile 8713493618."
+    },
+    {
+      "subject": "Vaibhav Sawant",
+      "predicate": "resides_at",
+      "object": "Swargate",
+      "evidence": "Accused: Vaibhav Sawant, aged 33, r/o Flat 33, Satara Road, Swargate, Pune; Sachin Patil, aged 39, r/o H.No. 795, Atul Nagar, Warje, Pune."
+    },
+    {
+      "subject": "Sachin Patil",
+      "predicate": "resides_at",
+      "object": "Warje",
+      "evidence": "Accused: Vaibhav Sawant, aged 33, r/o Flat 33, Satara Road, Swargate, Pune; Sachin Patil, aged 39, r/o H.No. 795, Atul Nagar, Warje, Pune."
+    },
+    {
+      "subject": "Vaibhav Sawant",
+      "predicate": "owns",
+      "object": "9507527354",
+      "evidence": "The accused was tracked through mobile number 9507527354."
+    },
+    {
+      "subject": "Vaibhav Sawant",
+      "predicate": "owns",
+      "object": "MH 12 CQ 5662",
+      "evidence": "The complainant narrates that on 22/08/2026 at about 06:17 hrs near Warje, he was confronted by Vaibhav Sawant, r/o Flat 33, Satara Road, Swargate, Pune, along with Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a car bearing registration MH 12 CQ 5662, over a monetary dispute and beaten with fists and kicks."
+    },
+    {
+      "subject": "Sachin Patil",
+      "predicate": "owns",
+      "object": "MH 12 CQ 5662",
+      "evidence": "The complainant narrates that on 22/08/2026 at about 06:17 hrs near Warje, he was confronted by Vaibhav Sawant, r/o Flat 33, Satara Road, Swargate, Pune, along with Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a car bearing registration MH 12 CQ 5662, over a monetary dispute and beaten with fists and kicks."
+    },
+    {
+      "subject": "Vaibhav Sawant",
+      "predicate": "co_accused",
+      "object": "Sachin Patil",
+      "evidence": "The complainant narrates that on 22/08/2026 at about 06:17 hrs near Warje, he was confronted by Vaibhav Sawant, r/o Flat 33, Satara Road, Swargate, Pune, along with Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a car bearing registration MH 12 CQ 5662, over a monetary dispute and beaten with fists and kicks."
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "persons": [
+    {
+      "name": "Swati Kale",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Santosh Kadam",
+      "aliases": [],
+      "role": "accused"
+    },
+    {
+      "name": "Tanveer Sayyed",
+      "aliases": [
+        "Chandu"
+      ],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Hinjewadi",
+    "Baner",
+    "Hadapsar",
+    "Swargate"
+  ],
+  "phones": [
+    {
+      "number": "7782639821",
+      "owner": "Swati Kale"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 12 QW 4162",
+      "owner": "Tanveer Sayyed"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Swati Kale",
+      "provenance": null,
+      "predicate": "resides_at",
+      "object": "Hinjewadi",
+      "evidence": "Complainant: Smt Swati Kale, aged 65, r/o Flat 76, Marunji Road, Hinjewadi, Pune, mobile 7782639821."
+    },
+    {
+      "subject": "Santosh Kadam",
+      "provenance": null,
+      "predicate": "resides_at",
+      "object": "Baner",
+      "evidence": "The complainant narrates that she was duped on 30/07/2026 at about 17:51 hrs into installing a remote access application by a caller identified later as Santosh Kadam, r/o H.No. 41, Pashan Sus Road, Baner, Pune, along with Tanveer Sayyed alias Chandu, r/o Flat 112, Solapur Road, Hadapsar, Pune, on a scooter bearing registration MH 12 QW 4162."
+    },
+    {
+      "subject": "Tanveer Sayyed",
+      "provenance": null,
+      "predicate": "resides_at",
+      "object": "Hadapsar",
+      "evidence": "The complainant narrates that she was duped on 30/07/2026 at about 17:51 hrs into installing a remote access application by a caller identified later as Santosh Kadam, r/o H.No. 41, Pashan Sus Road, Baner, Pune, along with Tanveer Sayyed alias Chandu, r/o Flat 112, Solapur Road, Hadapsar, Pune, on a scooter bearing registration MH 12 QW 4162."
+    },
+    {
+      "subject": "Santosh Kadam",
+      "provenance": null,
+      "predicate": "co_accused",
+      "object": "Tanveer Sayyed",
+      "evidence": "The complainant narrates that she was duped on 30/07/2026 at about 17:51 hrs into installing a remote access application by a caller identified later as Santosh Kadam, r/o H.No. 41, Pashan Sus Road, Baner, Pune, along with Tanveer Sayyed alias Chandu, r/o Flat 112, Solapur Road, Hadapsar, Pune, on a scooter bearing registration MH 12 QW 4162."
+    },
+    {
+      "subject": "Santosh Kadam",
+      "provenance": null,
+      "predicate": "called",
+      "object": "Swati Kale",
+      "evidence": "The complainant narrates that she was duped on 30/07/2026 at about 17:51 hrs into installing a remote access application by a caller identified later as Santosh Kadam, r/o H.No. 41, Pashan Sus Road, Baner, Pune, along with Tanveer Sayyed alias Chandu, r/o Flat 112, Solapur Road, Hadapsar, Pune, on a scooter bearing registration MH 12 QW 4162."
+    },
+    {
+      "subject": "MH 12 QW 4162",
+      "provenance": null,
+      "predicate": "owns",
+      "object": "Tanveer Sayyed",
+      "evidence": "The complainant narrates that she was duped on 30/07/2026 at about 17:51 hrs into installing a remote access application by a caller identified later as Santosh Kadam, r/o H.No. 41, Pashan Sus Road, Baner, Pune, along with Tanveer Sayyed alias Chandu, r/o Flat 112, Solapur Road, Hadapsar, Pune, on a scooter bearing registration MH 12 QW 4162."
+    }
+  ]
+}

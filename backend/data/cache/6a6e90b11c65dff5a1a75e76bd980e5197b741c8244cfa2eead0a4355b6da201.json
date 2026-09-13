@@ -1,0 +1,48 @@
+{
+  "persons": [
+    {
+      "name": "Sneha Kulkarni",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Kiran Desai",
+      "aliases": [
+        "Dada"
+      ],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Camp",
+    "Hinjewadi",
+    "Warje"
+  ],
+  "phones": [
+    {
+      "number": "7067974034",
+      "owner": "Sneha Kulkarni"
+    },
+    {
+      "number": "8653755646",
+      "owner": "Kiran Desai"
+    }
+  ],
+  "vehicles": [],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "8653755646",
+      "predicate": "called",
+      "object": "Sneha Kulkarni",
+      "evidence": "The accused later called the complainant from mobile number 8653755646."
+    },
+    {
+      "subject": "Kiran Desai",
+      "predicate": "called",
+      "object": "Sneha Kulkarni",
+      "evidence": "It is stated that the complainant was contacted near Hinjewadi on 12/06/2026 at about 07:52 hrs by Kiran Desai alias Dada, r/o H.No. 876, Atul Nagar, Warje, Pune, who demanded a sum of Rs. 35,000 for allowing the complainant's business to continue."
+    }
+  ]
+}

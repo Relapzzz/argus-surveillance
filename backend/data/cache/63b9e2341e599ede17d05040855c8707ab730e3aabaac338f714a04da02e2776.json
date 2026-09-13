@@ -1,0 +1,85 @@
+{
+  "persons": [
+    {
+      "name": "Neha Salunkhe",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Imran Shaikh",
+      "aliases": [
+        "Anna"
+      ],
+      "role": "accused"
+    },
+    {
+      "name": "Sanjay Jadhav",
+      "aliases": [],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Swargate",
+    "Kothrud",
+    "Kondhwa",
+    "Camp"
+  ],
+  "phones": [
+    {
+      "number": "9533963605",
+      "owner": "Neha Salunkhe"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 14 DH 6249",
+      "owner": "Imran Shaikh"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Neha Salunkhe",
+      "predicate": "resides_at",
+      "object": "Swargate",
+      "evidence": "Complainant: Smt Neha Salunkhe, aged 30, r/o Flat 127, Market Yard, Swargate, Pune, mobile 9533963605."
+    },
+    {
+      "subject": "Neha Salunkhe",
+      "predicate": "owns",
+      "object": "9533963605",
+      "evidence": "Complainant: Smt Neha Salunkhe, aged 30, r/o Flat 127, Market Yard, Swargate, Pune, mobile 9533963605."
+    },
+    {
+      "subject": "Imran Shaikh",
+      "predicate": "resides_at",
+      "object": "Kondhwa",
+      "evidence": "Accused: Imran Shaikh alias Anna, aged 32, r/o H.No. 169, Mithanagar, Kondhwa, Pune; Sanjay Jadhav, aged 37, r/o Flat 261, East Street, Camp, Pune."
+    },
+    {
+      "subject": "Sanjay Jadhav",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "Accused: Imran Shaikh alias Anna, aged 32, r/o H.No. 169, Mithanagar, Kondhwa, Pune; Sanjay Jadhav, aged 37, r/o Flat 261, East Street, Camp, Pune."
+    },
+    {
+      "subject": "Imran Shaikh",
+      "predicate": "co_accused",
+      "object": "Sanjay Jadhav",
+      "evidence": "found that Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune, along with Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a car bearing registration MH 14 DH 6249, had removed her bag containing cash and documents worth Rs. 1,30,500."
+    },
+    {
+      "subject": "Imran Shaikh",
+      "predicate": "owns",
+      "object": "MH 14 DH 6249",
+      "evidence": "found that Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune, along with Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a car bearing registration MH 14 DH 6249, had removed her bag containing cash and documents worth Rs. 1,30,500."
+    },
+    {
+      "subject": "Sanjay Jadhav",
+      "predicate": "owns",
+      "object": "MH 14 DH 6249",
+      "evidence": "found that Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune, along with Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a car bearing registration MH 14 DH 6249, had removed her bag containing cash and documents worth Rs. 1,30,500."
+    }
+  ]
+}

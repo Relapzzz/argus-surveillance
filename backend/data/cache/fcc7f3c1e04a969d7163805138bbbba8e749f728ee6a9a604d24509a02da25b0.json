@@ -1,0 +1,88 @@
+{
+  "persons": [
+    {
+      "name": "Ayesha Pathan",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Sunil Thorat",
+      "aliases": [
+        "Danny"
+      ],
+      "role": "accused"
+    },
+    {
+      "name": "Vaibhav Sawant",
+      "aliases": [],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Swargate",
+    "Kothrud",
+    "Camp"
+  ],
+  "phones": [
+    {
+      "number": "7242102499",
+      "owner": "Ayesha Pathan"
+    },
+    {
+      "number": "8185067165",
+      "owner": "Sunil Thorat"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 14 WP 4098",
+      "owner": "Sunil Thorat"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Ayesha Pathan",
+      "predicate": "resides_at",
+      "object": "Swargate",
+      "evidence": "Complainant Smt Ayesha Pathan, aged 22, r/o Flat 471, Shankarsheth Road, Swargate, Pune, mobile 7242102499."
+    },
+    {
+      "subject": "7242102499",
+      "predicate": "owns",
+      "object": "Ayesha Pathan",
+      "evidence": "Complainant Smt Ayesha Pathan, aged 22, r/o Flat 471, Shankarsheth Road, Swargate, Pune, mobile 7242102499."
+    },
+    {
+      "subject": "Sunil Thorat",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "Sunil Thorat alias Danny, r/o Flat 391, East Street, Camp, Pune, on a scooter bearing registration MH 14 WP 4098"
+    },
+    {
+      "subject": "MH 14 WP 4098",
+      "predicate": "owns",
+      "object": "Sunil Thorat",
+      "evidence": "Sunil Thorat alias Danny, r/o Flat 391, East Street, Camp, Pune, on a scooter bearing registration MH 14 WP 4098, along with Vaibhav Sawant, r/o Flat 33, Satara Road, Swargate, Pune, in full public view."
+    },
+    {
+      "subject": "Vaibhav Sawant",
+      "predicate": "resides_at",
+      "object": "Swargate",
+      "evidence": "along with Vaibhav Sawant, r/o Flat 33, Satara Road, Swargate, Pune, in full public view."
+    },
+    {
+      "subject": "8185067165",
+      "predicate": "owns",
+      "object": "Sunil Thorat",
+      "evidence": "The accused was tracked through mobile number 8185067165."
+    },
+    {
+      "subject": "Sunil Thorat",
+      "predicate": "co_accused",
+      "object": "Vaibhav Sawant",
+      "evidence": "On 18/06/2026 at about 12:23 hrs, the complainant was dragged out of her shop near Kothrud by Sunil Thorat alias Danny, r/o Flat 391, East Street, Camp, Pune, on a scooter bearing registration MH 14 WP 4098, along with Vaibhav Sawant, r/o Flat 33, Satara Road, Swargate, Pune, in full public view."
+    }
+  ]
+}

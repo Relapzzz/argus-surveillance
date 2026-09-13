@@ -1,0 +1,77 @@
+{
+  "persons": [
+    {
+      "name": "Meena Desai",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Rohit Kamble",
+      "aliases": [
+        "Bhagya"
+      ],
+      "role": "accused"
+    },
+    {
+      "name": "Sanjay Jadhav",
+      "aliases": [],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Yerwada",
+    "Kothrud",
+    "Camp",
+    "Baner"
+  ],
+  "phones": [
+    {
+      "number": "7482477109",
+      "owner": "Meena Desai"
+    },
+    {
+      "number": "9783777014",
+      "owner": "Rohit Kamble"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 14 DH 6249",
+      "owner": "Rohit Kamble"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Rohit Kamble",
+      "predicate": "resides_at",
+      "object": "Kothrud",
+      "evidence": "Rohit Kamble alias Bhagya, r/o Flat 373, Karve Road, Kothrud, Pune"
+    },
+    {
+      "subject": "Sanjay Jadhav",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune"
+    },
+    {
+      "subject": "Meena Desai",
+      "predicate": "resides_at",
+      "object": "Yerwada",
+      "evidence": "Smt Meena Desai, aged 58, r/o Flat 346, Laxmi Nagar, Yerwada, Pune, mobile 7482477109."
+    },
+    {
+      "subject": "Meena Desai",
+      "predicate": "called",
+      "object": "9783777014",
+      "evidence": "It is stated that the complainant was contacted on 14/06/2026 at about 10:29 hrs by Rohit Kamble alias Bhagya, r/o Flat 373, Karve Road, Kothrud, Pune, along with Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a scooter bearing registration MH 14 DH 6249, offering an online investment scheme, using mobile number 9783777014 for the calls."
+    },
+    {
+      "subject": "Rohit Kamble",
+      "predicate": "co_accused",
+      "object": "Sanjay Jadhav",
+      "evidence": "It is stated that the complainant was contacted on 14/06/2026 at about 10:29 hrs by Rohit Kamble alias Bhagya, r/o Flat 373, Karve Road, Kothrud, Pune, along with Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a scooter bearing registration MH 14 DH 6249, offering an online investment scheme, using mobile number 9783777014 for the calls."
+    }
+  ]
+}

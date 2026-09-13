@@ -1,0 +1,78 @@
+{
+  "persons": [
+    {
+      "name": "Kavita Gaikwad",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Irfan Shaikh",
+      "aliases": [
+        "Sonu"
+      ],
+      "role": "accused"
+    },
+    {
+      "name": "Sanjay Jadhav",
+      "aliases": [],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Kondhwa",
+    "Warje",
+    "Camp"
+  ],
+  "phones": [
+    {
+      "number": "6715451680",
+      "owner": "Kavita Gaikwad"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 14 DH 6249",
+      "owner": "Irfan Shaikh"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Kavita Gaikwad",
+      "predicate": "resides_at",
+      "object": "Kondhwa",
+      "evidence": "Complainant: Smt Kavita Gaikwad, aged 52, r/o Flat 357, Mithanagar, Kondhwa, Pune, mobile 6715451680."
+    },
+    {
+      "subject": "6715451680",
+      "predicate": "owns",
+      "object": "Kavita Gaikwad",
+      "evidence": "Complainant: Smt Kavita Gaikwad, aged 52, r/o Flat 357, Mithanagar, Kondhwa, Pune, mobile 6715451680."
+    },
+    {
+      "subject": "Irfan Shaikh",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "The complainant narrates that while boarding a bus near Warje on 05/06/2026 at about 06:04 hrs, Irfan Shaikh alias Sonu, r/o H.No. 827, Sachapir Street, Camp, Pune, along with Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a scooter bearing registration MH 14 DH 6249, slit her bag and escaped with cash and valuables worth Rs. 1,62,500."
+    },
+    {
+      "subject": "Sanjay Jadhav",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "The complainant narrates that while boarding a bus near Warje on 05/06/2026 at about 06:04 hrs, Irfan Shaikh alias Sonu, r/o H.No. 827, Sachapir Street, Camp, Pune, along with Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a scooter bearing registration MH 14 DH 6249, slit her bag and escaped with cash and valuables worth Rs. 1,62,500."
+    },
+    {
+      "subject": "MH 14 DH 6249",
+      "predicate": "owns",
+      "object": "Irfan Shaikh",
+      "evidence": "The complainant narrates that while boarding a bus near Warje on 05/06/2026 at about 06:04 hrs, Irfan Shaikh alias Sonu, r/o H.No. 827, Sachapir Street, Camp, Pune, along with Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a scooter bearing registration MH 14 DH 6249, slit her bag and escaped with cash and valuables worth Rs. 1,62,500."
+    },
+    {
+      "subject": "Irfan Shaikh",
+      "predicate": "co_accused",
+      "object": "Sanjay Jadhav",
+      "evidence": "The complainant narrates that while boarding a bus near Warje on 05/06/2026 at about 06:04 hrs, Irfan Shaikh alias Sonu, r/o H.No. 827, Sachapir Street, Camp, Pune, along with Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a scooter bearing registration MH 14 DH 6249, slit her bag and escaped with cash and valuables worth Rs. 1,62,500."
+    }
+  ]
+}

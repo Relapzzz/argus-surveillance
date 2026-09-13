@@ -1,0 +1,48 @@
+{
+  "persons": [
+    {
+      "name": "Sagar Kadam",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Vijay Desai",
+      "aliases": [
+        "Vicky"
+      ],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Hadapsar",
+    "Kondhwa",
+    "Pune"
+  ],
+  "phones": [
+    {
+      "number": "9459615865",
+      "owner": "Sagar Kadam"
+    },
+    {
+      "number": "8494808313",
+      "owner": "Vijay Desai"
+    }
+  ],
+  "vehicles": [],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Vijay Desai",
+      "predicate": "resides_at",
+      "object": "Kondhwa",
+      "evidence": "Vijay Desai alias Vicky, r/o Flat 17, Kondhwa Khurd, Kondhwa, Pune, behaving suspiciously."
+    },
+    {
+      "subject": "Vijay Desai",
+      "predicate": "resides_at",
+      "object": "Pune",
+      "evidence": "Vijay Desai alias Vicky, r/o Flat 17, Kondhwa Khurd, Kondhwa, Pune, behaving suspiciously."
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "persons": [
+    {
+      "name": "Sarita Kulkarni",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Ajay Deshmukh",
+      "aliases": [
+        "Bhau"
+      ],
+      "role": "accused"
+    },
+    {
+      "name": "Sunil Thorat",
+      "aliases": [
+        "Danny"
+      ],
+      "role": "accused"
+    },
+    {
+      "name": "Kiran Desai",
+      "aliases": [
+        "Dada"
+      ],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Baner",
+    "Swargate",
+    "Camp",
+    "Warje"
+  ],
+  "phones": [
+    {
+      "number": "9429671756",
+      "owner": "Sarita Kulkarni"
+    },
+    {
+      "number": "9945314737",
+      "owner": "Ajay Deshmukh"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 14 WP 4098",
+      "owner": "Ajay Deshmukh"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Sarita Kulkarni",
+      "predicate": "resides_at",
+      "object": "Baner",
+      "evidence": "Complainant: Smt Sarita Kulkarni, aged 44, r/o Flat 363, Pashan Sus Road, Baner, Pune, mobile 9429671756."
+    },
+    {
+      "subject": "Sarita Kulkarni",
+      "predicate": "owns",
+      "object": "9429671756",
+      "evidence": "Complainant: Smt Sarita Kulkarni, aged 44, r/o Flat 363, Pashan Sus Road, Baner, Pune, mobile 9429671756."
+    },
+    {
+      "subject": "Ajay Deshmukh",
+      "predicate": "resides_at",
+      "object": "Swargate",
+      "evidence": "The complainant states that on 05/06/2026 at about 05:02 hrs near Baner, Ajay Deshmukh alias Bhau, r/o Flat 447, Shankarsheth Road, Swargate, Pune, along with Sunil Thorat alias Danny, r/o Flat 391, East Street, Camp, Pune, on a car bearing registration MH 14 WP 4098, along with Kiran Desai alias Dada, r/o H.No. 876, Atul Nagar, Warje, Pune, assaulted her following a heated argument."
+    },
+    {
+      "subject": "Sunil Thorat",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "The complainant states that on 05/06/2026 at about 05:02 hrs near Baner, Ajay Deshmukh alias Bhau, r/o Flat 447, Shankarsheth Road, Swargate, Pune, along with Sunil Thorat alias Danny, r/o Flat 391, East Street, Camp, Pune, on a car bearing registration MH 14 WP 4098, along with Kiran Desai alias Dada, r/o H.No. 876, Atul Nagar, Warje, Pune, assaulted her following a heated argument."
+    },
+    {
+      "subject": "Kiran Desai",
+      "predicate": "resides_at",
+      "object": "Warje",
+      "evidence": "The complainant states that on 05/06/2026 at about 05:02 hrs near Baner, Ajay Deshmukh alias Bhau, r/o Flat 447, Shankarsheth Road, Swargate, Pune, along with Sunil Thorat alias Danny, r/o Flat 391, East Street, Camp, Pune, on a car bearing registration MH 14 WP 4098, along with Kiran Desai alias Dada, r/o H.No. 876, Atul Nagar, Warje, Pune, assaulted her following a heated argument."
+    },
+    {
+      "subject": "MH 14 WP 4098",
+      "predicate": "owns",
+      "object": "Ajay Deshmukh",
+      "evidence": "The complainant states that on 05/06/2026 at about 05:02 hrs near Baner, Ajay Deshmukh alias Bhau, r/o Flat 447, Shankarsheth Road, Swargate, Pune, along with Sunil Thorat alias Danny, r/o Flat 391, East Street, Camp, Pune, on a car bearing registration MH 14 WP 4098, along with Kiran Desai alias Dada, r/o H.No. 876, Atul Nagar, Warje, Pune, assaulted her following a heated argument."
+    },
+    {
+      "subject": "9945314737",
+      "predicate": "owns",
+      "object": "Ajay Deshmukh",
+      "evidence": "The accused was tracked through mobile number 9945314737."
+    },
+    {
+      "subject": "Ajay Deshmukh",
+      "predicate": "co_accused",
+      "object": "Sunil Thorat",
+      "evidence": "The complainant states that on 05/06/2026 at about 05:02 hrs near Baner, Ajay Deshmukh alias Bhau, r/o Flat 447, Shankarsheth Road, Swargate, Pune, along with Sunil Thorat alias Danny, r/o Flat 391, East Street, Camp, Pune, on a car bearing registration MH 14 WP 4098, along with Kiran Desai alias Dada, r/o H.No. 876, Atul Nagar, Warje, Pune, assaulted her following a heated argument."
+    },
+    {
+      "subject": "Ajay Deshmukh",
+      "predicate": "co_accused",
+      "object": "Kiran Desai",
+      "evidence": "The complainant states that on 05/06/2026 at about 05:02 hrs near Baner, Ajay Deshmukh alias Bhau, r/o Flat 447, Shankarsheth Road, Swargate, Pune, along with Sunil Thorat alias Danny, r/o Flat 391, East Street, Camp, Pune, on a car bearing registration MH 14 WP 4098, along with Kiran Desai alias Dada, r/o H.No. 876, Atul Nagar, Warje, Pune, assaulted her following a heated argument."
+    }
+  ]
+}

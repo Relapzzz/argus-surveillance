@@ -1,0 +1,72 @@
+{
+  "persons": [
+    {
+      "name": "Pooja Deshmukh",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Sanjay Jadhav",
+      "aliases": [],
+      "role": "accused"
+    },
+    {
+      "name": "Ravindra Chavan",
+      "aliases": [
+        "Guru"
+      ],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Kothrud",
+    "Camp",
+    "Warje"
+  ],
+  "phones": [
+    {
+      "number": "9127484677",
+      "owner": "Pooja Deshmukh"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 14 DH 6249",
+      "owner": "Sanjay Jadhav"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Pooja Deshmukh",
+      "predicate": "resides_at",
+      "object": "Kothrud",
+      "evidence": "Complainant: Smt Pooja Deshmukh, aged 21, r/o H.No. 626, Paud Road, Kothrud, Pune, mobile 9127484677."
+    },
+    {
+      "subject": "Sanjay Jadhav",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "Accused: Sanjay Jadhav, aged 37, r/o Flat 261, East Street, Camp, Pune; Ravindra Chavan alias Guru, aged 31, r/o Flat 476, Sachapir Street, Camp, Pune."
+    },
+    {
+      "subject": "Ravindra Chavan",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "Accused: Sanjay Jadhav, aged 37, r/o Flat 261, East Street, Camp, Pune; Ravindra Chavan alias Guru, aged 31, r/o Flat 476, Sachapir Street, Camp, Pune."
+    },
+    {
+      "subject": "Sanjay Jadhav",
+      "predicate": "owns",
+      "object": "MH 14 DH 6249",
+      "evidence": "Bank records pointed towards Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a car bearing registration MH 14 DH 6249, along with Ravindra Chavan alias Guru, r/o Flat 476, Sachapir Street, Camp, Pune, active near Warje."
+    },
+    {
+      "subject": "Sanjay Jadhav",
+      "predicate": "co_accused",
+      "object": "Ravindra Chavan",
+      "evidence": "Bank records pointed towards Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a car bearing registration MH 14 DH 6249, along with Ravindra Chavan alias Guru, r/o Flat 476, Sachapir Street, Camp, Pune, active near Warje."
+    }
+  ]
+}

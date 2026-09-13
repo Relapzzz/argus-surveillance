@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Any, Literal
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 EntityType = Literal["person", "phone", "vehicle", "location", "organization", "account", "case"]
 RelationshipType = Literal["called", "transacted", "co_accused", "owns", "resides_at", "seen_at", "member_of", "mentioned_in", "associate_of"]
@@ -103,7 +103,7 @@ class CaseSummary(BaseModel):
     id: str
     fir_number: str
     station: str
-    incident_time: datetime
+    incident_time: datetime | None
     sections: list[str]
     entity_count: int
 
@@ -128,6 +128,8 @@ class ExtractedPerson(BaseModel):
 
 
 class ExtractedPhone(BaseModel):
+    model_config = ConfigDict(coerce_numbers_to_str=True)
+
     number: str
     owner: str | None = None
 
@@ -138,6 +140,8 @@ class ExtractedVehicle(BaseModel):
 
 
 class ExtractedAccount(BaseModel):
+    model_config = ConfigDict(coerce_numbers_to_str=True)
+
     number: str
     owner: str | None = None
 
@@ -163,3 +167,9 @@ class IngestResult(BaseModel):
     case_id: str | None = None
     entities_added: int
     relationships_added: int
+
+
+class FirIngest(BaseModel):
+    case: Case
+    entities: list[Entity]
+    relationships: list[Relationship]

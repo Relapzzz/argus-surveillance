@@ -1,0 +1,90 @@
+{
+  "persons": [
+    {
+      "name": "Shobha Pawar",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Imran Shaikh",
+      "aliases": [
+        "Anna"
+      ],
+      "role": "accused"
+    },
+    {
+      "name": "Sanjay Jadhav",
+      "aliases": [],
+      "role": "accused"
+    },
+    {
+      "name": "Tanveer Sayyed",
+      "aliases": [
+        "Chandu"
+      ],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Camp",
+    "Kondhwa",
+    "Hadapsar",
+    "Hinjewadi"
+  ],
+  "phones": [
+    {
+      "number": "7248086131",
+      "owner": "Shobha Pawar"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 14 DH 6249",
+      "owner": "Sanjay Jadhav"
+    },
+    {
+      "plate": "MH 12 QW 4162",
+      "owner": "Tanveer Sayyed"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Shobha Pawar",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "Complainant: Smt Shobha Pawar, aged 38, r/o Flat 488, Sachapir Street, Camp, Pune, mobile 7248086131."
+    },
+    {
+      "subject": "Imran Shaikh",
+      "predicate": "resides_at",
+      "object": "Kondhwa",
+      "evidence": "Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune"
+    },
+    {
+      "subject": "Sanjay Jadhav",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune"
+    },
+    {
+      "subject": "Tanveer Sayyed",
+      "predicate": "resides_at",
+      "object": "Hadapsar",
+      "evidence": "Tanveer Sayyed alias Chandu, r/o Flat 112, Solapur Road, Hadapsar, Pune"
+    },
+    {
+      "subject": "Sanjay Jadhav",
+      "predicate": "co_accused",
+      "object": "Imran Shaikh",
+      "evidence": "messages were sent to her contacts requesting money on behalf of Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune, along with Sanjay Jadhav"
+    },
+    {
+      "subject": "Tanveer Sayyed",
+      "predicate": "co_accused",
+      "object": "Imran Shaikh",
+      "evidence": "messages were sent to her contacts requesting money on behalf of Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune, along with Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a scooter bearing registration MH 14 DH 6249, along with Tanveer Sayyed alias Chandu"
+    }
+  ]
+}

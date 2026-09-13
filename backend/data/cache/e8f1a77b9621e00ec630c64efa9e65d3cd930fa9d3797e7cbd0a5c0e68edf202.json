@@ -1,0 +1,65 @@
+{
+  "persons": [
+    {
+      "name": "Kavita Gaikwad",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Imran Shaikh",
+      "aliases": [
+        "Anna"
+      ],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Kondhwa",
+    "Baner"
+  ],
+  "phones": [
+    {
+      "number": "6715451680",
+      "owner": "Kavita Gaikwad"
+    },
+    {
+      "number": "9855744431",
+      "owner": "Imran Shaikh"
+    }
+  ],
+  "vehicles": [],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Kavita Gaikwad",
+      "predicate": "resides_at",
+      "object": "Kondhwa",
+      "evidence": "Complainant: Smt Kavita Gaikwad, aged 52, r/o Flat 357, Mithanagar, Kondhwa, Pune, mobile 6715451680."
+    },
+    {
+      "subject": "6715451680",
+      "predicate": "owns",
+      "object": "Kavita Gaikwad",
+      "evidence": "Complainant: Smt Kavita Gaikwad, aged 52, r/o Flat 357, Mithanagar, Kondhwa, Pune, mobile 6715451680."
+    },
+    {
+      "subject": "Imran Shaikh",
+      "predicate": "resides_at",
+      "object": "Kondhwa",
+      "evidence": "The complainant states that she received a call on 13/06/2026 at about 17:21 hrs from Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune, posing as a bank official and requesting her card details, using mobile number 9855744431 for the calls."
+    },
+    {
+      "subject": "9855744431",
+      "predicate": "owns",
+      "object": "Imran Shaikh",
+      "evidence": "The complainant states that she received a call on 13/06/2026 at about 17:21 hrs from Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune, posing as a bank official and requesting her card details, using mobile number 9855744431 for the calls."
+    },
+    {
+      "subject": "9855744431",
+      "predicate": "called",
+      "object": "Kavita Gaikwad",
+      "evidence": "The complainant states that she received a call on 13/06/2026 at about 17:21 hrs from Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune, posing as a bank official and requesting her card details, using mobile number 9855744431 for the calls."
+    }
+  ]
+}

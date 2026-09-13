@@ -1,0 +1,77 @@
+{
+  "persons": [
+    {
+      "name": "Vijay More",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Tanveer Sayyed",
+      "aliases": [
+        "Chandu"
+      ],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Camp",
+    "Hadapsar",
+    "Warje"
+  ],
+  "phones": [
+    {
+      "number": "8658404499",
+      "owner": "Vijay More"
+    },
+    {
+      "number": "7518233749",
+      "owner": "Tanveer Sayyed"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 12 QW 4162",
+      "owner": "Tanveer Sayyed"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Vijay More",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "Complainant: Shri Vijay More, aged 64, r/o Flat 128, Bund Garden Road, Camp, Pune, mobile 8658404499."
+    },
+    {
+      "subject": "8658404499",
+      "predicate": "owns",
+      "object": "Vijay More",
+      "evidence": "Complainant: Shri Vijay More, aged 64, r/o Flat 128, Bund Garden Road, Camp, Pune, mobile 8658404499."
+    },
+    {
+      "subject": "Tanveer Sayyed",
+      "predicate": "resides_at",
+      "object": "Hadapsar",
+      "evidence": "On 11/07/2026 at about 18:15 hrs, the complainant responded to a fraudulent job offer online, after which he was asked to pay a registration fee to Tanveer Sayyed alias Chandu, r/o Flat 112, Solapur Road, Hadapsar, Pune, on a scooter bearing registration MH 12 QW 4162, using mobile number 7518233749 for the calls."
+    },
+    {
+      "subject": "MH 12 QW 4162",
+      "predicate": "owns",
+      "object": "Tanveer Sayyed",
+      "evidence": "On 11/07/2026 at about 18:15 hrs, the complainant responded to a fraudulent job offer online, after which he was asked to pay a registration fee to Tanveer Sayyed alias Chandu, r/o Flat 112, Solapur Road, Hadapsar, Pune, on a scooter bearing registration MH 12 QW 4162, using mobile number 7518233749 for the calls."
+    },
+    {
+      "subject": "7518233749",
+      "predicate": "owns",
+      "object": "Tanveer Sayyed",
+      "evidence": "On 11/07/2026 at about 18:15 hrs, the complainant responded to a fraudulent job offer online, after which he was asked to pay a registration fee to Tanveer Sayyed alias Chandu, r/o Flat 112, Solapur Road, Hadapsar, Pune, on a scooter bearing registration MH 12 QW 4162, using mobile number 7518233749 for the calls."
+    },
+    {
+      "subject": "7518233749",
+      "predicate": "called",
+      "object": "Vijay More",
+      "evidence": "On 11/07/2026 at about 18:15 hrs, the complainant responded to a fraudulent job offer online, after which he was asked to pay a registration fee to Tanveer Sayyed alias Chandu, r/o Flat 112, Solapur Road, Hadapsar, Pune, on a scooter bearing registration MH 12 QW 4162, using mobile number 7518233749 for the calls."
+    }
+  ]
+}

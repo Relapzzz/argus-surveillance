@@ -1,0 +1,58 @@
+{
+  "persons": [
+    {
+      "name": "Sarita Kulkarni",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Deepak Shinde",
+      "aliases": [],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Baner",
+    "Hadapsar",
+    "Kondhwa"
+  ],
+  "phones": [
+    {
+      "number": "9429671756",
+      "owner": "Sarita Kulkarni"
+    },
+    {
+      "number": "9262849877",
+      "owner": "Deepak Shinde"
+    }
+  ],
+  "vehicles": [],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Sarita Kulkarni",
+      "predicate": "resides_at",
+      "object": "Baner",
+      "evidence": "Complainant: Smt Sarita Kulkarni, aged 44, r/o Flat 363, Pashan Sus Road, Baner, Pune, mobile 9429671756."
+    },
+    {
+      "subject": "Sarita Kulkarni",
+      "predicate": "owns",
+      "object": "9429671756",
+      "evidence": "Complainant: Smt Sarita Kulkarni, aged 44, r/o Flat 363, Pashan Sus Road, Baner, Pune, mobile 9429671756."
+    },
+    {
+      "subject": "Deepak Shinde",
+      "predicate": "resides_at",
+      "object": "Kondhwa",
+      "evidence": "Local inquiry pointed to Deepak Shinde, r/o Flat 450, Kondhwa Khurd, Kondhwa, Pune, as a suspect."
+    },
+    {
+      "subject": "Deepak Shinde",
+      "predicate": "owns",
+      "object": "9262849877",
+      "evidence": "The accused was traced through mobile number 9262849877."
+    }
+  ]
+}

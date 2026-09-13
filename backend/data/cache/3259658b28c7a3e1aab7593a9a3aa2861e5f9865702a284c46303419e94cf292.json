@@ -1,0 +1,59 @@
+{
+  "persons": [
+    {
+      "name": "Arun Jadhav",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Ramesh Kulkarni",
+      "aliases": [],
+      "role": "accused"
+    },
+    {
+      "name": "Deepak Shinde",
+      "aliases": [],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Baner",
+    "Kothrud",
+    "Kondhwa"
+  ],
+  "phones": [
+    {
+      "number": "7990490278",
+      "owner": "Arun Jadhav"
+    }
+  ],
+  "vehicles": [],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Arun Jadhav",
+      "predicate": "resides_at",
+      "object": "Baner",
+      "evidence": "Complainant: Shri Arun Jadhav, aged 26, r/o Flat 403, Baner Pashan Link Road, Baner, Pune, mobile 7990490278."
+    },
+    {
+      "subject": "Ramesh Kulkarni",
+      "predicate": "resides_at",
+      "object": "Kondhwa",
+      "evidence": "On 22/06/2026 at about 09:50 hrs, the complainant was walking near Kothrud when Ramesh Kulkarni, r/o Flat 223, Kausar Baug, Kondhwa, Pune, along with Deepak Shinde, r/o Flat 450, Kondhwa Khurd, Kondhwa, Pune, approached from behind and forcibly took away cash and articles worth Rs. 29,000."
+    },
+    {
+      "subject": "Deepak Shinde",
+      "predicate": "resides_at",
+      "object": "Kondhwa",
+      "evidence": "On 22/06/2026 at about 09:50 hrs, the complainant was walking near Kothrud when Ramesh Kulkarni, r/o Flat 223, Kausar Baug, Kondhwa, Pune, along with Deepak Shinde, r/o Flat 450, Kondhwa Khurd, Kondhwa, Pune, approached from behind and forcibly took away cash and articles worth Rs. 29,000."
+    },
+    {
+      "subject": "Ramesh Kulkarni",
+      "predicate": "co_accused",
+      "object": "Deepak Shinde",
+      "evidence": "On 22/06/2026 at about 09:50 hrs, the complainant was walking near Kothrud when Ramesh Kulkarni, r/o Flat 223, Kausar Baug, Kondhwa, Pune, along with Deepak Shinde, r/o Flat 450, Kondhwa Khurd, Kondhwa, Pune, approached from behind and forcibly took away cash and articles worth Rs. 29,000."
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "persons": [
+    {
+      "name": "Milind Kamble",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Tanveer Sayyed",
+      "aliases": [
+        "Chandu"
+      ],
+      "role": "accused"
+    },
+    {
+      "name": "Vijay Desai",
+      "aliases": [
+        "Vicky"
+      ],
+      "role": "accused"
+    },
+    {
+      "name": "Imran Shaikh",
+      "aliases": [
+        "Anna"
+      ],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Shivajinagar",
+    "Hadapsar",
+    "Kondhwa Khurd"
+  ],
+  "phones": [
+    {
+      "number": "6172400504",
+      "owner": "Milind Kamble"
+    },
+    {
+      "number": "7518233749",
+      "owner": "Tanveer Sayyed"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 12 QW 4162",
+      "owner": "Tanveer Sayyed"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Tanveer Sayyed",
+      "resides_at": "Hadapsar",
+      "predicate": "resides_at",
+      "object": "Hadapsar",
+      "evidence": "Tanveer Sayyed alias Chandu, r/o Flat 112, Solapur Road, Hadapsar, Pune, on a car bearing registration MH 12 QW 4162"
+    },
+    {
+      "subject": "Tanveer Sayyed",
+      "owns": "MH 12 QW 4162",
+      "predicate": "owns",
+      "object": "MH 12 QW 4162",
+      "evidence": "Tanveer Sayyed alias Chandu, r/o Flat 112, Solapur Road, Hadapsar, Pune, on a car bearing registration MH 12 QW 4162"
+    },
+    {
+      "subject": "Vijay Desai",
+      "resides_at": "Kondhwa Khurd",
+      "predicate": "resides_at",
+      "object": "Kondhwa Khurd",
+      "evidence": "Vijay Desai alias Vicky, r/o Flat 17, Kondhwa Khurd, Kondhwa, Pune"
+    },
+    {
+      "subject": "Imran Shaikh",
+      "resides_at": "Kondhwa",
+      "predicate": "resides_at",
+      "object": "Kondhwa",
+      "evidence": "Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune"
+    },
+    {
+      "subject": "Tanveer Sayyed",
+      "co_accused": "Vijay Desai",
+      "predicate": "co_accused",
+      "object": "Vijay Desai",
+      "evidence": "Tanveer Sayyed alias Chandu, r/o Flat 112, Solapur Road, Hadapsar, Pune, on a car bearing registration MH 12 QW 4162, along with Vijay Desai alias Vicky, r/o Flat 17, Kondhwa Khurd, Kondhwa, Pune"
+    },
+    {
+      "subject": "Tanveer Sayyed",
+      "co_accused": "Imran Shaikh",
+      "predicate": "co_accused",
+      "object": "Imran Shaikh",
+      "evidence": "Tanveer Sayyed alias Chandu, r/o Flat 112, Solapur Road, Hadapsar, Pune, on a car bearing registration MH 12 QW 4162, along with Vijay Desai alias Vicky, r/o Flat 17, Kondhwa Khurd, Kondhwa, Pune, along with Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune"
+    }
+  ]
+}

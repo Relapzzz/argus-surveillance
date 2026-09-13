@@ -1,0 +1,74 @@
+{
+  "persons": [
+    {
+      "name": "Sneha Bhosale",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Vaibhav Sawant",
+      "aliases": [],
+      "role": "accused"
+    },
+    {
+      "name": "Sachin Patil",
+      "aliases": [],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Warje",
+    "Swargate",
+    "Hinjewadi"
+  ],
+  "phones": [
+    {
+      "number": "8717464887",
+      "owner": "Sneha Bhosale"
+    },
+    {
+      "number": "9507527354",
+      "owner": "Vaibhav Sawant"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 12 CQ 5662",
+      "owner": "Vaibhav Sawant"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Sneha Bhosale",
+      "predicate": "resides_at",
+      "object": "Warje",
+      "evidence": "Complainant: Smt Sneha Bhosale, aged 21, r/o Flat 443, Ramnagar, Warje, Pune, mobile 8717464887."
+    },
+    {
+      "subject": "Vaibhav Sawant",
+      "predicate": "resides_at",
+      "object": "Swargate",
+      "evidence": "The complainant states that a quarrel with Vaibhav Sawant, r/o Flat 33, Satara Road, Swargate, Pune, along with Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a scooter bearing registration MH 12 CQ 5662, near Hinjewadi on 11/07/2026 turned violent at about 18:16 hrs."
+    },
+    {
+      "subject": "Sachin Patil",
+      "predicate": "resides_at",
+      "object": "Warje",
+      "evidence": "The complainant states that a quarrel with Vaibhav Sawant, r/o Flat 33, Satara Road, Swargate, Pune, along with Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a scooter bearing registration MH 12 CQ 5662, near Hinjewadi on 11/07/2026 turned violent at about 18:16 hrs."
+    },
+    {
+      "subject": "Vaibhav Sawant",
+      "predicate": "owns",
+      "object": "MH 12 CQ 5662",
+      "evidence": "The complainant states that a quarrel with Vaibhav Sawant, r/o Flat 33, Satara Road, Swargate, Pune, along with Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a scooter bearing registration MH 12 CQ 5662, near Hinjewadi on 11/07/2026 turned violent at about 18:16 hrs."
+    },
+    {
+      "subject": "Vaibhav Sawant",
+      "predicate": "co_accused",
+      "object": "Sachin Patil",
+      "evidence": "The complainant states that a quarrel with Vaibhav Sawant, r/o Flat 33, Satara Road, Swargate, Pune, along with Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a scooter bearing registration MH 12 CQ 5662, near Hinjewadi on 11/07/2026 turned violent at about 18:16 hrs."
+    }
+  ]
+}

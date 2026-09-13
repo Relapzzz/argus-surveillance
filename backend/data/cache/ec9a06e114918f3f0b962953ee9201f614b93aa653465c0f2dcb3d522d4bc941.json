@@ -1,0 +1,87 @@
+{
+  "persons": [
+    {
+      "name": "Sneha Kulkarni",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Sachin Patil",
+      "aliases": [],
+      "role": "accused"
+    },
+    {
+      "name": "Ramesh Kulkarni",
+      "aliases": [],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Camp",
+    "Warje",
+    "Kondhwa",
+    "Baner"
+  ],
+  "phones": [
+    {
+      "number": "7067974034",
+      "owner": "Sneha Kulkarni"
+    },
+    {
+      "number": "8170805310",
+      "owner": "Sachin Patil"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 12 CQ 5662",
+      "owner": "Sachin Patil"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Sneha Kulkarni",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "Complainant: Smt Sneha Kulkarni, aged 42, r/o H.No. 768, Bund Garden Road, Camp, Pune, mobile 7067974034."
+    },
+    {
+      "subject": "Sneha Kulkarni",
+      "predicate": "owns",
+      "object": "7067974034",
+      "evidence": "Complainant: Smt Sneha Kulkarni, aged 42, r/o H.No. 768, Bund Garden Road, Camp, Pune, mobile 7067974034."
+    },
+    {
+      "subject": "Sachin Patil",
+      "predicate": "resides_at",
+      "object": "Warje",
+      "evidence": "As per the complaint, Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a scooter bearing registration MH 12 CQ 5662, along with Ramesh Kulkarni, r/o Flat 223, Kausar Baug, Kondhwa, Pune, along with others, waylaid the complainant near Baner on 25/07/2026 at about 12:35 hrs and assaulted her."
+    },
+    {
+      "subject": "Sachin Patil",
+      "predicate": "owns",
+      "object": "MH 12 CQ 5662",
+      "evidence": "As per the complaint, Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a scooter bearing registration MH 12 CQ 5662, along with Ramesh Kulkarni, r/o Flat 223, Kausar Baug, Kondhwa, Pune, along with others, waylaid the complainant near Baner on 25/07/2026 at about 12:35 hrs and assaulted her."
+    },
+    {
+      "subject": "Ramesh Kulkarni",
+      "predicate": "resides_at",
+      "object": "Kondhwa",
+      "evidence": "As per the complaint, Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a scooter bearing registration MH 12 CQ 5662, along with Ramesh Kulkarni, r/o Flat 223, Kausar Baug, Kondhwa, Pune, along with others, waylaid the complainant near Baner on 25/07/2026 at about 12:35 hrs and assaulted her."
+    },
+    {
+      "subject": "Sachin Patil",
+      "predicate": "owns",
+      "object": "8170805310",
+      "evidence": "The accused was tracked through mobile number 8170805310."
+    },
+    {
+      "subject": "Sachin Patil",
+      "predicate": "co_accused",
+      "object": "Ramesh Kulkarni",
+      "evidence": "As per the complaint, Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a scooter bearing registration MH 12 CQ 5662, along with Ramesh Kulkarni, r/o Flat 223, Kausar Baug, Kondhwa, Pune, along with others, waylaid the complainant near Baner on 25/07/2026 at about 12:35 hrs and assaulted her."
+    }
+  ]
+}

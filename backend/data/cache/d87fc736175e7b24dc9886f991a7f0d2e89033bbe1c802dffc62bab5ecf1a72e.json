@@ -1,0 +1,82 @@
+{
+  "persons": [
+    {
+      "name": "Rohit Gaikwad",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Javed Ansari",
+      "aliases": [],
+      "role": "accused"
+    },
+    {
+      "name": "Vijay Desai",
+      "aliases": [
+        "Vicky"
+      ],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Swargate",
+    "Kondhwa",
+    "Kondhwa Khurd"
+  ],
+  "phones": [
+    {
+      "number": "9809134316",
+      "owner": "Rohit Gaikwad"
+    },
+    {
+      "number": "7634957885",
+      "owner": "Javed Ansari"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 14 KX 8956",
+      "owner": "Javed Ansari"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Rohit Gaikwad",
+      "predicate": "owns",
+      "object": "9809134316",
+      "evidence": "Complainant: API Rohit Gaikwad, aged 40, attached to Warje Malwadi Police Station, Pune, mobile 9809134316."
+    },
+    {
+      "subject": "Javed Ansari",
+      "predicate": "resides_at",
+      "object": "Kondhwa",
+      "evidence": "caught Javed Ansari, r/o Flat 448, Kausar Baug, Kondhwa, Pune, on a car bearing registration MH 14 KX 8956"
+    },
+    {
+      "subject": "Javed Ansari",
+      "predicate": "owns",
+      "object": "MH 14 KX 8956",
+      "evidence": "caught Javed Ansari, r/o Flat 448, Kausar Baug, Kondhwa, Pune, on a car bearing registration MH 14 KX 8956, along with Vijay Desai alias Vicky, r/o Flat 17, Kondhwa Khurd, Kondhwa, Pune, in the act of handing over packets to a buyer."
+    },
+    {
+      "subject": "Vijay Desai",
+      "predicate": "resides_at",
+      "object": "Kondhwa",
+      "evidence": "along with Vijay Desai alias Vicky, r/o Flat 17, Kondhwa Khurd, Kondhwa, Pune, in the act of handing over packets to a buyer."
+    },
+    {
+      "subject": "Javed Ansari",
+      "predicate": "owns",
+      "object": "7634957885",
+      "evidence": "The accused was tracked through mobile number 7634957885."
+    },
+    {
+      "subject": "Javed Ansari",
+      "predicate": "co_accused",
+      "object": "Vijay Desai",
+      "evidence": "caught Javed Ansari, r/o Flat 448, Kausar Baug, Kondhwa, Pune, on a car bearing registration MH 14 KX 8956, along with Vijay Desai alias Vicky, r/o Flat 17, Kondhwa Khurd, Kondhwa, Pune, in the act of handing over packets to a buyer."
+    }
+  ]
+}

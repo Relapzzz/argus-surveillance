@@ -1,0 +1,95 @@
+{
+  "persons": [
+    {
+      "name": "Sarita Kadam",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Ajay Deshmukh",
+      "aliases": [
+        "Bhau"
+      ],
+      "role": "accused"
+    },
+    {
+      "name": "Sachin Patil",
+      "aliases": [],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Camp",
+    "Kondhwa",
+    "Swargate",
+    "Warje"
+  ],
+  "phones": [
+    {
+      "number": "9190659401",
+      "owner": "Sarita Kadam"
+    },
+    {
+      "number": "9945314737",
+      "owner": "Ajay Deshmukh"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 12 CQ 5662",
+      "owner": "Ajay Deshmukh"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Sarita Kadam",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "Complainant: Smt Sarita Kadam, aged 63, r/o H.No. 119, Sachapir Street, Camp, Pune, mobile 9190659401."
+    },
+    {
+      "subject": "Sarita Kadam",
+      "predicate": "owns",
+      "object": "9190659401",
+      "evidence": "Complainant: Smt Sarita Kadam, aged 63, r/o H.No. 119, Sachapir Street, Camp, Pune, mobile 9190659401."
+    },
+    {
+      "subject": "Ajay Deshmukh",
+      "predicate": "resides_at",
+      "object": "Swargate",
+      "evidence": "The accused, identified as Ajay Deshmukh alias Bhau, r/o Flat 447, Shankarsheth Road, Swargate, Pune, along with Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a scooter bearing registration MH 12 CQ 5662, snatched the complainant's belongings and fled."
+    },
+    {
+      "subject": "Sachin Patil",
+      "predicate": "resides_at",
+      "object": "Warje",
+      "evidence": "The accused, identified as Ajay Deshmukh alias Bhau, r/o Flat 447, Shankarsheth Road, Swargate, Pune, along with Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a scooter bearing registration MH 12 CQ 5662, snatched the complainant's belongings and fled."
+    },
+    {
+      "subject": "Ajay Deshmukh",
+      "predicate": "owns",
+      "object": "MH 12 CQ 5662",
+      "evidence": "The accused, identified as Ajay Deshmukh alias Bhau, r/o Flat 447, Shankarsheth Road, Swargate, Pune, along with Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a scooter bearing registration MH 12 CQ 5662, snatched the complainant's belongings and fled."
+    },
+    {
+      "subject": "Sachin Patil",
+      "predicate": "owns",
+      "object": "MH 12 CQ 5662",
+      "evidence": "The accused, identified as Ajay Deshmukh alias Bhau, r/o Flat 447, Shankarsheth Road, Swargate, Pune, along with Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a scooter bearing registration MH 12 CQ 5662, snatched the complainant's belongings and fled."
+    },
+    {
+      "subject": "Sachin Patil",
+      "predicate": "co_accused",
+      "object": "Ajay Deshmukh",
+      "evidence": "The accused, identified as Ajay Deshmukh alias Bhau, r/o Flat 447, Shankarsheth Road, Swargate, Pune, along with Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a scooter bearing registration MH 12 CQ 5662, snatched the complainant's belongings and fled."
+    },
+    {
+      "subject": "Ajay Deshmukh",
+      "predicate": "owns",
+      "object": "9945314737",
+      "evidence": "The accused was traced through mobile number 9945314737."
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "persons": [
+    {
+      "name": "Ganesh Kamble",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Sunil Thorat",
+      "aliases": [
+        "Danny"
+      ],
+      "role": "accused"
+    },
+    {
+      "name": "Vaibhav Sawant",
+      "aliases": [],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Kothrud",
+    "Camp",
+    "Swargate",
+    "Baner"
+  ],
+  "phones": [
+    {
+      "number": "6334123281",
+      "owner": "Ganesh Kamble"
+    },
+    {
+      "number": "8185067165",
+      "owner": "Sunil Thorat"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 14 WP 4098",
+      "owner": "Sunil Thorat"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Ganesh Kamble",
+      "predicate": "resides_at",
+      "object": "Kothrud",
+      "evidence": "Complainant: Shri Ganesh Kamble, aged 28, r/o Flat 478, Mayur Colony, Kothrud, Pune, mobile 6334123281."
+    },
+    {
+      "subject": "Sunil Thorat",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "On 07/07/2026 at about 23:51 hrs, the complainant received a visit from Sunil Thorat alias Danny, r/o Flat 391, East Street, Camp, Pune, on a car bearing registration MH 14 WP 4098, along with Vaibhav Sawant, r/o Flat 33, Satara Road, Swargate, Pune, near Baner, who demanded Rs. 75,000 failing which the complainant's shop would be shut down."
+    },
+    {
+      "subject": "Sunil Thorat",
+      "predicate": "owns",
+      "object": "MH 14 WP 4098",
+      "evidence": "On 07/07/2026 at about 23:51 hrs, the complainant received a visit from Sunil Thorat alias Danny, r/o Flat 391, East Street, Camp, Pune, on a car bearing registration MH 14 WP 4098, along with Vaibhav Sawant, r/o Flat 33, Satara Road, Swargate, Pune, near Baner, who demanded Rs. 75,000 failing which the complainant's shop would be shut down."
+    },
+    {
+      "subject": "Vaibhav Sawant",
+      "predicate": "resides_at",
+      "object": "Swargate",
+      "evidence": "On 07/07/2026 at about 23:51 hrs, the complainant received a visit from Sunil Thorat alias Danny, r/o Flat 391, East Street, Camp, Pune, on a car bearing registration MH 14 WP 4098, along with Vaibhav Sawant, r/o Flat 33, Satara Road, Swargate, Pune, near Baner, who demanded Rs. 75,000 failing which the complainant's shop would be shut down."
+    },
+    {
+      "subject": "Sunil Thorat",
+      "predicate": "called",
+      "object": "Ganesh Kamble",
+      "evidence": "The accused later called the complainant from mobile number 8185067165."
+    },
+    {
+      "subject": "Sunil Thorat",
+      "predicate": "co_accused",
+      "object": "Vaibhav Sawant",
+      "evidence": "On 07/07/2026 at about 23:51 hrs, the complainant received a visit from Sunil Thorat alias Danny, r/o Flat 391, East Street, Camp, Pune, on a car bearing registration MH 14 WP 4098, along with Vaibhav Sawant, r/o Flat 33, Satara Road, Swargate, Pune, near Baner, who demanded Rs. 75,000 failing which the complainant's shop would be shut down."
+    }
+  ]
+}

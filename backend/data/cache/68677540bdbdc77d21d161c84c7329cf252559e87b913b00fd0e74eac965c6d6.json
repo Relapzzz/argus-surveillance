@@ -1,0 +1,75 @@
+{
+  "persons": [
+    {
+      "name": "Sneha Bhosale",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Ramesh Kulkarni",
+      "aliases": [],
+      "role": "accused"
+    },
+    {
+      "name": "Deepak Shinde",
+      "aliases": [],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Warje",
+    "Kondhwa",
+    "Kothrud"
+  ],
+  "phones": [
+    {
+      "number": "8717464887",
+      "owner": "Sneha Bhosale"
+    },
+    {
+      "number": "7149190586",
+      "owner": null
+    }
+  ],
+  "vehicles": [],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Sneha Bhosale",
+      "predicate": "resides_at",
+      "object": "Warje",
+      "evidence": "Complainant: Smt Sneha Bhosale, aged 21, r/o Flat 443, Ramnagar, Warje, Pune, mobile 8717464887."
+    },
+    {
+      "subject": "Ramesh Kulkarni",
+      "predicate": "resides_at",
+      "object": "Kondhwa",
+      "evidence": "The complainant states that Ramesh Kulkarni, r/o Flat 223, Kausar Baug, Kondhwa, Pune, along with Deepak Shinde, r/o Flat 450, Kondhwa Khurd, Kondhwa, Pune, along with associates, cornered her near Kothrud on 16/08/2026 at about 09:21 hrs and demanded Rs. 1,65,000."
+    },
+    {
+      "subject": "Deepak Shinde",
+      "predicate": "resides_at",
+      "object": "Kondhwa",
+      "evidence": "The complainant states that Ramesh Kulkarni, r/o Flat 223, Kausar Baug, Kondhwa, Pune, along with Deepak Shinde, r/o Flat 450, Kondhwa Khurd, Kondhwa, Pune, along with associates, cornered her near Kothrud on 16/08/2026 at about 09:21 hrs and demanded Rs. 1,65,000."
+    },
+    {
+      "subject": "Ramesh Kulkarni",
+      "predicate": "co_accused",
+      "object": "Deepak Shinde",
+      "evidence": "The complainant states that Ramesh Kulkarni, r/o Flat 223, Kausar Baug, Kondhwa, Pune, along with Deepak Shinde, r/o Flat 450, Kondhwa Khurd, Kondhwa, Pune, along with associates, cornered her near Kothrud on 16/08/2026 at about 09:21 hrs and demanded Rs. 1,65,000."
+    },
+    {
+      "subject": "7149190586",
+      "predicate": "called",
+      "object": "Sneha Bhosale",
+      "evidence": "The accused later called the complainant from mobile number 7149190586."
+    },
+    {
+      "subject": "Sneha Bhosale",
+      "predicate": "seen_at",
+      "object": "Kothrud",
+      "evidence": "The complainant states that Ramesh Kulkarni, r/o Flat 223, Kausar Baug, Kondhwa, Pune, along with Deepak Shinde, r/o Flat 450, Kondhwa Khurd, Kondhwa, Pune, along with associates, cornered her near Kothrud on 16/08/2026 at about 09:21 hrs and demanded Rs. 1,65,000."
+    }
+  ]
+}

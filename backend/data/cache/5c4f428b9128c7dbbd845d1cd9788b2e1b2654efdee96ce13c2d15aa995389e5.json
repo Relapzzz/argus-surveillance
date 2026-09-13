@@ -1,0 +1,81 @@
+{
+  "persons": [
+    {
+      "name": "Sarita Kadam",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Sachin Patil",
+      "aliases": [],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Camp",
+    "Kondhwa",
+    "Warje"
+  ],
+  "phones": [
+    {
+      "number": "9190659401",
+      "owner": "Sarita Kadam"
+    },
+    {
+      "number": "8170805310",
+      "owner": "Sachin Patil"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 12 CQ 5662",
+      "owner": "Sachin Patil"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Sarita Kadam",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "Complainant: Smt Sarita Kadam, aged 63, r/o H.No. 119, Sachapir Street, Camp, Pune, mobile 9190659401."
+    },
+    {
+      "subject": "Sarita Kadam",
+      "predicate": "owns",
+      "object": "9190659401",
+      "evidence": "Complainant: Smt Sarita Kadam, aged 63, r/o H.No. 119, Sachapir Street, Camp, Pune, mobile 9190659401."
+    },
+    {
+      "subject": "Sachin Patil",
+      "predicate": "resides_at",
+      "object": "Warje",
+      "evidence": "On 23/08/2026 at about 08:13 hrs near Kondhwa, the complainant was accosted by Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a car bearing registration MH 12 CQ 5662, who insisted on payment of Rs. 90,000 within three days."
+    },
+    {
+      "subject": "Sachin Patil",
+      "predicate": "owns",
+      "object": "MH 12 CQ 5662",
+      "evidence": "On 23/08/2026 at about 08:13 hrs near Kondhwa, the complainant was accosted by Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a car bearing registration MH 12 CQ 5662, who insisted on payment of Rs. 90,000 within three days."
+    },
+    {
+      "subject": "Sachin Patil",
+      "predicate": "called",
+      "object": "9190659401",
+      "evidence": "The accused later called the complainant from mobile number 8170805310."
+    },
+    {
+      "subject": "Sachin Patil",
+      "predicate": "owns",
+      "object": "8170805310",
+      "evidence": "The accused later called the complainant from mobile number 8170805310."
+    },
+    {
+      "subject": "Sachin Patil",
+      "predicate": "seen_at",
+      "object": "Kondhwa",
+      "evidence": "On 23/08/2026 at about 08:13 hrs near Kondhwa, the complainant was accosted by Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a car bearing registration MH 12 CQ 5662, who insisted on payment of Rs. 90,000 within three days."
+    }
+  ]
+}

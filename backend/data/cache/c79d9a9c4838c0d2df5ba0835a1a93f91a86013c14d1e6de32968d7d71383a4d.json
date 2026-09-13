@@ -1,0 +1,89 @@
+{
+  "persons": [
+    {
+      "name": "Nitin Kulkarni",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Ganesh Pawar",
+      "aliases": [
+        "Mama"
+      ],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Kothrud",
+    "Paud Road",
+    "Karve Road"
+  ],
+  "phones": [
+    {
+      "number": "9822011223",
+      "owner": "Nitin Kulkarni"
+    },
+    {
+      "number": "9765432109",
+      "owner": "Ganesh Pawar"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 12 GH 4521",
+      "owner": "Ganesh Pawar"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Nitin Kulkarni",
+      "predicate": "resides_at",
+      "object": "Paud Road",
+      "evidence": "Complainant: Shri Nitin Kulkarni, aged 34, r/o Flat 12, Paud Road, Kothrud, Pune, mobile 9822011223."
+    },
+    {
+      "subject": "Nitin Kulkarni",
+      "predicate": "resides_at",
+      "object": "Kothrud",
+      "evidence": "Complainant: Shri Nitin Kulkarni, aged 34, r/o Flat 12, Paud Road, Kothrud, Pune, mobile 9822011223."
+    },
+    {
+      "subject": "Nitin Kulkarni",
+      "predicate": "owns",
+      "object": "9822011223",
+      "evidence": "Complainant: Shri Nitin Kulkarni, aged 34, r/o Flat 12, Paud Road, Kothrud, Pune, mobile 9822011223."
+    },
+    {
+      "subject": "Ganesh Pawar",
+      "predicate": "resides_at",
+      "object": "Karve Road",
+      "evidence": "Accused: Ganesh Pawar alias Mama, aged 38, r/o H.No. 56, Karve Road, Kothrud, Pune."
+    },
+    {
+      "subject": "Ganesh Pawar",
+      "predicate": "resides_at",
+      "object": "Kothrud",
+      "evidence": "Accused: Ganesh Pawar alias Mama, aged 38, r/o H.No. 56, Karve Road, Kothrud, Pune."
+    },
+    {
+      "subject": "Ganesh Pawar",
+      "predicate": "owns",
+      "object": "MH 12 GH 4521",
+      "evidence": "The accused, identified as Ganesh Pawar alias Mama, r/o H.No. 56, Karve Road, Kothrud, Pune, on a motorcycle bearing registration MH 12 GH 4521, stopped him and demanded Rs. 50,000."
+    },
+    {
+      "subject": "Ganesh Pawar",
+      "predicate": "called",
+      "object": "Nitin Kulkarni",
+      "evidence": "The accused later called the complainant from mobile number 9765432109."
+    },
+    {
+      "subject": "Ganesh Pawar",
+      "predicate": "owns",
+      "object": "9765432109",
+      "evidence": "The accused later called the complainant from mobile number 9765432109."
+    }
+  ]
+}

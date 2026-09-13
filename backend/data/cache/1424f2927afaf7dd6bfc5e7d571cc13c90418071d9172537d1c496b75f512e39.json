@@ -1,0 +1,56 @@
+{
+  "persons": [
+    {
+      "name": "Ayesha Pathan",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Salman Khan",
+      "aliases": [],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Swargate",
+    "Yerwada"
+  ],
+  "phones": [
+    {
+      "number": "7242102499",
+      "owner": "Ayesha Pathan"
+    },
+    {
+      "number": "7745299124",
+      "owner": "Salman Khan"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 14 KG 6303",
+      "owner": "Salman Khan"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Ayesha Pathan",
+      "predicate": "resides_at",
+      "object": "Swargate",
+      "evidence": "Complainant: Smt Ayesha Pathan, aged 22, r/o Flat 471, Shankarsheth Road, Swargate, Pune, mobile 7242102499."
+    },
+    {
+      "subject": "Salman Khan",
+      "predicate": "resides_at",
+      "object": "Swargate",
+      "evidence": "As per the complaint, Salman Khan, r/o H.No. 409, Market Yard, Swargate, Pune, on a car bearing registration MH 14 KG 6303, approached the complainant near Yerwada on 10/06/2026 at about 15:30 hrs and demanded protection money of Rs. 3,55,000."
+    },
+    {
+      "subject": "Salman Khan",
+      "predicate": "called",
+      "object": "7242102499",
+      "evidence": "The accused later called the complainant from mobile number 7745299124."
+    }
+  ]
+}

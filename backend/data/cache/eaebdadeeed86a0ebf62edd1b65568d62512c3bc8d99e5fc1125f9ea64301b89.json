@@ -1,0 +1,71 @@
+{
+  "persons": [
+    {
+      "name": "Milind Kamble",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Ravindra Chavan",
+      "aliases": [
+        "Guru"
+      ],
+      "role": "accused"
+    },
+    {
+      "name": "Santosh Kadam",
+      "aliases": [],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Yerwada",
+    "Camp",
+    "Baner"
+  ],
+  "phones": [
+    {
+      "number": "6172400504",
+      "owner": "Milind Kamble"
+    },
+    {
+      "number": "8777520471",
+      "owner": "Ravindra Chavan"
+    }
+  ],
+  "vehicles": [],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Milind Kamble",
+      "predicate": "owns",
+      "object": "6172400504",
+      "evidence": "Complainant: API Milind Kamble, aged 43, attached to Swargate Police Station, Pune, mobile 6172400504."
+    },
+    {
+      "subject": "Ravindra Chavan",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "apprehended Ravindra Chavan alias Guru, r/o Flat 476, Sachapir Street, Camp, Pune, along with Santosh Kadam, r/o H.No. 41, Pashan Sus Road, Baner, Pune."
+    },
+    {
+      "subject": "Santosh Kadam",
+      "predicate": "resides_at",
+      "object": "Baner",
+      "evidence": "apprehended Ravindra Chavan alias Guru, r/o Flat 476, Sachapir Street, Camp, Pune, along with Santosh Kadam, r/o H.No. 41, Pashan Sus Road, Baner, Pune."
+    },
+    {
+      "subject": "Ravindra Chavan",
+      "predicate": "owns",
+      "object": "8777520471",
+      "evidence": "The accused was tracked through mobile number 8777520471."
+    },
+    {
+      "subject": "Ravindra Chavan",
+      "predicate": "co_accused",
+      "object": "Santosh Kadam",
+      "evidence": "apprehended Ravindra Chavan alias Guru, r/o Flat 476, Sachapir Street, Camp, Pune, along with Santosh Kadam, r/o H.No. 41, Pashan Sus Road, Baner, Pune."
+    }
+  ]
+}

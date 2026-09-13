@@ -1,0 +1,74 @@
+{
+  "persons": [
+    {
+      "name": "Rohit Gaikwad",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Javed Ansari",
+      "aliases": [],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Yerwada",
+    "Kondhwa"
+  ],
+  "phones": [
+    {
+      "number": "9809134316",
+      "owner": "Rohit Gaikwad"
+    },
+    {
+      "number": "7634957885",
+      "owner": "Javed Ansari"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 14 KX 8956",
+      "owner": "Javed Ansari"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Rohit Gaikwad",
+      "predicate": "resides_at",
+      "object": "Pune",
+      "evidence": "Complainant: API Rohit Gaikwad, aged 40, attached to Warje Malwadi Police Station, Pune, mobile 9809134316."
+    },
+    {
+      "subject": "Rohit Gaikwad",
+      "predicate": "owns",
+      "object": "9809134316",
+      "evidence": "Complainant: API Rohit Gaikwad, aged 40, attached to Warje Malwadi Police Station, Pune, mobile 9809134316."
+    },
+    {
+      "subject": "Javed Ansari",
+      "predicate": "resides_at",
+      "object": "Kondhwa",
+      "evidence": "Accused: Javed Ansari, aged 33, r/o Flat 448, Kausar Baug, Kondhwa, Pune."
+    },
+    {
+      "subject": "Javed Ansari",
+      "predicate": "owns",
+      "object": "MH 14 KX 8956",
+      "evidence": "leading to the apprehension of Javed Ansari, r/o Flat 448, Kausar Baug, Kondhwa, Pune, on a scooter bearing registration MH 14 KX 8956."
+    },
+    {
+      "subject": "Javed Ansari",
+      "predicate": "owns",
+      "object": "7634957885",
+      "evidence": "The accused was tracked through mobile number 7634957885."
+    },
+    {
+      "subject": "Javed Ansari",
+      "predicate": "seen_at",
+      "object": "Yerwada",
+      "evidence": "The complainant states that a decoy operation was conducted near Yerwada on 20/07/2026 at about 06:10 hrs, leading to the apprehension of Javed Ansari"
+    }
+  ]
+}

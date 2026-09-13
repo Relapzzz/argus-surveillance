@@ -1,0 +1,72 @@
+{
+  "persons": [
+    {
+      "name": "Sagar Chavan",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Sanjay Jadhav",
+      "aliases": [],
+      "role": "accused"
+    },
+    {
+      "name": "Vijay Desai",
+      "aliases": [
+        "Vicky"
+      ],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Baner",
+    "Camp",
+    "Kondhwa"
+  ],
+  "phones": [
+    {
+      "number": "6718702621",
+      "owner": "Sagar Chavan"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 14 DH 6249",
+      "owner": "Sanjay Jadhav"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "6718702621",
+      "predicate": "owns",
+      "object": "Sagar Chavan",
+      "evidence": "Complainant: PSI Sagar Chavan, aged 45, attached to Hadapsar Police Station, Pune, mobile 6718702621."
+    },
+    {
+      "subject": "Sanjay Jadhav",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "The complainant states that surveillance near Baner led to the identification of Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a car bearing registration MH 14 DH 6249, along with Vijay Desai alias Vicky, r/o Flat 17, Kondhwa Khurd, Kondhwa, Pune, as a supplier of heroin."
+    },
+    {
+      "subject": "Sanjay Jadhav",
+      "predicate": "co_accused",
+      "object": "Vijay Desai",
+      "evidence": "The complainant states that surveillance near Baner led to the identification of Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a car bearing registration MH 14 DH 6249, along with Vijay Desai alias Vicky, r/o Flat 17, Kondhwa Khurd, Kondhwa, Pune, as a supplier of heroin."
+    },
+    {
+      "subject": "MH 14 DH 6249",
+      "predicate": "owns",
+      "object": "Sanjay Jadhav",
+      "evidence": "The complainant states that surveillance near Baner led to the identification of Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a car bearing registration MH 14 DH 6249, along with Vijay Desai alias Vicky, r/o Flat 17, Kondhwa Khurd, Kondhwa, Pune, as a supplier of heroin."
+    },
+    {
+      "subject": "Vijay Desai",
+      "predicate": "resides_at",
+      "object": "Kondhwa",
+      "evidence": "The complainant states that surveillance near Baner led to the identification of Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a car bearing registration MH 14 DH 6249, along with Vijay Desai alias Vicky, r/o Flat 17, Kondhwa Khurd, Kondhwa, Pune, as a supplier of heroin."
+    }
+  ]
+}

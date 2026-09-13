@@ -1,0 +1,106 @@
+{
+  "persons": [
+    {
+      "name": "Sagar Chavan",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Sanjay Jadhav",
+      "aliases": [],
+      "role": "accused"
+    },
+    {
+      "name": "Santosh Kadam",
+      "aliases": [],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Hadapsar",
+    "Pune",
+    "Camp",
+    "Baner",
+    "Yerwada"
+  ],
+  "phones": [
+    {
+      "number": "6718702621",
+      "owner": "Sagar Chavan"
+    },
+    {
+      "number": "8134352408",
+      "owner": "Sanjay Jadhav"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 14 DH 6249",
+      "owner": "Sanjay Jadhav"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Sagar Chavan",
+      "predicate": "resides_at",
+      "object": "Pune",
+      "evidence": "Complainant: PSI Sagar Chavan, aged 45, attached to Hadapsar Police Station, Pune, mobile 6718702621."
+    },
+    {
+      "subject": "6718702621",
+      "predicate": "owns",
+      "object": "Sagar Chavan",
+      "evidence": "Complainant: PSI Sagar Chavan, aged 45, attached to Hadapsar Police Station, Pune, mobile 6718702621."
+    },
+    {
+      "subject": "Sanjay Jadhav",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "The complainant, part of the anti-narcotics squad, states that Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a car bearing registration MH 14 DH 6249, along with Santosh Kadam, r/o H.No. 41, Pashan Sus Road, Baner, Pune, was found in possession of 42 kg of ganja near Yerwada on 07/07/2026 at about 04:48 hrs."
+    },
+    {
+      "subject": "MH 14 DH 6249",
+      "predicate": "owns",
+      "object": "Sanjay Jadhav",
+      "evidence": "The complainant, part of the anti-narcotics squad, states that Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a car bearing registration MH 14 DH 6249, along with Santosh Kadam, r/o H.No. 41, Pashan Sus Road, Baner, Pune, was found in possession of 42 kg of ganja near Yerwada on 07/07/2026 at about 04:48 hrs."
+    },
+    {
+      "subject": "Santosh Kadam",
+      "predicate": "resides_at",
+      "object": "Baner",
+      "evidence": "The complainant, part of the anti-narcotics squad, states that Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a car bearing registration MH 14 DH 6249, along with Santosh Kadam, r/o H.No. 41, Pashan Sus Road, Baner, Pune, was found in possession of 42 kg of ganja near Yerwada on 07/07/2026 at about 04:48 hrs."
+    },
+    {
+      "subject": "Santosh Kadam",
+      "predicate": "co_accused",
+      "object": "Sanjay Jadhav",
+      "evidence": "The complainant, part of the anti-narcotics squad, states that Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a car bearing registration MH 14 DH 6249, along with Santosh Kadam, r/o H.No. 41, Pashan Sus Road, Baner, Pune, was found in possession of 42 kg of ganja near Yerwada on 07/07/2026 at about 04:48 hrs."
+    },
+    {
+      "subject": "Sanjay Jadhav",
+      "predicate": "seen_at",
+      "object": "Yerwada",
+      "evidence": "The complainant, part of the anti-narcotics squad, states that Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a car bearing registration MH 14 DH 6249, along with Santosh Kadam, r/o H.No. 41, Pashan Sus Road, Baner, Pune, was found in possession of 42 kg of ganja near Yerwada on 07/07/2026 at about 04:48 hrs."
+    },
+    {
+      "subject": "8134352408",
+      "predicate": "owns",
+      "object": "Sanjay Jadhav",
+      "evidence": "The accused was tracked through mobile number 8134352408."
+    },
+    {
+      "subject": "Sanjay Jadhav",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "Accused: Sanjay Jadhav, aged 37, r/o Flat 261, East Street, Camp, Pune; Santosh Kadam, aged 22, r/o H.No. 41, Pashan Sus Road, Baner, Pune."
+    },
+    {
+      "subject": "Santosh Kadam",
+      "predicate": "resides_at",
+      "object": "Baner",
+      "evidence": "Accused: Sanjay Jadhav, aged 37, r/o Flat 261, East Street, Camp, Pune; Santosh Kadam, aged 22, r/o H.No. 41, Pashan Sus Road, Baner, Pune."
+    }
+  ]
+}

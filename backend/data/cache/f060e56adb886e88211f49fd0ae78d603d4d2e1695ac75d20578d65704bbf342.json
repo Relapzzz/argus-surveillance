@@ -1,0 +1,66 @@
+{
+  "persons": [
+    {
+      "name": "Swapnil Joshi",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Aslam Khan",
+      "aliases": [
+        "Chotu"
+      ],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Shivajinagar",
+    "Swargate"
+  ],
+  "phones": [
+    {
+      "number": "9774964990",
+      "owner": "Swapnil Joshi"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 14 JX 0154",
+      "owner": "Aslam Khan"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Swapnil Joshi",
+      "predicate": "resides_at",
+      "object": "Shivajinagar",
+      "evidence": "Complainant: Shri Swapnil Joshi, aged 20, r/o H.No. 708, FC Road, Shivajinagar, Pune, mobile 9774964990."
+    },
+    {
+      "subject": "9774964990",
+      "predicate": "owns",
+      "object": "Swapnil Joshi",
+      "evidence": "Complainant: Shri Swapnil Joshi, aged 20, r/o H.No. 708, FC Road, Shivajinagar, Pune, mobile 9774964990."
+    },
+    {
+      "subject": "Aslam Khan",
+      "predicate": "resides_at",
+      "object": "Swargate",
+      "evidence": "It is stated that Aslam Khan alias Chotu, r/o H.No. 33, Satara Road, Swargate, Pune, on a car bearing registration MH 14 JX 0154, attacked the complainant near Shivajinagar on 17/08/2026 at about 00:02 hrs using a blunt weapon."
+    },
+    {
+      "subject": "MH 14 JX 0154",
+      "predicate": "owns",
+      "object": "Aslam Khan",
+      "evidence": "It is stated that Aslam Khan alias Chotu, r/o H.No. 33, Satara Road, Swargate, Pune, on a car bearing registration MH 14 JX 0154, attacked the complainant near Shivajinagar on 17/08/2026 at about 00:02 hrs using a blunt weapon."
+    },
+    {
+      "subject": "Aslam Khan",
+      "predicate": "seen_at",
+      "object": "Shivajinagar",
+      "evidence": "It is stated that Aslam Khan alias Chotu, r/o H.No. 33, Satara Road, Swargate, Pune, on a car bearing registration MH 14 JX 0154, attacked the complainant near Shivajinagar on 17/08/2026 at about 00:02 hrs using a blunt weapon."
+    }
+  ]
+}

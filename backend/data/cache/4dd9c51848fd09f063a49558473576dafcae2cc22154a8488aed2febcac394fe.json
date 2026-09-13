@@ -1,0 +1,48 @@
+{
+  "persons": [
+    {
+      "name": "Sunil Kamble",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Ramesh More",
+      "aliases": [
+        "Baba"
+      ],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Hadapsar",
+    "Baner",
+    "Warje"
+  ],
+  "phones": [
+    {
+      "number": "8713493618",
+      "owner": "Sunil Kamble"
+    },
+    {
+      "number": "8210470952",
+      "owner": "Ramesh More"
+    }
+  ],
+  "vehicles": [],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Sunil Kamble",
+      "predicate": "resides_at",
+      "object": "Hadapsar",
+      "evidence": "Complainant: Shri Sunil Kamble, aged 21, r/o H.No. 422, Sasane Nagar, Hadapsar, Pune, mobile 8713493618."
+    },
+    {
+      "subject": "Ramesh More",
+      "predicate": "resides_at",
+      "object": "Warje",
+      "evidence": "Accused: Ramesh More alias Baba, aged 41, r/o H.No. 345, Karve Nagar, Warje, Pune."
+    }
+  ]
+}

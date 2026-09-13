@@ -1,0 +1,111 @@
+{
+  "persons": [
+    {
+      "name": "Nadeem Qureshi",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Santosh Kadam",
+      "aliases": [],
+      "role": "accused"
+    },
+    {
+      "name": "Tanveer Sayyed",
+      "aliases": [
+        "Chandu"
+      ],
+      "role": "accused"
+    },
+    {
+      "name": "Sanjay Jadhav",
+      "aliases": [],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Baner",
+    "Pashan",
+    "Hadapsar",
+    "Camp",
+    "Swargate"
+  ],
+  "phones": [
+    {
+      "number": "9603859770",
+      "owner": "Nadeem Qureshi"
+    },
+    {
+      "number": "7400842710",
+      "owner": null
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 12 QW 4162",
+      "owner": "Tanveer Sayyed"
+    },
+    {
+      "plate": "MH 14 DH 6249",
+      "owner": "Sanjay Jadhav"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Nadeem Qureshi",
+      "predicate": "resides_at",
+      "object": "Baner",
+      "evidence": "Complainant: Shri Nadeem Qureshi, aged 31, r/o Flat 427, Balewadi Phata, Baner, Pune, mobile 9603859770."
+    },
+    {
+      "subject": "Nadeem Qureshi",
+      "predicate": "owns",
+      "object": "9603859770",
+      "evidence": "Complainant: Shri Nadeem Qureshi, aged 31, r/o Flat 427, Balewadi Phata, Baner, Pune, mobile 9603859770."
+    },
+    {
+      "subject": "Santosh Kadam",
+      "predicate": "resides_at",
+      "object": "Baner",
+      "evidence": "Technical tracing linked the transaction to Santosh Kadam, r/o H.No. 41, Pashan Sus Road, Baner, Pune, along with Tanveer Sayyed alias Chandu, r/o Flat 112, Solapur Road, Hadapsar, Pune, on a scooter bearing registration MH 12 QW 4162, along with Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a motorcycle bearing registration MH 14 DH 6249, operating from near Swargate."
+    },
+    {
+      "subject": "Tanveer Sayyed",
+      "predicate": "resides_at",
+      "object": "Hadapsar",
+      "evidence": "Technical tracing linked the transaction to Santosh Kadam, r/o H.No. 41, Pashan Sus Road, Baner, Pune, along with Tanveer Sayyed alias Chandu, r/o Flat 112, Solapur Road, Hadapsar, Pune, on a scooter bearing registration MH 12 QW 4162, along with Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a motorcycle bearing registration MH 14 DH 6249, operating from near Swargate."
+    },
+    {
+      "subject": "Tanveer Sayyed",
+      "predicate": "owns",
+      "object": "MH 12 QW 4162",
+      "evidence": "Technical tracing linked the transaction to Santosh Kadam, r/o H.No. 41, Pashan Sus Road, Baner, Pune, along with Tanveer Sayyed alias Chandu, r/o Flat 112, Solapur Road, Hadapsar, Pune, on a scooter bearing registration MH 12 QW 4162, along with Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a motorcycle bearing registration MH 14 DH 6249, operating from near Swargate."
+    },
+    {
+      "subject": "Sanjay Jadhav",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "Technical tracing linked the transaction to Santosh Kadam, r/o H.No. 41, Pashan Sus Road, Baner, Pune, along with Tanveer Sayyed alias Chandu, r/o Flat 112, Solapur Road, Hadapsar, Pune, on a scooter bearing registration MH 12 QW 4162, along with Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a motorcycle bearing registration MH 14 DH 6249, operating from near Swargate."
+    },
+    {
+      "subject": "Sanjay Jadhav",
+      "predicate": "owns",
+      "object": "MH 14 DH 6249",
+      "evidence": "Technical tracing linked the transaction to Santosh Kadam, r/o H.No. 41, Pashan Sus Road, Baner, Pune, along with Tanveer Sayyed alias Chandu, r/o Flat 112, Solapur Road, Hadapsar, Pune, on a scooter bearing registration MH 12 QW 4162, along with Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a motorcycle bearing registration MH 14 DH 6249, operating from near Swargate."
+    },
+    {
+      "subject": "Tanveer Sayyed",
+      "predicate": "co_accused",
+      "object": "Santosh Kadam",
+      "evidence": "Technical tracing linked the transaction to Santosh Kadam, r/o H.No. 41, Pashan Sus Road, Baner, Pune, along with Tanveer Sayyed alias Chandu, r/o Flat 112, Solapur Road, Hadapsar, Pune, on a scooter bearing registration MH 12 QW 4162, along with Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a motorcycle bearing registration MH 14 DH 6249, operating from near Swargate."
+    },
+    {
+      "subject": "Sanjay Jadhav",
+      "predicate": "co_accused",
+      "object": "Santosh Kadam",
+      "evidence": "Technical tracing linked the transaction to Santosh Kadam, r/o H.No. 41, Pashan Sus Road, Baner, Pune, along with Tanveer Sayyed alias Chandu, r/o Flat 112, Solapur Road, Hadapsar, Pune, on a scooter bearing registration MH 12 QW 4162, along with Sanjay Jadhav, r/o Flat 261, East Street, Camp, Pune, on a motorcycle bearing registration MH 14 DH 6249, operating from near Swargate."
+    }
+  ]
+}

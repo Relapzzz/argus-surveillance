@@ -1,0 +1,120 @@
+{
+  "persons": [
+    {
+      "name": "Rukhsana Qureshi",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Imran Shaikh",
+      "aliases": [
+        "Anna"
+      ],
+      "role": "accused"
+    },
+    {
+      "name": "Ravindra Chavan",
+      "aliases": [
+        "Guru"
+      ],
+      "role": "accused"
+    },
+    {
+      "name": "Javed Ansari",
+      "aliases": [],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Camp",
+    "Mithanagar",
+    "Kondhwa",
+    "Kausar Baug"
+  ],
+  "phones": [
+    {
+      "number": "9278755886",
+      "owner": "Rukhsana Qureshi"
+    },
+    {
+      "number": "9855744431",
+      "owner": "Imran Shaikh"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 14 KX 8956",
+      "owner": "Imran Shaikh"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Rukhsana Qureshi",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "Complainant: Smt Rukhsana Qureshi, aged 53, r/o H.No. 913, Sachapir Street, Camp, Pune, mobile 9278755886."
+    },
+    {
+      "subject": "9278755886",
+      "predicate": "owns",
+      "object": "Rukhsana Qureshi",
+      "evidence": "Complainant: Smt Rukhsana Qureshi, aged 53, r/o H.No. 913, Sachapir Street, Camp, Pune, mobile 9278755886."
+    },
+    {
+      "subject": "Imran Shaikh",
+      "predicate": "resides_at",
+      "object": "Mithanagar",
+      "evidence": "The complainant states that an unknown caller, later identified as Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune, along with Ravindra Chavan alias Guru, r/o Flat 476, Sachapir Street, Camp, Pune, along with Javed Ansari, r/o Flat 448, Kausar Baug, Kondhwa, Pune, on a car bearing registration MH 14 KX 8956, obtained her one-time password on 12/07/2026 at about 16:11 hrs under the pretext of a KYC update, using mobile number 9855744431 for the calls."
+    },
+    {
+      "subject": "Ravindra Chavan",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "The complainant states that an unknown caller, later identified as Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune, along with Ravindra Chavan alias Guru, r/o Flat 476, Sachapir Street, Camp, Pune, along with Javed Ansari, r/o Flat 448, Kausar Baug, Kondhwa, Pune, on a car bearing registration MH 14 KX 8956, obtained her one-time password on 12/07/2026 at about 16:11 hrs under the pretext of a KYC update, using mobile number 9855744431 for the calls."
+    },
+    {
+      "subject": "Javed Ansari",
+      "predicate": "resides_at",
+      "object": "Kausar Baug",
+      "evidence": "The complainant states that an unknown caller, later identified as Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune, along with Ravindra Chavan alias Guru, r/o Flat 476, Sachapir Street, Camp, Pune, along with Javed Ansari, r/o Flat 448, Kausar Baug, Kondhwa, Pune, on a car bearing registration MH 14 KX 8956, obtained her one-time password on 12/07/2026 at about 16:11 hrs under the pretext of a KYC update, using mobile number 9855744431 for the calls."
+    },
+    {
+      "subject": "Imran Shaikh",
+      "predicate": "co_accused",
+      "object": "Ravindra Chavan",
+      "evidence": "The complainant states that an unknown caller, later identified as Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune, along with Ravindra Chavan alias Guru, r/o Flat 476, Sachapir Street, Camp, Pune, along with Javed Ansari, r/o Flat 448, Kausar Baug, Kondhwa, Pune, on a car bearing registration MH 14 KX 8956, obtained her one-time password on 12/07/2026 at about 16:11 hrs under the pretext of a KYC update, using mobile number 9855744431 for the calls."
+    },
+    {
+      "subject": "Imran Shaikh",
+      "predicate": "co_accused",
+      "object": "Javed Ansari",
+      "evidence": "The complainant states that an unknown caller, later identified as Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune, along with Ravindra Chavan alias Guru, r/o Flat 476, Sachapir Street, Camp, Pune, along with Javed Ansari, r/o Flat 448, Kausar Baug, Kondhwa, Pune, on a car bearing registration MH 14 KX 8956, obtained her one-time password on 12/07/2026 at about 16:11 hrs under the pretext of a KYC update, using mobile number 9855744431 for the calls."
+    },
+    {
+      "subject": "MH 14 KX 8956",
+      "predicate": "owns",
+      "object": "Imran Shaikh",
+      "evidence": "The complainant states that an unknown caller, later identified as Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune, along with Ravindra Chavan alias Guru, r/o Flat 476, Sachapir Street, Camp, Pune, along with Javed Ansari, r/o Flat 448, Kausar Baug, Kondhwa, Pune, on a car bearing registration MH 14 KX 8956, obtained her one-time password on 12/07/2026 at about 16:11 hrs under the pretext of a KYC update, using mobile number 9855744431 for the calls."
+    },
+    {
+      "subject": "9855744431",
+      "predicate": "owns",
+      "object": "Imran Shaikh",
+      "evidence": "The complainant states that an unknown caller, later identified as Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune, along with Ravindra Chavan alias Guru, r/o Flat 476, Sachapir Street, Camp, Pune, along with Javed Ansari, r/o Flat 448, Kausar Baug, Kondhwa, Pune, on a car bearing registration MH 14 KX 8956, obtained her one-time password on 12/07/2026 at about 16:11 hrs under the pretext of a KYC update, using mobile number 9855744431 for the calls."
+    },
+    {
+      "subject": "9855744431",
+      "predicate": "called",
+      "object": "Rukhsana Qureshi",
+      "evidence": "The complainant states that an unknown caller, later identified as Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune, along with Ravindra Chavan alias Guru, r/o Flat 476, Sachapir Street, Camp, Pune, along with Javed Ansari, r/o Flat 448, Kausar Baug, Kondhwa, Pune, on a car bearing registration MH 14 KX 8956, obtained her one-time password on 12/07/2026 at about 16:11 hrs under the pretext of a KYC update, using mobile number 9855744431 for the calls."
+    },
+    {
+      "subject": "Imran Shaikh",
+      "predicate": "seen_at",
+      "object": "Kondhwa",
+      "evidence": "The activity was traced to near Kondhwa."
+    }
+  ]
+}

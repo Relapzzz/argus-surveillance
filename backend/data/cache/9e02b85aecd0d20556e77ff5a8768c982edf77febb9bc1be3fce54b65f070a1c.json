@@ -1,0 +1,113 @@
+{
+  "persons": [
+    {
+      "name": "Arun Jadhav",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Ramesh More",
+      "aliases": [
+        "Baba"
+      ],
+      "role": "accused"
+    },
+    {
+      "name": "Sachin Patil",
+      "aliases": [],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Baner",
+    "Karve Nagar",
+    "Warje",
+    "Kondhwa"
+  ],
+  "phones": [
+    {
+      "number": "7990490278",
+      "owner": "Arun Jadhav"
+    },
+    {
+      "number": "9990162720",
+      "owner": "Ramesh More"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 12 CQ 5662",
+      "owner": "Ramesh More"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Arun Jadhav",
+      "predicate": "resides_at",
+      "object": "Baner",
+      "evidence": "Complainant: Shri Arun Jadhav, aged 26, r/o Flat 403, Baner Pashan Link Road, Baner, Pune, mobile 7990490278."
+    },
+    {
+      "subject": "Arun Jadhav",
+      "predicate": "owns",
+      "object": "7990490278",
+      "evidence": "Complainant: Shri Arun Jadhav, aged 26, r/o Flat 403, Baner Pashan Link Road, Baner, Pune, mobile 7990490278."
+    },
+    {
+      "subject": "Ramesh More",
+      "predicate": "resides_at",
+      "object": "Warje",
+      "evidence": "The complainant narrates that Ramesh More alias Baba, r/o H.No. 345, Karve Nagar, Warje, Pune, along with Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a scooter bearing registration MH 12 CQ 5662, met him near Kondhwa on 06/06/2026 at about 02:05 hrs and demanded Rs. 4,80,000 for settling a fabricated claim."
+    },
+    {
+      "subject": "Sachin Patil",
+      "predicate": "resides_at",
+      "object": "Warje",
+      "evidence": "The complainant narrates that Ramesh More alias Baba, r/o H.No. 345, Karve Nagar, Warje, Pune, along with Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a scooter bearing registration MH 12 CQ 5662, met him near Kondhwa on 06/06/2026 at about 02:05 hrs and demanded Rs. 4,80,000 for settling a fabricated claim."
+    },
+    {
+      "subject": "Ramesh More",
+      "predicate": "owns",
+      "object": "MH 12 CQ 5662",
+      "evidence": "The complainant narrates that Ramesh More alias Baba, r/o H.No. 345, Karve Nagar, Warje, Pune, along with Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a scooter bearing registration MH 12 CQ 5662, met him near Kondhwa on 06/06/2026 at about 02:05 hrs and demanded Rs. 4,80,000 for settling a fabricated claim."
+    },
+    {
+      "subject": "Sachin Patil",
+      "predicate": "owns",
+      "object": "MH 12 CQ 5662",
+      "evidence": "The complainant narrates that Ramesh More alias Baba, r/o H.No. 345, Karve Nagar, Warje, Pune, along with Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a scooter bearing registration MH 12 CQ 5662, met him near Kondhwa on 06/06/2026 at about 02:05 hrs and demanded Rs. 4,80,000 for settling a fabricated claim."
+    },
+    {
+      "subject": "Ramesh More",
+      "predicate": "seen_at",
+      "object": "Kondhwa",
+      "evidence": "The complainant narrates that Ramesh More alias Baba, r/o H.No. 345, Karve Nagar, Warje, Pune, along with Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a scooter bearing registration MH 12 CQ 5662, met him near Kondhwa on 06/06/2026 at about 02:05 hrs and demanded Rs. 4,80,000 for settling a fabricated claim."
+    },
+    {
+      "subject": "Sachin Patil",
+      "predicate": "seen_at",
+      "object": "Kondhwa",
+      "evidence": "The complainant narrates that Ramesh More alias Baba, r/o H.No. 345, Karve Nagar, Warje, Pune, along with Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a scooter bearing registration MH 12 CQ 5662, met him near Kondhwa on 06/06/2026 at about 02:05 hrs and demanded Rs. 4,80,000 for settling a fabricated claim."
+    },
+    {
+      "subject": "Ramesh More",
+      "predicate": "co_accused",
+      "object": "Sachin Patil",
+      "evidence": "The complainant narrates that Ramesh More alias Baba, r/o H.No. 345, Karve Nagar, Warje, Pune, along with Sachin Patil, r/o H.No. 795, Atul Nagar, Warje, Pune, on a scooter bearing registration MH 12 CQ 5662, met him near Kondhwa on 06/06/2026 at about 02:05 hrs and demanded Rs. 4,80,000 for settling a fabricated claim."
+    },
+    {
+      "subject": "Ramesh More",
+      "predicate": "called",
+      "object": "Arun Jadhav",
+      "evidence": "The accused later called the complainant from mobile number 9990162720."
+    },
+    {
+      "subject": "Ramesh More",
+      "predicate": "owns",
+      "object": "9990162720",
+      "evidence": "The accused later called the complainant from mobile number 9990162720."
+    }
+  ]
+}

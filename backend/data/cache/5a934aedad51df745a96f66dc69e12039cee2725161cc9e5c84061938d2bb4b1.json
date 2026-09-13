@@ -1,0 +1,48 @@
+{
+  "persons": [
+    {
+      "name": "Ajay Kale",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Ramesh More",
+      "aliases": [
+        "Baba"
+      ],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Hinjewadi",
+    "Baner",
+    "Warje"
+  ],
+  "phones": [
+    {
+      "number": "8512567468",
+      "owner": "Ajay Kale"
+    },
+    {
+      "number": "8210470952",
+      "owner": "Ramesh More"
+    }
+  ],
+  "vehicles": [],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Ramesh More",
+      "predicate": "resides_at",
+      "object": "Warje",
+      "evidence": "Ramesh More alias Baba, r/o H.No. 345, Karve Nagar, Warje, Pune, blocked his path and started beating him over a previous dispute."
+    },
+    {
+      "subject": "8210470952",
+      "predicate": "called",
+      "object": "Ramesh More",
+      "evidence": "Investigation revealed that mobile number 8210470952 linked to Ramesh More alias Baba was active between midnight and 4 am on the intervening night before the incident."
+    }
+  ]
+}

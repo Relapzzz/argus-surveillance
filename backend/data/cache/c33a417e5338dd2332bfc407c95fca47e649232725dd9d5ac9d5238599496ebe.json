@@ -1,0 +1,80 @@
+{
+  "persons": [
+    {
+      "name": "Ajay Kale",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Kiran Desai",
+      "aliases": [
+        "Dada"
+      ],
+      "role": "accused"
+    },
+    {
+      "name": "Vaibhav Sawant",
+      "aliases": [],
+      "role": "accused"
+    },
+    {
+      "name": "Vaibhav Patil",
+      "aliases": [
+        "Tinku"
+      ],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Hinjewadi",
+    "Shivajinagar",
+    "Warje",
+    "Swargate",
+    "Baner"
+  ],
+  "phones": [
+    {
+      "number": "8512567468",
+      "owner": "Ajay Kale"
+    },
+    {
+      "number": "8653755646",
+      "owner": null
+    }
+  ],
+  "vehicles": [],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Ajay Kale",
+      "predicate": "resides_at",
+      "object": "Hinjewadi",
+      "evidence": "Complainant: Shri Ajay Kale, aged 43, r/o H.No. 943, Hinjewadi Phase 1, Hinjewadi, Pune, mobile 8512567468."
+    },
+    {
+      "subject": "Ajay Kale",
+      "predicate": "owns",
+      "object": "8512567468",
+      "evidence": "Complainant: Shri Ajay Kale, aged 43, r/o H.No. 943, Hinjewadi Phase 1, Hinjewadi, Pune, mobile 8512567468."
+    },
+    {
+      "subject": "Kiran Desai",
+      "predicate": "resides_at",
+      "object": "Warje",
+      "evidence": "later identified as Kiran Desai alias Dada, r/o H.No. 876, Atul Nagar, Warje, Pune, along with Vaibhav Sawant, r/o Flat 33, Satara Road, Swargate, Pune, along with Vaibhav Patil alias Tinku, r/o Flat 256, Balewadi Phata, Baner, Pune."
+    },
+    {
+      "subject": "Vaibhav Sawant",
+      "predicate": "resides_at",
+      "object": "Swargate",
+      "evidence": "later identified as Kiran Desai alias Dada, r/o H.No. 876, Atul Nagar, Warje, Pune, along with Vaibhav Sawant, r/o Flat 33, Satara Road, Swargate, Pune, along with Vaibhav Patil alias Tinku, r/o Flat 256, Balewadi Phata, Baner, Pune."
+    },
+    {
+      "subject": "Vaibhav Patil",
+      "predicate": "resides_at",
+      "object": "Baner",
+      "evidence": "later identified as Kiran Desai alias Dada, r/o H.No. 876, Atul Nagar, Warje, Pune, along with Vaibhav Sawant, r/o Flat 33, Satara Road, Swargate, Pune, along with Vaibhav Patil alias Tinku, r/o Flat 256, Balewadi Phata, Baner, Pune."
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # TASKS
 
-Current phase, Person A: Phase A3 (Phase 0 manual items still open, see Blockers)
+Current phase, Person A: Phase A4 (Phase 0 manual items still open, see Blockers)
 Current phase, Person B: Phase 0
 MVP demo: 15 September 2026
 Full project: about 12 October 2026
@@ -40,11 +40,11 @@ Update this file before ending every session. Tick items, move the current phase
 
 ## Phase A3: LLM extraction and FIR ingest (A, 13 September afternoon)
 
-- [ ] app/config.py, app/schemas.py Extraction
-- [ ] app/extract/llm.py with cache, app/extract/engine.py
-- [ ] app/ingest/fir.py
-- [ ] scripts/seed.py warms the cache for every seed FIR, cache committed
-- [ ] Injection test FIR yields no injected entity
+- [x] app/config.py, app/schemas.py Extraction
+- [x] app/extract/llm.py with cache, app/extract/engine.py
+- [x] app/ingest/fir.py
+- [x] scripts/seed.py warms the cache for every seed FIR, cache committed
+- [x] Injection test FIR yields no injected entity
 
 ## Phase B2: Dashboard and entity panel (B, 13 September afternoon)
 
@@ -137,7 +137,7 @@ Update this file before ending every session. Tick items, move the current phase
 Notes for Person A:
 
 - Share API_KEY from backend/.env with B privately; it becomes VITE_API_KEY on the frontend.
-- To switch the LLM provider, copy backend/.env.groq or backend/.env.nvidia over backend/.env. All three are gitignored. NVIDIA needs the llm_extra_body setting that Phase A3 adds, otherwise Nemotron spends its whole token budget thinking.
+- To switch the LLM provider, copy backend/.env.groq or backend/.env.nvidia over backend/.env. All three are gitignored; .env.nvidia carries LLM_EXTRA_BODY with thinking disabled, which Nemotron needs. Cached FIRs need no provider at all.
 - Python HTTPS on this laptop fails certificate checks under Norton. The LLM client must call truststore.inject_into_ssl() before creating the OpenAI client; truststore is a dependency.
 - On this laptop Norton intercepts TLS, so every uv command needs --system-certs (uv sync --system-certs, uv add --system-certs ...). Large installs can freeze the machine, so install one package at a time and never chain long commands.
 
@@ -171,3 +171,8 @@ Notes for Person A:
 - 2026-09-13: Regex extractors return distinct values in first-occurrence order. sections() returns (act, section) pairs with acts IPC, BNS, NDPS Act and IT Act, ignores the year after an act, and joins sections with commas, "and" and "r/w"; the corpus forms "8(c) r/w 22(b) NDPS Act 1985" and "66D IT Act 2000" are covered.
 - 2026-09-13: fir_numbers() returns the canonical FIR-YYYY-NNNN form so ingest builds case ids directly. dates() returns naive datetimes, midnight when no time follows the date, and accepts "at about HH:MM hrs". A phone needs the literal +91 or a leading 0 before its 10 digits; a bare 11 to 16 digit run that no phone match consumed is an account.
 - 2026-09-13: Known regex limits handed to Phase A3: find_spans must not be called with an empty label (it returns one empty span per position), word-scaled amounts such as "Rs. 5 lakh" and the word "hours" are not parsed, plates are matched upper-case only, and the time must directly follow the date. The LLM engine covers those.
+- 2026-09-13: The LLM cache key is sha256(PROMPT_VERSION + narrative) without the model, so the committed cache serves every provider and the tests pass on a machine without .env. Clearing data/cache and running seed.py re-extracts with the active provider. LLM_EXTRA_BODY is a JSON object merged into every chat request; .env.nvidia carries the Nemotron thinking switch.
+- 2026-09-13: The extraction prompt asks for names without honorifics or ranks so FIR persons resolve to persons.csv rows, gives a vehicle to the person travelling on it, and keeps locations at locality level such as Kothrud or Camp so residences and incident places become shared nodes for communities and the Phase 9 co-location rule. An unknown role becomes null, an unknown predicate drops the relationship, and evidence not copied from the narrative is blanked. On the corpus gemini-3.5-flash-lite took 2 minutes 49 seconds for 40 FIRs and found 44 persons, of which all 20 accused match persons.csv, 16 localities, 70 phones and 33 vehicles, every vehicle with an owner.
+- 2026-09-13: find_spans allows spaces and hyphens between the label's characters so plates and phones written with spaces are highlighted. Case spans are non-overlapping, longest label first, sorted by start.
+- 2026-09-13: ingest_fir returns FirIngest {case, entities, relationships}. The case node carries fir_number, station, incident_time, sections and amounts; the narrative and spans stay in the Case record like the fixture's cases list. incident_time is the earliest date in the text and null when absent. A person node carries aliases and role and its mentioned_in edge repeats the role. One edge per pair within a FIR: a second type goes to attributes.types and weight stays 1 for the store to increment across sources. A text without a FIR number gets the id FIR-UPLOAD- plus eight hex characters of its sha256.
+- 2026-09-13: scripts/seed.py puts backend/ on sys.path so the documented uv run python scripts/seed.py works, and pauses 8 seconds after each uncached FIR when Groq is the provider.

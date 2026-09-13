@@ -1,0 +1,50 @@
+{
+  "persons": [
+    {
+      "name": "Priya Salunkhe",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Irfan Shaikh",
+      "aliases": [
+        "Sonu"
+      ],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Kondhwa",
+    "Yerwada",
+    "Camp"
+  ],
+  "phones": [
+    {
+      "number": "9662702895",
+      "owner": "Priya Salunkhe"
+    }
+  ],
+  "vehicles": [],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Priya Salunkhe",
+      "predicate": "resides_at",
+      "object": "Kondhwa",
+      "evidence": "Complainant: Smt Priya Salunkhe, aged 24, r/o Flat 164, Kondhwa Khurd, Kondhwa, Pune, mobile 9662702895."
+    },
+    {
+      "subject": "Priya Salunkhe",
+      "predicate": "owns",
+      "object": "9662702895",
+      "evidence": "Complainant: Smt Priya Salunkhe, aged 24, r/o Flat 164, Kondhwa Khurd, Kondhwa, Pune, mobile 9662702895."
+    },
+    {
+      "subject": "Irfan Shaikh",
+      "predicate": "resides_at",
+      "object": "Camp",
+      "evidence": "Accused: Irfan Shaikh alias Sonu, aged 28, r/o H.No. 827, Sachapir Street, Camp, Pune."
+    }
+  ]
+}

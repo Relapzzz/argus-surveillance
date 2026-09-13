@@ -140,3 +140,7 @@ def test_seed_corpus_yields_one_matching_fir_number(path):
     numbers = regex.fir_numbers(text)
     expected = path.stem
     assert numbers == [expected]
+
+
+def test_find_spans_ignores_spaces_and_hyphens_inside_identifiers():
+    assert regex.find_spans("registration MH 14 JX 0154, and MH-14-JX-0154", "MH14JX0154") == [(13, 26), (32, 45)]

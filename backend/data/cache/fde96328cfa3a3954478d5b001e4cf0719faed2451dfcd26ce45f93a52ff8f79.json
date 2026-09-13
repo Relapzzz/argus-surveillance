@@ -1,0 +1,118 @@
+{
+  "persons": [
+    {
+      "name": "Ganesh Kamble",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Salman Khan",
+      "aliases": [],
+      "role": "accused"
+    },
+    {
+      "name": "Aslam Khan",
+      "aliases": [
+        "Chotu"
+      ],
+      "role": "accused"
+    },
+    {
+      "name": "Ramesh More",
+      "aliases": [
+        "Baba"
+      ],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Kothrud",
+    "Swargate",
+    "Warje",
+    "Yerwada"
+  ],
+  "phones": [
+    {
+      "number": "6334123281",
+      "owner": "Ganesh Kamble"
+    },
+    {
+      "number": "7745299124",
+      "owner": "Salman Khan"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 14 KG 6303",
+      "owner": "Salman Khan"
+    },
+    {
+      "plate": "MH 14 JX 0154",
+      "owner": "Aslam Khan"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Ganesh Kamble",
+      "predicate": "resides_at",
+      "object": "Kothrud",
+      "evidence": "Complainant: Shri Ganesh Kamble, aged 28, r/o Flat 478, Mayur Colony, Kothrud, Pune, mobile 6334123281."
+    },
+    {
+      "subject": "Ganesh Kamble",
+      "predicate": "owns",
+      "object": "6334123281",
+      "evidence": "Complainant: Shri Ganesh Kamble, aged 28, r/o Flat 478, Mayur Colony, Kothrud, Pune, mobile 6334123281."
+    },
+    {
+      "subject": "Salman Khan",
+      "predicate": "resides_at",
+      "object": "Swargate",
+      "evidence": "The complainant reports that on 12/07/2026 at about 10:25 hrs, an altercation with Salman Khan, r/o H.No. 409, Market Yard, Swargate, Pune, on a scooter bearing registration MH 14 KG 6303, along with Aslam Khan alias Chotu, r/o H.No. 33, Satara Road, Swargate, Pune, on a motorcycle bearing registration MH 14 JX 0154, along with Ramesh More alias Baba, r/o H.No. 345, Karve Nagar, Warje, Pune, near Yerwada escalated into a physical assault."
+    },
+    {
+      "subject": "Salman Khan",
+      "predicate": "owns",
+      "object": "MH 14 KG 6303",
+      "evidence": "The complainant reports that on 12/07/2026 at about 10:25 hrs, an altercation with Salman Khan, r/o H.No. 409, Market Yard, Swargate, Pune, on a scooter bearing registration MH 14 KG 6303, along with Aslam Khan alias Chotu, r/o H.No. 33, Satara Road, Swargate, Pune, on a motorcycle bearing registration MH 14 JX 0154, along with Ramesh More alias Baba, r/o H.No. 345, Karve Nagar, Warje, Pune, near Yerwada escalated into a physical assault."
+    },
+    {
+      "subject": "Aslam Khan",
+      "predicate": "resides_at",
+      "object": "Swargate",
+      "evidence": "The complainant reports that on 12/07/2026 at about 10:25 hrs, an altercation with Salman Khan, r/o H.No. 409, Market Yard, Swargate, Pune, on a scooter bearing registration MH 14 KG 6303, along with Aslam Khan alias Chotu, r/o H.No. 33, Satara Road, Swargate, Pune, on a motorcycle bearing registration MH 14 JX 0154, along with Ramesh More alias Baba, r/o H.No. 345, Karve Nagar, Warje, Pune, near Yerwada escalated into a physical assault."
+    },
+    {
+      "subject": "Aslam Khan",
+      "predicate": "owns",
+      "object": "MH 14 JX 0154",
+      "evidence": "The complainant reports that on 12/07/2026 at about 10:25 hrs, an altercation with Salman Khan, r/o H.No. 409, Market Yard, Swargate, Pune, on a scooter bearing registration MH 14 KG 6303, along with Aslam Khan alias Chotu, r/o H.No. 33, Satara Road, Swargate, Pune, on a motorcycle bearing registration MH 14 JX 0154, along with Ramesh More alias Baba, r/o H.No. 345, Karve Nagar, Warje, Pune, near Yerwada escalated into a physical assault."
+    },
+    {
+      "subject": "Ramesh More",
+      "predicate": "resides_at",
+      "object": "Warje",
+      "evidence": "The complainant reports that on 12/07/2026 at about 10:25 hrs, an altercation with Salman Khan, r/o H.No. 409, Market Yard, Swargate, Pune, on a scooter bearing registration MH 14 KG 6303, along with Aslam Khan alias Chotu, r/o H.No. 33, Satara Road, Swargate, Pune, on a motorcycle bearing registration MH 14 JX 0154, along with Ramesh More alias Baba, r/o H.No. 345, Karve Nagar, Warje, Pune, near Yerwada escalated into a physical assault."
+    },
+    {
+      "subject": "Salman Khan",
+      "predicate": "owns",
+      "object": "7745299124",
+      "evidence": "The accused was tracked through mobile number 7745299124."
+    },
+    {
+      "subject": "Aslam Khan",
+      "predicate": "co_accused",
+      "object": "Salman Khan",
+      "evidence": "The complainant reports that on 12/07/2026 at about 10:25 hrs, an altercation with Salman Khan, r/o H.No. 409, Market Yard, Swargate, Pune, on a scooter bearing registration MH 14 KG 6303, along with Aslam Khan alias Chotu, r/o H.No. 33, Satara Road, Swargate, Pune, on a motorcycle bearing registration MH 14 JX 0154, along with Ramesh More alias Baba, r/o H.No. 345, Karve Nagar, Warje, Pune, near Yerwada escalated into a physical assault."
+    },
+    {
+      "subject": "Ramesh More",
+      "predicate": "co_accused",
+      "object": "Salman Khan",
+      "evidence": "The complainant reports that on 12/07/2026 at about 10:25 hrs, an altercation with Salman Khan, r/o H.No. 409, Market Yard, Swargate, Pune, on a scooter bearing registration MH 14 KG 6303, along with Aslam Khan alias Chotu, r/o H.No. 33, Satara Road, Swargate, Pune, on a motorcycle bearing registration MH 14 JX 0154, along with Ramesh More alias Baba, r/o H.No. 345, Karve Nagar, Warje, Pune, near Yerwada escalated into a physical assault."
+    }
+  ]
+}
