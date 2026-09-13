@@ -1,6 +1,6 @@
 # TASKS
 
-Current phase, Person A: Phase 0
+Current phase, Person A: Phase A1 (Phase 0 manual items still open, see Blockers)
 Current phase, Person B: Phase 0
 MVP demo: 15 September 2026
 Full project: about 12 October 2026
@@ -9,15 +9,17 @@ Update this file before ending every session. Tick items, move the current phase
 
 ## Phase 0: Setup (both, 12 September)
 
-- [ ] A: git init, GitHub repo created, B added as collaborator, secret scanning and Dependabot enabled
-- [ ] A: backend/data/fixture_graph.json written and pushed to main
-- [ ] A: backend scaffold with uv, stub API serving the fixture on every GET endpoint
-- [ ] A: .env.example written, one LLM provider key confirmed with GET /models
+- [x] A: git init, GitHub repo created (https://github.com/Relapzzz/argus-surveillance)
+- [ ] A: B added as collaborator, secret scanning and Dependabot enabled in repository settings
+- [x] A: backend/data/fixture_graph.json written and pushed to main
+- [x] A: backend scaffold with uv, stub API serving the fixture on every GET endpoint, 17 API tests
+- [x] A: .env.example written
+- [ ] A: one LLM provider key in backend/.env confirmed with GET /models
 - [ ] A: Azure for Students and GitHub Pro activated from the Student Pack
 - [ ] B: frontend scaffold with Bun, Vite, Tailwind v4, shadcn/ui, react-router, TanStack Query, react-force-graph-2d
 - [ ] B: app shell with sidebar navigation and dark theme, four empty pages
 - [ ] B: src/api/client.ts typed against the contract, fixture fallback, .env.example
-- [ ] Both: Phase 0 verify commands pass
+- [ ] Both: Phase 0 verify commands pass (A passed on 13 September, B pending)
 
 ## Phase A1: Synthetic dataset (A, 13 September morning)
 
@@ -132,7 +134,12 @@ Update this file before ending every session. Tick items, move the current phase
 
 ## Blockers
 
-None.
+Person A manual items, no code involved:
+
+- Add B as collaborator, enable Dependabot alerts and security updates, and secret scanning with push protection: repository Settings, Collaborators, then Settings, Code security. gh is not installed on this laptop.
+- Sign up at Google AI Studio (primary), Cerebras and Groq. Copy backend/.env.example to backend/.env, fill LLM_BASE_URL and LLM_API_KEY, then list models with `curl "$LLM_BASE_URL/models" -H "Authorization: Bearer $LLM_API_KEY"` and pick LLM_MODEL from that list. Base URLs: Gemini https://generativelanguage.googleapis.com/v1beta/openai, Cerebras https://api.cerebras.ai/v1, Groq https://api.groq.com/openai/v1.
+- Activate Azure for Students and GitHub Pro from the Student Pack. Verification can take 48 hours.
+- On this laptop Norton intercepts TLS, so every uv command needs --system-certs (uv sync --system-certs, uv add --system-certs ...). Large installs can freeze the machine, so install one package at a time and never chain long commands.
 
 ## Decisions log
 
@@ -145,3 +152,9 @@ None.
 - 2026-09-12: Person A owns backend, AI and deployment. Person B owns frontend.
 - 2026-09-12: Hash-chained audit log in Phase 11, real chain anchoring only as the last stretch phase.
 - 2026-09-12: The X-API-Key on mutating endpoints is an MVP guard only. JWT with roles replaces it in Phase 11.
+- 2026-09-13: Graph nodes carry metrics nested under metrics {degree, betweenness, pagerank, community}. Edge id is the two node ids sorted and joined with |. Edge weight is the number of observations of the pair, one per call, transfer or extracted relationship, so called and transacted weights equal count.
+- 2026-09-13: scipy is a runtime dependency because networkx 3 delegates PageRank to it.
+- 2026-09-13: The Phase 0 stub is app/stub.py. It loads data/fixture_graph.json at import and is deleted in Phase A5 when routers/ arrives.
+- 2026-09-13: On the fixture, weighted Louvain put phones and accounts in their own communities away from their owners. Unweighted Louvain at resolution 0.5 gives the two gang communities. A4 settles weighting on the seed graph.
+- 2026-09-13: Fixture alerts cover all four types so the alerts UI can show every kind. Severities follow the pattern rules: burst_calls and structuring high, bridge_node and night_calls medium.
+- 2026-09-13: mentioned_in edges make a shared FIR the shortest link between any two of its entities. The stub returns that plain path; A4 skips case nodes in path search unless one is an endpoint.
