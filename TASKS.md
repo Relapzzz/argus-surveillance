@@ -140,7 +140,6 @@ Notes for Person A:
 - To switch the LLM provider, copy backend/.env.groq or backend/.env.nvidia over backend/.env. All three are gitignored. NVIDIA needs the llm_extra_body setting that Phase A3 adds, otherwise Nemotron spends its whole token budget thinking.
 - Python HTTPS on this laptop fails certificate checks under Norton. The LLM client must call truststore.inject_into_ssl() before creating the OpenAI client; truststore is a dependency.
 - On this laptop Norton intercepts TLS, so every uv command needs --system-certs (uv sync --system-certs, uv add --system-certs ...). Large installs can freeze the machine, so install one package at a time and never chain long commands.
-- CLAUDE.local.md line 8 still lists Faker in the backend stack section; update it to say Faker was dropped in Phase A1.
 
 ## Decisions log
 
