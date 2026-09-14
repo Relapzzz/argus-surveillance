@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { Link, useSearchParams } from 'react-router'
 import { useQuery } from '@tanstack/react-query'
+import { Search } from 'lucide-react'
 import { api } from '@/api/client'
 import { PageHeading } from '@/components/PageHeading'
 import { QueryState } from '@/components/QueryState'
 import Narrative from '@/components/Narrative'
-import { Input } from '@/components/ui/input'
-import { palette, networkUrl } from '@/lib/graph'
+import { networkUrl, palette, typeNames } from '@/lib/graph'
 
 export default function Cases() {
   const [params, setParams] = useSearchParams()
@@ -16,12 +16,27 @@ export default function Cases() {
   const detail = useQuery({ queryKey: ['case', selected], queryFn: () => api.case(selected!), enabled: Boolean(selected) })
   const matches = cases.data?.filter(c => `${c.fir_number} ${c.station}`.toLowerCase().includes(search.toLowerCase()))
   const unique = detail.data ? [...new Map(detail.data.entities.map(s => [s.id, s])).values()] : []
-  return <><PageHeading title="Source cases" description="Read the original narrative behind each connection." />
+  return <div className="page">
+    <PageHeading title="Case files" description="The original FIR behind every link. Highlighted text is an extracted entity." />
     <QueryState pending={cases.isPending} error={cases.error} retry={() => cases.refetch()} />
-    <div className="cases-layout"><section className="case-list panel"><div className="section-heading"><h2>Case records</h2><span className="count-badge">{cases.data?.length ?? '—'}</span></div><div className="case-search"><Input aria-label="Search cases" placeholder="Search FIR or station…" value={search} onChange={e => setSearch(e.target.value)} /></div>
-      {matches?.map(c => <button className={'case-row ' + (selected === c.id ? 'selected' : '')} key={c.id} onClick={() => setParams({ case: c.id })}><strong>{c.fir_number}</strong><span>{c.station}</span><small>{c.incident_time?.slice(0, 10) ?? 'Date not recorded'} <b>·</b> {c.entity_count} entities</small></button>)}{matches?.length === 0 && <p className="empty">No matching cases.</p>}
-    </section><section className="case-detail panel">{!selected ? <div className="empty"><h2>Select a source case</h2><p>Review its narrative, extracted entities, and links to the network.</p></div> : <><QueryState pending={detail.isPending} error={detail.error} retry={() => detail.refetch()} />{detail.data && <>
-      <div className="section-heading"><div><p className="eyebrow">SOURCE FIR</p><h2>{detail.data.fir_number}</h2><p>{detail.data.station}</p></div></div><div className="case-content"><div className="case-metadata"><span>Incident: {detail.data.incident_time?.replace('T', ' ') ?? 'Not recorded'}</span><span>{detail.data.entity_count} entities</span></div><div className="section-chips">{detail.data.sections.map(section => <span key={section}>{section}</span>)}</div><h3>Original narrative</h3><p className="muted small-text">Select a highlighted entity to inspect its network.</p><Narrative detail={detail.data} /><h3>Entities in this case</h3><div className="entity-chips">{unique.map(span => <Link key={span.id} to={networkUrl([span.id])} style={{ borderColor: palette[span.type] + '55', color: palette[span.type] }}>{span.label}{' '}<small>{span.type}</small></Link>)}</div>{!unique.length && <p className="muted">No entity spans recorded.</p>}</div>
-    </>}</>}</section></div>
-  </>
+    <div className="cases">
+      <section className="panel" aria-label="Case list"><div className="panel-head"><h2>FIRs</h2><span className="count">{cases.data?.length ?? '—'}</span></div>
+        <div className="case-search search"><Search size={14} /><input aria-label="Search cases" placeholder="FIR number or station" value={search} onChange={e => setSearch(e.target.value)} /></div>
+        {matches?.map(c => <button className="case-row" aria-current={selected === c.id} key={c.id} onClick={() => setParams({ case: c.id })}><b>{c.fir_number}</b><span>{c.station}</span><small>{c.incident_time?.slice(0, 10) ?? 'Date not recorded'} · {c.entity_count} entities</small></button>)}
+        {matches?.length === 0 && <p className="empty">No FIR matches.</p>}
+      </section>
+      <section className="panel" aria-label="Case file">{!selected ? <div className="empty"><h2>Pick an FIR</h2><p>Its narrative, the entities extracted from it and their place in the network appear here.</p></div> : <>
+        <QueryState pending={detail.isPending} error={detail.error} retry={() => detail.refetch()} />
+        {detail.data && <>
+          <div className="case-head"><p>First information report</p><h2 className="display">{detail.data.fir_number}</h2><span>{detail.data.station} police station</span></div>
+          <div className="case-meta"><span>Incident {detail.data.incident_time?.replace('T', ' ') ?? 'not recorded'}</span><span>{detail.data.entity_count} entities extracted</span></div>
+          <div className="sections">{detail.data.sections.map(section => <span key={section}>{section}</span>)}</div>
+          <p className="sheet-note">Click a highlighted entity to open it on the network.</p>
+          <Narrative detail={detail.data} />
+          <div className="chips">{unique.map(span => <Link key={span.id} to={networkUrl([span.id])}><i style={{ background: palette[span.type] }} />{span.label}<small>{typeNames[span.type]}</small></Link>)}</div>
+          {!unique.length && <p className="empty">No entities were extracted from this FIR.</p>}
+        </>}
+      </>}</section>
+    </div>
+  </div>
 }

@@ -1,5 +1,5 @@
 import { api } from '@/api/client'
-import type { IngestKind, IngestResult } from '@/api/types'
+import type { GraphNode, IngestKind, IngestResult } from '@/api/types'
 
 export const maxUploadBytes = 2 * 1024 * 1024
 export function validateUpload(kind: IngestKind, file: File) {
@@ -9,7 +9,7 @@ export function validateUpload(kind: IngestKind, file: File) {
   if (file.size > maxUploadBytes) return 'The file exceeds the 2 MB limit.'
   return null
 }
-export interface UploadOutcome { result: IngestResult; newIds: string[]; refreshWarning?: string }
+export interface UploadOutcome { result: IngestResult; added: GraphNode[]; refreshWarning?: string }
 export async function uploadWithGraphDiff(kind: IngestKind, file: File): Promise<UploadOutcome> {
   const invalid = validateUpload(kind, file)
   if (invalid) throw new Error(invalid)
@@ -17,8 +17,8 @@ export async function uploadWithGraphDiff(kind: IngestKind, file: File): Promise
   const result = await api.ingest(kind, file)
   try {
     const after = await api.graph()
-    return { result, newIds: after.nodes.filter(n => !before.has(n.id)).map(n => n.id) }
+    return { result, added: after.nodes.filter(n => !before.has(n.id)) }
   } catch {
-    return { result, newIds: [], refreshWarning: 'Upload succeeded, but the graph could not be refreshed. Open the network to retry loading it. Do not upload this file again solely to refresh the view.' }
+    return { result, added: [], refreshWarning: 'The upload succeeded, but the network could not be refreshed. Open the network to load it again. Do not upload the same file twice.' }
   }
 }

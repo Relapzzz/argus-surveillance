@@ -1,7 +1,7 @@
 # TASKS
 
-Current phase, Person A: Phase 4 integration once B's phases land; Phase 0 manual items still open, see Blockers
-Current phase, Person B: Phase 4 integration and demo polish
+Current phase, Person A: Phase 4 done on 14 September except the backup video; next is Phase 5 AuraDB persistence from 16 September
+Current phase, Person B: Phase 5 timeline and map from 16 September; read the 14 September frontend entries in the decisions log first
 MVP demo: 15 September 2026
 Full project: about 12 October 2026
 
@@ -78,9 +78,11 @@ Update this file before ending every session. Tick items, move the current phase
 
 ## Phase 4: Integration and demo (both, 15 September)
 
-- [ ] main merged, seed run, demo script walked end to end twice offline
-- [ ] Live-upload FIR pre-cached
-- [ ] Backup screen video recorded
+- [x] main merged, seed run, demo script walked end to end twice offline (14 September: twice through the browser, plus the upload, route and reset routes through the FastAPI TestClient with LLM_API_KEY wrong and LLM_BASE_URL unreachable)
+- [x] Live-upload FIR pre-cached: backend/data/demo/FIR-2026-0041.txt, cache file committed
+- [ ] Backup screen video recorded (teammate task; the demo steps are in README.md)
+- [x] Frontend redesigned by Person A and the network hover bug fixed, see the 14 September decisions
+- [x] README updated, v0.1-mvp tagged
 
 ## Phase 5: Neo4j AuraDB Free persistence (A) and timeline plus map (B), 16 to 18 September
 
@@ -140,13 +142,14 @@ Notes for Person A:
 - To switch the LLM provider, copy backend/.env.groq or backend/.env.nvidia over backend/.env. All three are gitignored; .env.nvidia carries LLM_EXTRA_BODY with thinking disabled, which Nemotron needs. Cached FIRs need no provider at all.
 - Python HTTPS on this laptop fails certificate checks under Norton. The LLM client must call truststore.inject_into_ssl() before creating the OpenAI client; truststore is a dependency.
 - On this laptop Norton intercepts TLS, so every uv command needs --system-certs (uv sync --system-certs, uv add --system-certs ...). Large installs can freeze the machine, so install one package at a time and never chain long commands.
-- For Phase 4: pre-cache the live-upload FIR by uploading the file once through POST /ingest/fir with the key (or by calling ingest_fir on its text), then reset. Since A5 an uploaded file and the same file read from disk share one cache key, so either route works.
+- Demo upload: backend/data/demo/FIR-2026-0041.txt names Kiran Desai (Gang A) and Imran Shaikh (Gang B) as co-accused with a new complainant, phone and vehicle. It adds 4 entities and 11 relationships, after which Kiran Desai and Imran Shaikh rank as bridges beside Dinesh Deshmukh and the bridge_node alert still fires. Its LLM response is cached, so the upload needs no key. Reset from the Add records page or restart the backend afterwards.
+- Before running the Playwright suite stop any dev server on 5173, otherwise playwright.config.ts reuses it against the live backend instead of fixture mode.
 
 Notes for Person B:
 
-- The frontend branch had no common history with main, so it was merged with --allow-unrelated-histories and main's TASKS.md and IMPLEMENTATION_PLAN.md were kept. Pull main before continuing; do not rebase or force-push the old frontend branch.
-- The Playwright suite passes 4 of 4 after the selection fix below. Its B1 canvas-click test had failed because every selection restarted the force layout, so the pixel it hunted for moved.
+- Person A redesigned the frontend in Phase 4 (14 September) and rewrote tests/e2e/frontend.spec.ts for it: 4 of 4 pass in fixture mode. Read the 14 September decisions before changing src/components/GraphCanvas.tsx or src/styles.css.
 - Frontend setup: copy frontend/.env.example to frontend/.env, set VITE_API_URL=http://localhost:8000 and VITE_API_KEY to the backend key, keep VITE_USE_FIXTURE=false against the real backend. bun install --frozen-lockfile, bun run dev.
+- Open review items from the merge: a tautological assertion in src/api/fixture.test.ts and the missing ESLint config.
 
 ## Decisions log
 
@@ -197,3 +200,11 @@ Notes for Person B:
 - 2026-09-14: Person B delivered Phase 0, B1, B2, B3 and B4 in one commit on the frontend branch. It was merged into main with --allow-unrelated-histories, keeping main's TASKS.md and IMPLEMENTATION_PLAN.md and adding frontend/ and AGENTS.md (Person B's tool guidance, no secrets). Build, six vitest tests and three of four Playwright tests pass; every page was verified in the browser against the Phase A5 backend.
 - 2026-09-14: Before merging, Person A fixed two Important review findings in src/pages/Network.tsx: selecting an entity no longer resets the type and community filters (they are cleared only when the selected entity is hidden by them) and no longer creates new filter state, so the graph memo, the canvas data and the force layout keep their positions on every click, path and alert. playwright.config.ts now probes http://127.0.0.1:5173, the host vite binds, and reuses a running server outside CI. Fourteen Minor review findings stay with Person B, among them a tautological assertion in src/api/fixture.test.ts, Phase A5 wording in user-facing copy and the missing ESLint config.
 - 2026-09-14: The frontend uses the cn package (shadcn's clsx plus tailwind-merge replacement) and imports shadcn/tailwind.css from the shadcn package, so both are runtime dependencies on purpose.
+- 2026-09-14: Network hover bug root cause: force-graph 1.51 pauses canvas repaints once the force engine stops (autoPauseRedraw) and a hover only fires the callback, so labels drawn in nodeCanvasObject appeared only while the layout was still moving. Fix: autoPauseRedraw false (60 fps measured with 225 nodes) and the hovered id kept in a ref so hovering never re-renders React.
+- 2026-09-14: GraphCanvas keeps node positions across filter and focus changes through a map of the live node objects that is written in an effect, never inside useMemo: StrictMode invokes memo callbacks twice, the map held discarded clones without coordinates, and centring on a selection silently did nothing.
+- 2026-09-14: Frontend design system: Archivo Variable with its width axis for headings and IBM Plex Mono for identifiers, timestamps and metrics; tokens in src/index.css feed the shadcn primitives; dark only; amber for selection, routes, primary actions and severities; persons paper-white, cases drawn as squares. Geist and the unused shadcn sheet, card, badge, table, input and select files were removed.
+- 2026-09-14: The Network page is a workbench: the canvas fills the viewport, the legend doubles as the type filter, a select filters by group, nodes colour by type or group, group areas are padded convex hulls of each community's actor nodes, the top persons are labelled with greedy de-overlap and every node from zoom 2.2, selections, alert highlights and routes dim everything else, and a traced route carries particles. The inspector column with Entity, Route and Alerts tabs replaces the modal Sheet, so clicking around the canvas never closes anything. One EntitySearch combobox serves the header and both route pickers.
+- 2026-09-14: Briefing replaces Dashboard: a summary sentence built from stats, communities and the bridge_node alert (its person fetched by id), a ledger of entity counts, key players with group chips, leads that phrase each alert type as an investigative question with its rule, and group cards. UI vocabulary is group for community, FIR for case and Place for location; humanize() rewrites community in API reasons and alert text.
+- 2026-09-14: The Cases page renders the narrative as a paper sheet in IBM Plex Mono with paperPalette for the highlights, because the paper-white person colour of the dark palette vanished on paper. The Ingest page explains extract, resolve and recompute, and uploadWithGraphDiff returns the added nodes so the result lists them as chips.
+- 2026-09-14: The demo FIR lives in backend/data/demo, outside data/seed so seed.py ignores it. Running seed.py again reproduced graph.json except floating point noise in the last digits of betweenness and pagerank; the committed file was kept.
+- 2026-09-14: Phase 4 verify ran the upload, path and reset routes through the FastAPI TestClient with LLM_API_KEY=wrong-key and LLM_BASE_URL=http://127.0.0.1:9/v1; everything came from the cache. The backup video stays open for the teammate.

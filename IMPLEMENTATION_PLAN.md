@@ -102,6 +102,14 @@ Patterns (app/graph/patterns.py), each returning Alert objects with evidence, ru
 
 Alert ids are alert:{type}:{node or edge id}. Descriptions name phones and accounts with their owner in brackets and format money as Rs 5,26,500.
 
+### Frontend
+
+Dark workbench with one accent. Type: Archivo Variable, headings on the width axis at 88 percent, IBM Plex Mono for every identifier, timestamp, metric and FIR number. Colour tokens live in frontend/src/index.css and feed the shadcn primitives; app CSS in frontend/src/styles.css uses only those tokens. Amber marks what matters: the selection, a traced route, primary actions, alert severities. Entity colours: persons paper-white, phones cyan, accounts green, vehicles violet, places rose, organizations teal, FIRs grey squares. Groups (Louvain communities) have their own hue cycle for hulls, chips and the colour-by-group mode.
+
+Pages: Briefing (summary sentence from live stats, ledger, key players, leads from alerts, groups), Network (canvas stage plus an inspector with Entity, Route and Alerts tabs; legend as type filter; group select; colour mode; group areas; focus dimming; particles on routes), Case files (list plus the FIR as a paper sheet with highlighted spans), Add records (extract, resolve, recompute strip; three upload cards; result chips; reset).
+
+Canvas rules in frontend/src/components/GraphCanvas.tsx: autoPauseRedraw is off so hover repaints after the layout settles; the hovered id is a ref; node positions survive data changes through a map of live node objects updated in an effect; labels for hovered, selected and highlighted nodes always, the eight top persons with greedy de-overlap, everything from zoom 2.2; hulls are padded convex hulls of actor nodes per community drawn in onRenderFramePre.
+
 ### Security
 
 | Threat | Mitigation | Phase |
@@ -282,6 +290,7 @@ Steps:
 
 Verify: with LLM_API_KEY set to a wrong value, the whole demo script still runs end to end.
 Done: two clean runs, video recorded, tag pushed.
+Outcome, 14 September: the demo FIR is backend/data/demo/FIR-2026-0041.txt and its extraction is cached. Person A also redesigned the frontend and fixed the canvas hover bug in this phase; see the Frontend design and the decisions log. The verify ran through the FastAPI TestClient with the key wrong and the base URL unreachable. The backup video remains with the teammate.
 
 Non-coding teammates during the MVP: slide deck, demo narration, review of FIR realism, backup video, account sign-ups listed in Phase 0.
 

@@ -1,0 +1,106 @@
+{
+  "persons": [
+    {
+      "name": "Mahesh Shelar",
+      "aliases": [],
+      "role": "complainant"
+    },
+    {
+      "name": "Kiran Desai",
+      "aliases": [
+        "Dada"
+      ],
+      "role": "accused"
+    },
+    {
+      "name": "Imran Shaikh",
+      "aliases": [
+        "Anna"
+      ],
+      "role": "accused"
+    }
+  ],
+  "organizations": [],
+  "locations": [
+    "Swargate",
+    "Warje",
+    "Kondhwa"
+  ],
+  "phones": [
+    {
+      "number": "9822011433",
+      "owner": "Mahesh Shelar"
+    },
+    {
+      "number": "8653755646",
+      "owner": "Kiran Desai"
+    },
+    {
+      "number": "9855744431",
+      "owner": "Imran Shaikh"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "MH 12 PZ 3311",
+      "owner": "Kiran Desai"
+    }
+  ],
+  "accounts": [],
+  "relationships": [
+    {
+      "subject": "Mahesh Shelar",
+      "predicate": "resides_at",
+      "object": "Swargate",
+      "evidence": "Complainant: Shri Mahesh Shelar, aged 47, r/o H.No. 12, Shankarsheth Road, Swargate, Pune, mobile 9822011433."
+    },
+    {
+      "subject": "9822011433",
+      "predicate": "owns",
+      "object": "Mahesh Shelar",
+      "evidence": "Complainant: Shri Mahesh Shelar, aged 47, r/o H.No. 12, Shankarsheth Road, Swargate, Pune, mobile 9822011433."
+    },
+    {
+      "subject": "Kiran Desai",
+      "predicate": "resides_at",
+      "object": "Warje",
+      "evidence": "The complainant states that on 05/09/2026 at about 14:30 hrs near Swargate the accused, identified as Kiran Desai alias Dada, r/o H.No. 876, Atul Nagar, Warje, Pune, along with Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune, on a car bearing registration MH 12 PZ 3311, stopped him at his shop and demanded Rs. 3,00,000 as protection money."
+    },
+    {
+      "subject": "Imran Shaikh",
+      "predicate": "resides_at",
+      "object": "Kondhwa",
+      "evidence": "The complainant states that on 05/09/2026 at about 14:30 hrs near Swargate the accused, identified as Kiran Desai alias Dada, r/o H.No. 876, Atul Nagar, Warje, Pune, along with Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune, on a car bearing registration MH 12 PZ 3311, stopped him at his shop and demanded Rs. 3,00,000 as protection money."
+    },
+    {
+      "subject": "MH 12 PZ 3311",
+      "predicate": "owns",
+      "object": "Kiran Desai",
+      "evidence": "The complainant states that on 05/09/2026 at about 14:30 hrs near Swargate the accused, identified as Kiran Desai alias Dada, r/o H.No. 876, Atul Nagar, Warje, Pune, along with Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune, on a car bearing registration MH 12 PZ 3311, stopped him at his shop and demanded Rs. 3,00,000 as protection money."
+    },
+    {
+      "subject": "Kiran Desai",
+      "predicate": "co_accused",
+      "object": "Imran Shaikh",
+      "evidence": "The complainant states that on 05/09/2026 at about 14:30 hrs near Swargate the accused, identified as Kiran Desai alias Dada, r/o H.No. 876, Atul Nagar, Warje, Pune, along with Imran Shaikh alias Anna, r/o H.No. 169, Mithanagar, Kondhwa, Pune, on a car bearing registration MH 12 PZ 3311, stopped him at his shop and demanded Rs. 3,00,000 as protection money."
+    },
+    {
+      "subject": "8653755646",
+      "predicate": "owns",
+      "object": "Kiran Desai",
+      "evidence": "Investigation revealed that mobile number 8653755646 linked to Kiran Desai alias Dada was in repeated contact with mobile number 9855744431 linked to Imran Shaikh alias Anna on the day of the incident."
+    },
+    {
+      "subject": "9855744431",
+      "predicate": "owns",
+      "object": "Imran Shaikh",
+      "evidence": "Investigation revealed that mobile number 8653755646 linked to Kiran Desai alias Dada was in repeated contact with mobile number 9855744431 linked to Imran Shaikh alias Anna on the day of the incident."
+    },
+    {
+      "subject": "8653755646",
+      "predicate": "called",
+      "object": "9855744431",
+      "evidence": "Investigation revealed that mobile number 8653755646 linked to Kiran Desai alias Dada was in repeated contact with mobile number 9855744431 linked to Imran Shaikh alias Anna on the day of the incident."
+    }
+  ]
+}
