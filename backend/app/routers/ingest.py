@@ -94,3 +94,9 @@ async def transactions(store: StoreDep, request: Request) -> IngestResult:
 def reset(store: StoreDep) -> ResetResult:
     store.load(settings.data_dir / "graph.json")
     return ResetResult(nodes=store.graph.number_of_nodes(), edges=store.graph.number_of_edges())
+
+
+@router.post("/admin/clear")
+def clear(store: StoreDep) -> ResetResult:
+    store.reset()
+    return ResetResult(nodes=0, edges=0)

@@ -48,4 +48,5 @@ export const api = {
   },
   ingestText: (text: string): Promise<IngestResult> => mutation('/ingest/fir', JSON.stringify({ text }), true),
   reset: (): Promise<ResetResult> => mutation('/admin/reset'),
+  clear: (): Promise<ResetResult> => mutation('/admin/clear'),
 }

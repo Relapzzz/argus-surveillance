@@ -26,7 +26,11 @@ export default function Briefing() {
   return <div className="page">
     <PageHeading title="Briefing" description="What the records say, and where to look next."><Link className={buttonVariants({ size: 'lg' })} to="/network">Open the network<ArrowUpRight data-icon="inline-end" /></Link></PageHeading>
     <QueryState pending={stats.isPending} error={stats.error} retry={() => stats.refetch()} />
-    {s && <section className="brief" aria-label="Summary">
+    {s && total === 0 && <section className="panel start" aria-label="Getting started"><div className="panel-head"><div><h2>No records yet</h2><p>This workspace is empty. Add the first record and the briefing writes itself.</p></div></div>
+      <ol className="start-steps"><li><b>1</b><span>Add an FIR as a .txt file. People, phones, vehicles, places and organizations are extracted from the narrative.</span></li><li><b>2</b><span>Add call detail records and bank transactions as .csv files. Phones and accounts are matched to the people who own them.</span></li><li><b>3</b><span>Come back here. Groups, key players and suspicious patterns appear as soon as the records connect.</span></li></ol>
+      <div className="start-cta"><Link className={buttonVariants({ size: 'lg' })} to="/ingest">Add the first record<ArrowUpRight data-icon="inline-end" /></Link></div>
+    </section>}
+    {s && total > 0 && <section className="brief" aria-label="Summary">
       <p className="brief-kicker">Synthetic corpus · Pune City · {s.cases} FIRs with call and transaction records</p>
       <p className="brief-text">
         <b>{s.cases}</b> FIRs and their call and transaction records resolve into <b>{total}</b> linked entities and <b>{s.relationships.toLocaleString('en-IN')}</b> relationships.
@@ -35,7 +39,8 @@ export default function Briefing() {
         {' '}<b>{s.alerts}</b> {s.alerts === 1 ? 'pattern needs' : 'patterns need'} a closer look.
       </p>
     </section>}
-    {s && <div className="ledger">{entityTypes.map(t => <span key={t}><i style={{ background: palette[t] }} />{typeNames[t]}<b>{s.entities[t]}</b></span>)}</div>}
+    {s && total > 0 && <div className="ledger">{entityTypes.map(t => <span key={t}><i style={{ background: palette[t] }} />{typeNames[t]}<b>{s.entities[t]}</b></span>)}</div>}
+    {total > 0 && <>
     <div className="brief-grid">
       <section className="panel"><div className="panel-head"><div><h2>Key players</h2><p>People ranked by influence, by how many routes pass through them, and by connections</p></div></div><QueryState pending={players.isPending} error={players.error} retry={() => players.refetch()} />{players.data && <KeyPlayersTable players={players.data} />}</section>
       <section className="panel"><div className="panel-head"><div><h2>Where to look next</h2><p>Patterns the rules flagged, as investigative questions</p></div>{alerts.data && <span className="count">{alerts.data.length}</span>}</div><QueryState pending={alerts.isPending} error={alerts.error} retry={() => alerts.refetch()} />{alerts.data && <Leads alerts={alerts.data} />}</section>
@@ -45,5 +50,6 @@ export default function Briefing() {
       <div className="groups">{communities.data?.map(c => <article className="group" key={c.id} style={{ '--g': groupColor(c.id) } as React.CSSProperties}><h3>Group {c.id}<span>{c.size} entities</span></h3><p>Most influential: <Link to={networkUrl([c.top_member])}>{labelFromId(c.top_member)}</Link></p></article>)}</div>
       {communities.data?.length === 0 && <p className="empty">No groups yet.</p>}
     </section>
+    </>}
   </div>
 }

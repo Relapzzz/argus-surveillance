@@ -21,9 +21,9 @@ export default function Cases() {
     <QueryState pending={cases.isPending} error={cases.error} retry={() => cases.refetch()} />
     <div className="cases">
       <section className="panel" aria-label="Case list"><div className="panel-head"><h2>FIRs</h2><span className="count">{cases.data?.length ?? '—'}</span></div>
-        <div className="case-search search"><Search size={14} /><input aria-label="Search cases" placeholder="FIR number or station" value={search} onChange={e => setSearch(e.target.value)} /></div>
+        <div className="case-search"><div className="search"><Search size={14} /><input aria-label="Search cases" placeholder="FIR number or station" value={search} onChange={e => setSearch(e.target.value)} /></div></div>
         {matches?.map(c => <button className="case-row" aria-current={selected === c.id} key={c.id} onClick={() => setParams({ case: c.id })}><b>{c.fir_number}</b><span>{c.station}</span><small>{c.incident_time?.slice(0, 10) ?? 'Date not recorded'} · {c.entity_count} entities</small></button>)}
-        {matches?.length === 0 && <p className="empty">No FIR matches.</p>}
+        {cases.data?.length === 0 ? <p className="empty">No FIRs yet. Add one on the Add records page.</p> : matches?.length === 0 && <p className="empty">No FIR matches.</p>}
       </section>
       <section className="panel" aria-label="Case file">{!selected ? <div className="empty"><h2>Pick an FIR</h2><p>Its narrative, the entities extracted from it and their place in the network appear here.</p></div> : <>
         <QueryState pending={detail.isPending} error={detail.error} retry={() => detail.refetch()} />

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { ArrowUpRight, RotateCcw } from 'lucide-react'
+import { ArrowUpRight, FolderPlus, RotateCcw } from 'lucide-react'
 import { api, useFixture } from '@/api/client'
 import type { IngestKind } from '@/api/types'
 import { uploadWithGraphDiff } from '@/lib/ingest'
@@ -12,13 +12,23 @@ import UploadZone from '@/components/UploadZone'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog'
 
+type Action = 'clear' | 'reset'
+const dialogs: Record<Action, { title: string; body: string; confirm: string }> = {
+  clear: { title: 'Start a new investigation?', body: 'Every record in the workspace is removed so the next case starts from its own FIRs, call records and transactions. The demo dataset stays on disk and can be restored later.', confirm: 'Clear the workspace' },
+  reset: { title: 'Restore the demo dataset?', body: 'Records added in this session are removed and the seeded Pune network with its 40 FIRs is loaded again.', confirm: 'Restore demo dataset' },
+}
+
 export default function Ingest() {
   const cache = useQueryClient()
-  const [confirmReset, setConfirmReset] = useState(false)
+  const [confirm, setConfirm] = useState<Action>()
   const upload = useMutation({ mutationFn: ({ kind, file }: { kind: IngestKind; file: File }) => uploadWithGraphDiff(kind, file), onSuccess: () => cache.invalidateQueries() })
-  const reset = useMutation({ mutationFn: api.reset, onSuccess: async () => { upload.reset(); setConfirmReset(false); await cache.invalidateQueries() } })
-  const busy = upload.isPending || reset.isPending
-  const start = (kind: IngestKind, file: File) => { reset.reset(); upload.mutate({ kind, file }) }
+  const finish = async () => { upload.reset(); setConfirm(undefined); await cache.invalidateQueries() }
+  const clear = useMutation({ mutationFn: api.clear, onSuccess: finish })
+  const reset = useMutation({ mutationFn: api.reset, onSuccess: finish })
+  const busy = upload.isPending || reset.isPending || clear.isPending
+  const start = (kind: IngestKind, file: File) => { reset.reset(); clear.reset(); upload.mutate({ kind, file }) }
+  const ask = (action: Action) => { reset.reset(); clear.reset(); setConfirm(action) }
+  const pending = confirm === 'clear' ? clear : reset
   const added = upload.data?.added ?? []
   return <div className="page">
     <PageHeading title="Add records" description="Feed an FIR, a call detail record or a bank statement into the network." />
@@ -33,8 +43,15 @@ export default function Ingest() {
       {upload.data.refreshWarning ? <p role="status" className="result-note">{upload.data.refreshWarning}</p> : !added.length && <p className="result-note">No new entity appeared. Existing entities gained relationships or evidence instead.</p>}
       <div className="result-actions"><Link className={buttonVariants({ size: 'sm' })} to={networkUrl(added.map(n => n.id))}>Show on the network<ArrowUpRight data-icon="inline-end" /></Link></div>
     </section>}
-    <section className="reset"><div><h2>Restore the seed network</h2><p>Drops everything uploaded in this session and reloads the committed dataset.</p></div><Button variant="outline" disabled={busy || useFixture} onClick={() => { reset.reset(); setConfirmReset(true) }}><RotateCcw data-icon="inline-start" />Reset network</Button></section>
-    {reset.data && <p role="status" className="reset-success">Seed restored: {reset.data.nodes} entities and {reset.data.edges} relationships.</p>}
-    <Dialog open={confirmReset} onOpenChange={value => { if (!reset.isPending) setConfirmReset(value) }}><DialogContent showCloseButton={!reset.isPending}><DialogHeader><DialogTitle>Reset the network?</DialogTitle><DialogDescription>Uploaded records are removed and the seed dataset is reloaded. Continue only if the current changes are no longer needed.</DialogDescription></DialogHeader><QueryState error={reset.error} /><DialogFooter><Button variant="outline" disabled={reset.isPending} onClick={() => setConfirmReset(false)}>Cancel</Button><Button variant="destructive" disabled={reset.isPending} onClick={() => reset.mutate()}>{reset.isPending ? 'Resetting…' : 'Restore seed'}</Button></DialogFooter></DialogContent></Dialog>
+    <section className="workspace-actions" aria-label="Workspace">
+      <div className="reset"><div><h2>Start a new investigation</h2><p>Empties the workspace so the next case begins from its own FIRs, call records and transactions.</p></div><Button variant="outline" disabled={busy || useFixture} onClick={() => ask('clear')}><FolderPlus data-icon="inline-start" />New investigation</Button></div>
+      <div className="reset"><div><h2>Restore the demo dataset</h2><p>Brings back the seeded Pune network with its 40 FIRs, for demos and training.</p></div><Button variant="outline" disabled={busy || useFixture} onClick={() => ask('reset')}><RotateCcw data-icon="inline-start" />Restore demo dataset</Button></div>
+    </section>
+    {clear.data && <p role="status" className="reset-success">Workspace cleared. Add the first record above.</p>}
+    {reset.data && <p role="status" className="reset-success">Demo dataset restored: {reset.data.nodes} entities and {reset.data.edges.toLocaleString('en-IN')} relationships.</p>}
+    <Dialog open={Boolean(confirm)} onOpenChange={value => { if (!value && !pending.isPending) setConfirm(undefined) }}><DialogContent showCloseButton={!pending.isPending}>{confirm && <>
+      <DialogHeader><DialogTitle>{dialogs[confirm].title}</DialogTitle><DialogDescription>{dialogs[confirm].body}</DialogDescription></DialogHeader><QueryState error={pending.error} />
+      <DialogFooter><Button variant="outline" disabled={pending.isPending} onClick={() => setConfirm(undefined)}>Cancel</Button><Button variant="destructive" disabled={pending.isPending} onClick={() => pending.mutate()}>{pending.isPending ? 'Working…' : dialogs[confirm].confirm}</Button></DialogFooter>
+    </>}</DialogContent></Dialog>
   </div>
 }

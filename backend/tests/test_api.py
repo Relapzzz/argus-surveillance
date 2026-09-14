@@ -152,7 +152,7 @@ def test_unknown_case_is_404(client):
     assert client.get("/api/cases/case:FIR-1999-0001").status_code == 404
 
 
-@pytest.mark.parametrize("path", ["/ingest/fir", "/ingest/cdr", "/ingest/transactions", "/admin/reset"])
+@pytest.mark.parametrize("path", ["/ingest/fir", "/ingest/cdr", "/ingest/transactions", "/admin/reset", "/admin/clear"])
 @pytest.mark.parametrize("headers", [{}, {"X-API-Key": "wrong-key"}])
 def test_mutations_need_the_api_key(client, path, headers):
     assert client.post(f"/api{path}", headers=headers).status_code == 401
@@ -245,3 +245,16 @@ def test_reset_restores_the_seed_graph(client):
     client.post("/api/ingest/cdr", headers=KEY, files={"file": ("cdr.csv", csv)})
     assert client.post("/api/admin/reset", headers=KEY).json() == {"nodes": 225, "edges": 1820}
     assert client.get("/api/stats").json() == before
+
+
+def test_clear_empties_the_workspace_and_accepts_new_records(client):
+    assert client.post("/api/admin/clear", headers=KEY).json() == {"nodes": 0, "edges": 0}
+    stats = client.get("/api/stats").json()
+    assert stats["relationships"] == 0 and stats["cases"] == 0 and stats["alerts"] == 0
+    assert sum(stats["entities"].values()) == 0
+    assert client.get("/api/analytics/key-players").json() == []
+    assert client.get("/api/analytics/communities").json() == []
+    csv = b"caller,callee,start_time,duration_sec,tower_id,tower_location\n9000000001,9000000002,2026-07-01T10:00:00,60,T01,Kothrud\n"
+    assert client.post("/api/ingest/cdr", headers=KEY, files={"file": ("cdr.csv", csv)}).json() == {"case_id": None, "entities_added": 2, "relationships_added": 1}
+    assert client.get("/api/graph").json()["nodes"][0]["metrics"]["community"] == 0
+    assert client.post("/api/admin/reset", headers=KEY).json() == {"nodes": 225, "edges": 1820}

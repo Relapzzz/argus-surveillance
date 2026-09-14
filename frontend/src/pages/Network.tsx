@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { useSearchParams } from 'react-router'
+import { Link, useSearchParams } from 'react-router'
 import { api } from '@/api/client'
 import { entityTypes } from '@/api/types'
 import type { EntityType, GraphResponse, PathResponse } from '@/api/types'
@@ -10,7 +10,7 @@ import EntitySearch from '@/components/EntitySearch'
 import EntityDetails from '@/components/Inspector'
 import PathFinder from '@/components/PathFinder'
 import AlertsList from '@/components/AlertsList'
-import { Button } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
 import { filterGraph, mergeGraphs, palette, typeNames } from '@/lib/graph'
 
 type Tab = 'entity' | 'route' | 'alerts'
@@ -54,7 +54,8 @@ export default function Network() {
         {focused && <Button size="sm" variant="outline" onClick={() => setFocused(undefined)}>Show full network</Button>}
       </header>
       <QueryState pending={query.isPending} error={query.error} retry={() => query.refetch()} />
-      {graph && <GraphCanvas graph={graph} selected={selected} onSelect={select} onDeselect={deselect} highlightNodes={highlighted} highlightEdges={path?.edge_ids} colorBy={colorBy} showGroups={showGroups}>
+      {graph && !nodes.length && <div className="stage-empty"><h2>No records yet</h2><p>Add an FIR, call records or transactions and the network draws itself.</p><Link className={buttonVariants({ size: 'lg' })} to="/ingest">Add records</Link></div>}
+      {graph && nodes.length > 0 && <GraphCanvas graph={graph} selected={selected} onSelect={select} onDeselect={deselect} highlightNodes={highlighted} highlightEdges={path?.edge_ids} colorBy={colorBy} showGroups={showGroups}>
         <div className="legend" role="group" aria-label="Entity types">{entityTypes.map(t => <button type="button" key={t} aria-pressed={types.includes(t)} onClick={() => setTypes(types.includes(t) ? types.filter(x => x !== t) : [...types, t])}><i style={{ background: palette[t] }} /><span>{typeNames[t]}</span><b>{counts[t]}</b></button>)}{types.length < entityTypes.length && <button type="button" onClick={showAll}>Show all types</button>}</div>
       </GraphCanvas>}
       {graph && <footer className="stage-foot"><span className="mono">{graph.nodes.length} entities · {graph.edges.length} relationships</span>
