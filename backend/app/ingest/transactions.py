@@ -5,7 +5,7 @@ from app.schemas import Entity, Ingest, Relationship
 
 
 def ingest_transactions(source) -> Ingest:
-    df = pd.read_csv(source, dtype=str, nrows=MAX_ROWS)
+    df = pd.read_csv(source, dtype=str, nrows=MAX_ROWS, usecols=["from_account", "to_account", "amount", "timestamp"])
     transfers: dict[str, tuple[str, str, list[dict]]] = {}
     for row in df.itertuples():
         a, b = entity_id("account", row.from_account), entity_id("account", row.to_account)

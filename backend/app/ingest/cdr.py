@@ -5,7 +5,7 @@ from app.schemas import Entity, Ingest, Relationship
 
 
 def ingest_cdr(source) -> Ingest:
-    df = pd.read_csv(source, dtype=str, nrows=MAX_ROWS)
+    df = pd.read_csv(source, dtype=str, nrows=MAX_ROWS, usecols=["caller", "callee", "start_time"])
     calls: dict[str, tuple[str, str, list[str]]] = {}
     for row in df.itertuples():
         a, b = entity_id("phone", row.caller), entity_id("phone", row.callee)

@@ -163,6 +163,15 @@ class Extraction(BaseModel):
     relationships: list[ExtractedRelationship] = []
 
 
+class FirText(BaseModel):
+    text: str
+
+
+class ResetResult(BaseModel):
+    nodes: int
+    edges: int
+
+
 class IngestResult(BaseModel):
     case_id: str | None = None
     entities_added: int
