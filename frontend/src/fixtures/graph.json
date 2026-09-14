@@ -1,0 +1,1410 @@
+{
+  "nodes": [
+    {
+      "id": "person:vikram singh",
+      "type": "person",
+      "label": "Vikram Singh",
+      "attributes": {
+        "aliases": [
+          "Vicky Bhai"
+        ],
+        "role": "accused",
+        "prior_case_count": 7,
+        "address": "Kothrud, Pune"
+      },
+      "sources": [
+        "case:FIR-2026-0042"
+      ],
+      "metrics": {
+        "degree": 6,
+        "betweenness": 0.145,
+        "pagerank": 0.0534,
+        "community": 1
+      }
+    },
+    {
+      "id": "person:rahul jadhav",
+      "type": "person",
+      "label": "Rahul Jadhav",
+      "attributes": {
+        "aliases": [
+          "Rahulya"
+        ],
+        "role": "accused",
+        "prior_case_count": 3,
+        "address": "Warje, Pune"
+      },
+      "sources": [
+        "case:FIR-2026-0042"
+      ],
+      "metrics": {
+        "degree": 6,
+        "betweenness": 0.0798,
+        "pagerank": 0.051,
+        "community": 1
+      }
+    },
+    {
+      "id": "person:santosh pawar",
+      "type": "person",
+      "label": "Santosh Pawar",
+      "attributes": {
+        "aliases": [],
+        "prior_case_count": 0,
+        "address": "Kondhwa, Pune"
+      },
+      "sources": [],
+      "metrics": {
+        "degree": 2,
+        "betweenness": 0.023,
+        "pagerank": 0.0242,
+        "community": 0
+      }
+    },
+    {
+      "id": "person:imran shaikh",
+      "type": "person",
+      "label": "Imran Shaikh",
+      "attributes": {
+        "aliases": [
+          "Bhaijaan"
+        ],
+        "role": "accused",
+        "prior_case_count": 5,
+        "address": "Hadapsar, Pune"
+      },
+      "sources": [
+        "case:FIR-2026-0057"
+      ],
+      "metrics": {
+        "degree": 6,
+        "betweenness": 0.3266,
+        "pagerank": 0.0538,
+        "community": 0
+      }
+    },
+    {
+      "id": "person:farid khan",
+      "type": "person",
+      "label": "Farid Khan",
+      "attributes": {
+        "aliases": [],
+        "role": "accused",
+        "prior_case_count": 2,
+        "address": "Hadapsar, Pune"
+      },
+      "sources": [
+        "case:FIR-2026-0057"
+      ],
+      "metrics": {
+        "degree": 8,
+        "betweenness": 0.1205,
+        "pagerank": 0.0711,
+        "community": 0
+      }
+    },
+    {
+      "id": "person:deepak more",
+      "type": "person",
+      "label": "Deepak More",
+      "attributes": {
+        "aliases": [],
+        "role": "complainant",
+        "prior_case_count": 0,
+        "address": "Kothrud, Pune"
+      },
+      "sources": [
+        "case:FIR-2026-0042"
+      ],
+      "metrics": {
+        "degree": 3,
+        "betweenness": 0.0014,
+        "pagerank": 0.0284,
+        "community": 1
+      }
+    },
+    {
+      "id": "person:sunita kale",
+      "type": "person",
+      "label": "Sunita Kale",
+      "attributes": {
+        "aliases": [],
+        "role": "complainant",
+        "prior_case_count": 0,
+        "address": "Hadapsar, Pune"
+      },
+      "sources": [
+        "case:FIR-2026-0057"
+      ],
+      "metrics": {
+        "degree": 2,
+        "betweenness": 0.0,
+        "pagerank": 0.0204,
+        "community": 0
+      }
+    },
+    {
+      "id": "person:anil bhosale",
+      "type": "person",
+      "label": "Anil Bhosale",
+      "attributes": {
+        "aliases": [],
+        "role": "witness",
+        "prior_case_count": 1,
+        "address": "Hadapsar, Pune"
+      },
+      "sources": [
+        "case:FIR-2026-0057"
+      ],
+      "metrics": {
+        "degree": 2,
+        "betweenness": 0.0,
+        "pagerank": 0.0203,
+        "community": 0
+      }
+    },
+    {
+      "id": "phone:9876543210",
+      "type": "phone",
+      "label": "9876543210",
+      "attributes": {
+        "subscriber": "Vikram Singh"
+      },
+      "sources": [],
+      "metrics": {
+        "degree": 3,
+        "betweenness": 0.0158,
+        "pagerank": 0.0298,
+        "community": 1
+      }
+    },
+    {
+      "id": "phone:9823011223",
+      "type": "phone",
+      "label": "9823011223",
+      "attributes": {
+        "subscriber": "Rahul Jadhav"
+      },
+      "sources": [
+        "case:FIR-2026-0042"
+      ],
+      "metrics": {
+        "degree": 6,
+        "betweenness": 0.3721,
+        "pagerank": 0.0544,
+        "community": 1
+      }
+    },
+    {
+      "id": "phone:9850022334",
+      "type": "phone",
+      "label": "9850022334",
+      "attributes": {
+        "subscriber": "Santosh Pawar"
+      },
+      "sources": [],
+      "metrics": {
+        "degree": 3,
+        "betweenness": 0.3702,
+        "pagerank": 0.0323,
+        "community": 0
+      }
+    },
+    {
+      "id": "phone:9900033445",
+      "type": "phone",
+      "label": "9900033445",
+      "attributes": {
+        "subscriber": "Imran Shaikh"
+      },
+      "sources": [],
+      "metrics": {
+        "degree": 3,
+        "betweenness": 0.3235,
+        "pagerank": 0.0314,
+        "community": 0
+      }
+    },
+    {
+      "id": "phone:9970044556",
+      "type": "phone",
+      "label": "9970044556",
+      "attributes": {
+        "subscriber": "Farid Khan"
+      },
+      "sources": [],
+      "metrics": {
+        "degree": 2,
+        "betweenness": 0.0426,
+        "pagerank": 0.0218,
+        "community": 0
+      }
+    },
+    {
+      "id": "phone:9420055667",
+      "type": "phone",
+      "label": "9420055667",
+      "attributes": {
+        "subscriber": "Deepak More"
+      },
+      "sources": [
+        "case:FIR-2026-0042"
+      ],
+      "metrics": {
+        "degree": 3,
+        "betweenness": 0.0207,
+        "pagerank": 0.0282,
+        "community": 1
+      }
+    },
+    {
+      "id": "phone:8888066778",
+      "type": "phone",
+      "label": "8888066778",
+      "attributes": {},
+      "sources": [],
+      "metrics": {
+        "degree": 2,
+        "betweenness": 0.0,
+        "pagerank": 0.0215,
+        "community": 1
+      }
+    },
+    {
+      "id": "vehicle:MH12AB1234",
+      "type": "vehicle",
+      "label": "MH12AB1234",
+      "attributes": {
+        "make": "Mahindra Scorpio",
+        "colour": "White",
+        "registered_owner": "Rahul Jadhav"
+      },
+      "sources": [
+        "case:FIR-2026-0042"
+      ],
+      "metrics": {
+        "degree": 3,
+        "betweenness": 0.0,
+        "pagerank": 0.0275,
+        "community": 1
+      }
+    },
+    {
+      "id": "vehicle:MH14CD5678",
+      "type": "vehicle",
+      "label": "MH14CD5678",
+      "attributes": {
+        "make": "Bajaj Pulsar",
+        "colour": "Black",
+        "registered_owner": "Farid Khan"
+      },
+      "sources": [
+        "case:FIR-2026-0057"
+      ],
+      "metrics": {
+        "degree": 3,
+        "betweenness": 0.0,
+        "pagerank": 0.0279,
+        "community": 0
+      }
+    },
+    {
+      "id": "account:1234567890",
+      "type": "account",
+      "label": "1234567890",
+      "attributes": {
+        "bank": "State Bank of India",
+        "holder": "Vikram Singh"
+      },
+      "sources": [],
+      "metrics": {
+        "degree": 2,
+        "betweenness": 0.1298,
+        "pagerank": 0.0227,
+        "community": 0
+      }
+    },
+    {
+      "id": "account:2345678901",
+      "type": "account",
+      "label": "2345678901",
+      "attributes": {
+        "bank": "Bank of Maharashtra",
+        "holder": "Santosh Pawar"
+      },
+      "sources": [],
+      "metrics": {
+        "degree": 3,
+        "betweenness": 0.1656,
+        "pagerank": 0.0344,
+        "community": 0
+      }
+    },
+    {
+      "id": "account:3456789012",
+      "type": "account",
+      "label": "3456789012",
+      "attributes": {
+        "bank": "HDFC Bank",
+        "holder": "Imran Shaikh"
+      },
+      "sources": [],
+      "metrics": {
+        "degree": 3,
+        "betweenness": 0.1487,
+        "pagerank": 0.0321,
+        "community": 0
+      }
+    },
+    {
+      "id": "account:4567890123",
+      "type": "account",
+      "label": "4567890123",
+      "attributes": {
+        "bank": "Axis Bank",
+        "holder": "Farid Khan"
+      },
+      "sources": [],
+      "metrics": {
+        "degree": 2,
+        "betweenness": 0.0188,
+        "pagerank": 0.022,
+        "community": 0
+      }
+    },
+    {
+      "id": "location:kothrud pune",
+      "type": "location",
+      "label": "Kothrud, Pune",
+      "attributes": {
+        "city": "Pune",
+        "lat": 18.5074,
+        "lon": 73.8077
+      },
+      "sources": [
+        "case:FIR-2026-0042"
+      ],
+      "metrics": {
+        "degree": 3,
+        "betweenness": 0.0078,
+        "pagerank": 0.0281,
+        "community": 1
+      }
+    },
+    {
+      "id": "location:swargate pune",
+      "type": "location",
+      "label": "Swargate, Pune",
+      "attributes": {
+        "city": "Pune",
+        "lat": 18.5018,
+        "lon": 73.8636
+      },
+      "sources": [
+        "case:FIR-2026-0042"
+      ],
+      "metrics": {
+        "degree": 3,
+        "betweenness": 0.0,
+        "pagerank": 0.0275,
+        "community": 1
+      }
+    },
+    {
+      "id": "location:hadapsar pune",
+      "type": "location",
+      "label": "Hadapsar, Pune",
+      "attributes": {
+        "city": "Pune",
+        "lat": 18.5089,
+        "lon": 73.926
+      },
+      "sources": [
+        "case:FIR-2026-0057"
+      ],
+      "metrics": {
+        "degree": 5,
+        "betweenness": 0.0465,
+        "pagerank": 0.0445,
+        "community": 0
+      }
+    },
+    {
+      "id": "org:pashan gang",
+      "type": "organization",
+      "label": "Pashan Gang",
+      "attributes": {
+        "kind": "gang",
+        "area": "Pashan, Pune"
+      },
+      "sources": [
+        "case:FIR-2026-0042"
+      ],
+      "metrics": {
+        "degree": 3,
+        "betweenness": 0.0,
+        "pagerank": 0.0272,
+        "community": 1
+      }
+    },
+    {
+      "id": "org:hadapsar syndicate",
+      "type": "organization",
+      "label": "Hadapsar Syndicate",
+      "attributes": {
+        "kind": "gang",
+        "area": "Hadapsar, Pune"
+      },
+      "sources": [
+        "case:FIR-2026-0057"
+      ],
+      "metrics": {
+        "degree": 3,
+        "betweenness": 0.0,
+        "pagerank": 0.028,
+        "community": 0
+      }
+    },
+    {
+      "id": "case:FIR-2026-0042",
+      "type": "case",
+      "label": "FIR-2026-0042",
+      "attributes": {
+        "fir_number": "FIR-2026-0042",
+        "station": "Swargate Police Station, Pune",
+        "incident_time": "2026-08-14T21:30:00+05:30",
+        "sections": [
+          "BNS 308(2)",
+          "BNS 351(3)",
+          "BNS 3(5)"
+        ]
+      },
+      "sources": [
+        "case:FIR-2026-0042"
+      ],
+      "metrics": {
+        "degree": 9,
+        "betweenness": 0.1739,
+        "pagerank": 0.0751,
+        "community": 1
+      }
+    },
+    {
+      "id": "case:FIR-2026-0057",
+      "type": "case",
+      "label": "FIR-2026-0057",
+      "attributes": {
+        "fir_number": "FIR-2026-0057",
+        "station": "Hadapsar Police Station, Pune",
+        "incident_time": "2026-09-02T23:45:00+05:30",
+        "sections": [
+          "BNS 304(2)",
+          "BNS 309(4)",
+          "BNS 3(5)"
+        ]
+      },
+      "sources": [
+        "case:FIR-2026-0057"
+      ],
+      "metrics": {
+        "degree": 7,
+        "betweenness": 0.0774,
+        "pagerank": 0.0612,
+        "community": 0
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "person:vikram singh|phone:9876543210",
+      "source": "person:vikram singh",
+      "target": "phone:9876543210",
+      "type": "owns",
+      "weight": 1,
+      "attributes": {},
+      "sources": []
+    },
+    {
+      "id": "account:1234567890|person:vikram singh",
+      "source": "person:vikram singh",
+      "target": "account:1234567890",
+      "type": "owns",
+      "weight": 1,
+      "attributes": {},
+      "sources": []
+    },
+    {
+      "id": "person:rahul jadhav|phone:9823011223",
+      "source": "person:rahul jadhav",
+      "target": "phone:9823011223",
+      "type": "owns",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0042"
+      ]
+    },
+    {
+      "id": "person:rahul jadhav|vehicle:MH12AB1234",
+      "source": "person:rahul jadhav",
+      "target": "vehicle:MH12AB1234",
+      "type": "owns",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0042"
+      ]
+    },
+    {
+      "id": "person:santosh pawar|phone:9850022334",
+      "source": "person:santosh pawar",
+      "target": "phone:9850022334",
+      "type": "owns",
+      "weight": 1,
+      "attributes": {},
+      "sources": []
+    },
+    {
+      "id": "account:2345678901|person:santosh pawar",
+      "source": "person:santosh pawar",
+      "target": "account:2345678901",
+      "type": "owns",
+      "weight": 1,
+      "attributes": {},
+      "sources": []
+    },
+    {
+      "id": "person:imran shaikh|phone:9900033445",
+      "source": "person:imran shaikh",
+      "target": "phone:9900033445",
+      "type": "owns",
+      "weight": 1,
+      "attributes": {},
+      "sources": []
+    },
+    {
+      "id": "account:3456789012|person:imran shaikh",
+      "source": "person:imran shaikh",
+      "target": "account:3456789012",
+      "type": "owns",
+      "weight": 1,
+      "attributes": {},
+      "sources": []
+    },
+    {
+      "id": "person:farid khan|phone:9970044556",
+      "source": "person:farid khan",
+      "target": "phone:9970044556",
+      "type": "owns",
+      "weight": 1,
+      "attributes": {},
+      "sources": []
+    },
+    {
+      "id": "person:farid khan|vehicle:MH14CD5678",
+      "source": "person:farid khan",
+      "target": "vehicle:MH14CD5678",
+      "type": "owns",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0057"
+      ]
+    },
+    {
+      "id": "account:4567890123|person:farid khan",
+      "source": "person:farid khan",
+      "target": "account:4567890123",
+      "type": "owns",
+      "weight": 1,
+      "attributes": {},
+      "sources": []
+    },
+    {
+      "id": "person:deepak more|phone:9420055667",
+      "source": "person:deepak more",
+      "target": "phone:9420055667",
+      "type": "owns",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0042"
+      ]
+    },
+    {
+      "id": "phone:9823011223|phone:9876543210",
+      "source": "phone:9876543210",
+      "target": "phone:9823011223",
+      "type": "called",
+      "weight": 34,
+      "attributes": {
+        "count": 34,
+        "night_count": 3,
+        "first_seen": "2026-07-03T09:12:00+05:30",
+        "last_seen": "2026-09-05T22:40:00+05:30"
+      },
+      "sources": []
+    },
+    {
+      "id": "phone:9823011223|phone:9850022334",
+      "source": "phone:9823011223",
+      "target": "phone:9850022334",
+      "type": "called",
+      "weight": 21,
+      "attributes": {
+        "count": 21,
+        "night_count": 2,
+        "first_seen": "2026-07-19T18:20:00+05:30",
+        "last_seen": "2026-09-04T20:05:00+05:30"
+      },
+      "sources": []
+    },
+    {
+      "id": "phone:9850022334|phone:9900033445",
+      "source": "phone:9850022334",
+      "target": "phone:9900033445",
+      "type": "called",
+      "weight": 18,
+      "attributes": {
+        "count": 18,
+        "night_count": 1,
+        "first_seen": "2026-07-21T11:45:00+05:30",
+        "last_seen": "2026-09-06T19:30:00+05:30"
+      },
+      "sources": []
+    },
+    {
+      "id": "phone:9900033445|phone:9970044556",
+      "source": "phone:9900033445",
+      "target": "phone:9970044556",
+      "type": "called",
+      "weight": 27,
+      "attributes": {
+        "count": 27,
+        "night_count": 6,
+        "first_seen": "2026-07-02T10:00:00+05:30",
+        "last_seen": "2026-09-07T23:10:00+05:30"
+      },
+      "sources": []
+    },
+    {
+      "id": "phone:9420055667|phone:9823011223",
+      "source": "phone:9823011223",
+      "target": "phone:9420055667",
+      "type": "called",
+      "weight": 6,
+      "attributes": {
+        "count": 6,
+        "night_count": 0,
+        "first_seen": "2026-08-01T20:05:00+05:30",
+        "last_seen": "2026-08-13T21:50:00+05:30"
+      },
+      "sources": [
+        "case:FIR-2026-0042"
+      ]
+    },
+    {
+      "id": "phone:8888066778|phone:9876543210",
+      "source": "phone:8888066778",
+      "target": "phone:9876543210",
+      "type": "called",
+      "weight": 12,
+      "attributes": {
+        "count": 12,
+        "night_count": 12,
+        "first_seen": "2026-08-20T01:10:00+05:30",
+        "last_seen": "2026-09-06T03:35:00+05:30"
+      },
+      "sources": []
+    },
+    {
+      "id": "phone:8888066778|phone:9823011223",
+      "source": "phone:8888066778",
+      "target": "phone:9823011223",
+      "type": "called",
+      "weight": 5,
+      "attributes": {
+        "count": 5,
+        "night_count": 4,
+        "first_seen": "2026-08-22T02:05:00+05:30",
+        "last_seen": "2026-09-03T01:50:00+05:30"
+      },
+      "sources": []
+    },
+    {
+      "id": "account:1234567890|account:2345678901",
+      "source": "account:1234567890",
+      "target": "account:2345678901",
+      "type": "transacted",
+      "weight": 12,
+      "attributes": {
+        "count": 12,
+        "total_amount": 526500,
+        "first_seen": "2026-08-18",
+        "last_seen": "2026-08-24"
+      },
+      "sources": []
+    },
+    {
+      "id": "account:2345678901|account:3456789012",
+      "source": "account:2345678901",
+      "target": "account:3456789012",
+      "type": "transacted",
+      "weight": 4,
+      "attributes": {
+        "count": 4,
+        "total_amount": 500000,
+        "first_seen": "2026-08-21",
+        "last_seen": "2026-08-29"
+      },
+      "sources": []
+    },
+    {
+      "id": "account:3456789012|account:4567890123",
+      "source": "account:3456789012",
+      "target": "account:4567890123",
+      "type": "transacted",
+      "weight": 3,
+      "attributes": {
+        "count": 3,
+        "total_amount": 120000,
+        "first_seen": "2026-08-23",
+        "last_seen": "2026-09-01"
+      },
+      "sources": []
+    },
+    {
+      "id": "person:rahul jadhav|person:vikram singh",
+      "source": "person:vikram singh",
+      "target": "person:rahul jadhav",
+      "type": "co_accused",
+      "weight": 1,
+      "attributes": {
+        "evidence": "Rahul Jadhav demanded Rs. 2,00,000 as protection money on behalf of Vikram Singh"
+      },
+      "sources": [
+        "case:FIR-2026-0042"
+      ]
+    },
+    {
+      "id": "person:farid khan|person:imran shaikh",
+      "source": "person:imran shaikh",
+      "target": "person:farid khan",
+      "type": "co_accused",
+      "weight": 2,
+      "attributes": {
+        "types": [
+          "co_accused",
+          "associate_of"
+        ],
+        "evidence": "Farid Khan, a known member of the Hadapsar Syndicate run by Imran Shaikh"
+      },
+      "sources": [
+        "case:FIR-2026-0057"
+      ]
+    },
+    {
+      "id": "person:anil bhosale|person:farid khan",
+      "source": "person:anil bhosale",
+      "target": "person:farid khan",
+      "type": "associate_of",
+      "weight": 1,
+      "attributes": {
+        "evidence": "Witness Anil Bhosale, a former associate of Farid Khan"
+      },
+      "sources": [
+        "case:FIR-2026-0057"
+      ]
+    },
+    {
+      "id": "org:pashan gang|person:vikram singh",
+      "source": "person:vikram singh",
+      "target": "org:pashan gang",
+      "type": "member_of",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0042"
+      ]
+    },
+    {
+      "id": "org:pashan gang|person:rahul jadhav",
+      "source": "person:rahul jadhav",
+      "target": "org:pashan gang",
+      "type": "member_of",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0042"
+      ]
+    },
+    {
+      "id": "org:hadapsar syndicate|person:imran shaikh",
+      "source": "person:imran shaikh",
+      "target": "org:hadapsar syndicate",
+      "type": "member_of",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0057"
+      ]
+    },
+    {
+      "id": "org:hadapsar syndicate|person:farid khan",
+      "source": "person:farid khan",
+      "target": "org:hadapsar syndicate",
+      "type": "member_of",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0057"
+      ]
+    },
+    {
+      "id": "location:kothrud pune|person:vikram singh",
+      "source": "person:vikram singh",
+      "target": "location:kothrud pune",
+      "type": "resides_at",
+      "weight": 1,
+      "attributes": {},
+      "sources": []
+    },
+    {
+      "id": "location:kothrud pune|person:deepak more",
+      "source": "person:deepak more",
+      "target": "location:kothrud pune",
+      "type": "resides_at",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0042"
+      ]
+    },
+    {
+      "id": "location:hadapsar pune|person:imran shaikh",
+      "source": "person:imran shaikh",
+      "target": "location:hadapsar pune",
+      "type": "resides_at",
+      "weight": 1,
+      "attributes": {},
+      "sources": []
+    },
+    {
+      "id": "location:hadapsar pune|person:farid khan",
+      "source": "person:farid khan",
+      "target": "location:hadapsar pune",
+      "type": "resides_at",
+      "weight": 2,
+      "attributes": {
+        "types": [
+          "resides_at",
+          "seen_at"
+        ],
+        "last_seen": "2026-09-02T23:45:00+05:30"
+      },
+      "sources": [
+        "case:FIR-2026-0057"
+      ]
+    },
+    {
+      "id": "location:swargate pune|vehicle:MH12AB1234",
+      "source": "vehicle:MH12AB1234",
+      "target": "location:swargate pune",
+      "type": "seen_at",
+      "weight": 1,
+      "attributes": {
+        "last_seen": "2026-08-14T21:30:00+05:30"
+      },
+      "sources": [
+        "case:FIR-2026-0042"
+      ]
+    },
+    {
+      "id": "location:swargate pune|person:rahul jadhav",
+      "source": "person:rahul jadhav",
+      "target": "location:swargate pune",
+      "type": "seen_at",
+      "weight": 1,
+      "attributes": {
+        "last_seen": "2026-08-14T21:30:00+05:30"
+      },
+      "sources": [
+        "case:FIR-2026-0042"
+      ]
+    },
+    {
+      "id": "location:hadapsar pune|vehicle:MH14CD5678",
+      "source": "vehicle:MH14CD5678",
+      "target": "location:hadapsar pune",
+      "type": "seen_at",
+      "weight": 1,
+      "attributes": {
+        "last_seen": "2026-09-02T23:45:00+05:30"
+      },
+      "sources": [
+        "case:FIR-2026-0057"
+      ]
+    },
+    {
+      "id": "location:hadapsar pune|person:sunita kale",
+      "source": "person:sunita kale",
+      "target": "location:hadapsar pune",
+      "type": "seen_at",
+      "weight": 1,
+      "attributes": {
+        "last_seen": "2026-09-02T23:45:00+05:30"
+      },
+      "sources": [
+        "case:FIR-2026-0057"
+      ]
+    },
+    {
+      "id": "case:FIR-2026-0042|person:vikram singh",
+      "source": "person:vikram singh",
+      "target": "case:FIR-2026-0042",
+      "type": "mentioned_in",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0042"
+      ]
+    },
+    {
+      "id": "case:FIR-2026-0042|person:rahul jadhav",
+      "source": "person:rahul jadhav",
+      "target": "case:FIR-2026-0042",
+      "type": "mentioned_in",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0042"
+      ]
+    },
+    {
+      "id": "case:FIR-2026-0057|person:imran shaikh",
+      "source": "person:imran shaikh",
+      "target": "case:FIR-2026-0057",
+      "type": "mentioned_in",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0057"
+      ]
+    },
+    {
+      "id": "case:FIR-2026-0057|person:farid khan",
+      "source": "person:farid khan",
+      "target": "case:FIR-2026-0057",
+      "type": "mentioned_in",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0057"
+      ]
+    },
+    {
+      "id": "case:FIR-2026-0042|person:deepak more",
+      "source": "person:deepak more",
+      "target": "case:FIR-2026-0042",
+      "type": "mentioned_in",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0042"
+      ]
+    },
+    {
+      "id": "case:FIR-2026-0057|person:sunita kale",
+      "source": "person:sunita kale",
+      "target": "case:FIR-2026-0057",
+      "type": "mentioned_in",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0057"
+      ]
+    },
+    {
+      "id": "case:FIR-2026-0057|person:anil bhosale",
+      "source": "person:anil bhosale",
+      "target": "case:FIR-2026-0057",
+      "type": "mentioned_in",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0057"
+      ]
+    },
+    {
+      "id": "case:FIR-2026-0042|phone:9823011223",
+      "source": "phone:9823011223",
+      "target": "case:FIR-2026-0042",
+      "type": "mentioned_in",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0042"
+      ]
+    },
+    {
+      "id": "case:FIR-2026-0042|phone:9420055667",
+      "source": "phone:9420055667",
+      "target": "case:FIR-2026-0042",
+      "type": "mentioned_in",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0042"
+      ]
+    },
+    {
+      "id": "case:FIR-2026-0042|vehicle:MH12AB1234",
+      "source": "vehicle:MH12AB1234",
+      "target": "case:FIR-2026-0042",
+      "type": "mentioned_in",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0042"
+      ]
+    },
+    {
+      "id": "case:FIR-2026-0057|vehicle:MH14CD5678",
+      "source": "vehicle:MH14CD5678",
+      "target": "case:FIR-2026-0057",
+      "type": "mentioned_in",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0057"
+      ]
+    },
+    {
+      "id": "case:FIR-2026-0042|location:kothrud pune",
+      "source": "location:kothrud pune",
+      "target": "case:FIR-2026-0042",
+      "type": "mentioned_in",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0042"
+      ]
+    },
+    {
+      "id": "case:FIR-2026-0042|location:swargate pune",
+      "source": "location:swargate pune",
+      "target": "case:FIR-2026-0042",
+      "type": "mentioned_in",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0042"
+      ]
+    },
+    {
+      "id": "case:FIR-2026-0057|location:hadapsar pune",
+      "source": "location:hadapsar pune",
+      "target": "case:FIR-2026-0057",
+      "type": "mentioned_in",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0057"
+      ]
+    },
+    {
+      "id": "case:FIR-2026-0042|org:pashan gang",
+      "source": "org:pashan gang",
+      "target": "case:FIR-2026-0042",
+      "type": "mentioned_in",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0042"
+      ]
+    },
+    {
+      "id": "case:FIR-2026-0057|org:hadapsar syndicate",
+      "source": "org:hadapsar syndicate",
+      "target": "case:FIR-2026-0057",
+      "type": "mentioned_in",
+      "weight": 1,
+      "attributes": {},
+      "sources": [
+        "case:FIR-2026-0057"
+      ]
+    }
+  ],
+  "alerts": [
+    {
+      "id": "alert:bridge_node:person:santosh pawar",
+      "type": "bridge_node",
+      "severity": "medium",
+      "title": "Santosh Pawar bridges the Pashan Gang and the Hadapsar Syndicate",
+      "description": "Santosh Pawar appears in no FIR, but his phone 9850022334 and account 2345678901 are the only links between the Pashan Gang community and the Hadapsar Syndicate community. Rahul Jadhav's phone called him 21 times, he called Imran Shaikh's phone 18 times, Vikram Singh's account paid him Rs 5,26,500 and he moved Rs 5,00,000 on to Imran Shaikh's account.",
+      "entity_ids": [
+        "person:santosh pawar",
+        "phone:9850022334",
+        "account:2345678901",
+        "phone:9823011223",
+        "phone:9900033445"
+      ],
+      "evidence": {
+        "betweenness": 0.023,
+        "phone_betweenness": 0.3702,
+        "communities": [
+          0,
+          1
+        ],
+        "calls_in": 21,
+        "calls_out": 18,
+        "amount_in": 526500,
+        "amount_out": 500000
+      }
+    },
+    {
+      "id": "alert:structuring:account:2345678901",
+      "type": "structuring",
+      "severity": "high",
+      "title": "12 transfers just under Rs 50,000 into account 2345678901 in seven days",
+      "description": "Account 1234567890 (Vikram Singh) sent 12 transfers of Rs 40,000 to Rs 49,500 to account 2345678901 (Santosh Pawar) between 18 and 24 August 2026, totalling Rs 5,26,500. Every amount stays below the Rs 50,000 reporting threshold and Rs 5,00,000 left the account within two days of arriving.",
+      "entity_ids": [
+        "account:1234567890",
+        "account:2345678901",
+        "person:vikram singh",
+        "person:santosh pawar"
+      ],
+      "evidence": {
+        "count": 12,
+        "total_amount": 526500,
+        "min_amount": 40000,
+        "max_amount": 49500,
+        "threshold": 50000,
+        "window_days": 7
+      }
+    },
+    {
+      "id": "alert:night_calls:phone:8888066778",
+      "type": "night_calls",
+      "severity": "medium",
+      "title": "Unregistered phone 8888066778 calls the Pashan Gang only at night",
+      "description": "17 calls from 8888066778 to the phones of Vikram Singh and Rahul Jadhav between 20 August and 6 September 2026, 16 of them between 01:00 and 04:00. The number has no subscriber record.",
+      "entity_ids": [
+        "phone:8888066778",
+        "phone:9876543210",
+        "phone:9823011223"
+      ],
+      "evidence": {
+        "count": 17,
+        "night_count": 16,
+        "night_window": "01:00-04:00",
+        "first_seen": "2026-08-20T01:10:00+05:30",
+        "last_seen": "2026-09-06T03:35:00+05:30"
+      }
+    },
+    {
+      "id": "alert:burst_calls:phone:9823011223",
+      "type": "burst_calls",
+      "severity": "high",
+      "title": "Nine calls between Rahul Jadhav and Vikram Singh within an hour of the Swargate incident",
+      "description": "Phones 9823011223 and 9876543210 exchanged nine calls between 20:40 and 21:35 on 14 August 2026, around the time Deepak More was threatened at Swargate. The pair otherwise averages one call every two days.",
+      "entity_ids": [
+        "phone:9823011223",
+        "phone:9876543210",
+        "person:rahul jadhav",
+        "person:vikram singh"
+      ],
+      "evidence": {
+        "count": 9,
+        "window_minutes": 55,
+        "start": "2026-08-14T20:40:00+05:30",
+        "end": "2026-08-14T21:35:00+05:30",
+        "case_id": "case:FIR-2026-0042"
+      }
+    }
+  ],
+  "cases": [
+    {
+      "id": "case:FIR-2026-0042",
+      "fir_number": "FIR-2026-0042",
+      "station": "Swargate Police Station, Pune",
+      "incident_time": "2026-08-14T21:30:00+05:30",
+      "sections": [
+        "BNS 308(2)",
+        "BNS 351(3)",
+        "BNS 3(5)"
+      ],
+      "narrative": "On 14 August 2026 at about 21:30 hours the complainant Deepak More, resident of Kothrud, Pune, was returning home from Swargate, Pune when he was stopped near the bus stand by the accused Rahul Jadhav and two unknown persons. Rahul Jadhav demanded Rs. 2,00,000 as protection money on behalf of Vikram Singh of the Pashan Gang and threatened to kill the complainant if he did not pay. The accused arrived in a white Scorpio bearing registration MH 12 AB 1234. Since 1 August 2026 the complainant received six threatening calls on his mobile number 9420055667 from mobile number 9823011223, which he identified as the number of Rahul Jadhav. Offence registered under BNS 308(2), 351(3) and 3(5).",
+      "entities": [
+        {
+          "id": "person:deepak more",
+          "type": "person",
+          "label": "Deepak More",
+          "start": 55,
+          "end": 66
+        },
+        {
+          "id": "location:kothrud pune",
+          "type": "location",
+          "label": "Kothrud, Pune",
+          "start": 80,
+          "end": 93
+        },
+        {
+          "id": "location:swargate pune",
+          "type": "location",
+          "label": "Swargate, Pune",
+          "start": 119,
+          "end": 133
+        },
+        {
+          "id": "person:rahul jadhav",
+          "type": "person",
+          "label": "Rahul Jadhav",
+          "start": 188,
+          "end": 200
+        },
+        {
+          "id": "person:rahul jadhav",
+          "type": "person",
+          "label": "Rahul Jadhav",
+          "start": 226,
+          "end": 238
+        },
+        {
+          "id": "person:vikram singh",
+          "type": "person",
+          "label": "Vikram Singh",
+          "start": 294,
+          "end": 306
+        },
+        {
+          "id": "org:pashan gang",
+          "type": "organization",
+          "label": "Pashan Gang",
+          "start": 314,
+          "end": 325
+        },
+        {
+          "id": "vehicle:MH12AB1234",
+          "type": "vehicle",
+          "label": "MH12AB1234",
+          "start": 444,
+          "end": 457
+        },
+        {
+          "id": "phone:9420055667",
+          "type": "phone",
+          "label": "9420055667",
+          "start": 547,
+          "end": 557
+        },
+        {
+          "id": "phone:9823011223",
+          "type": "phone",
+          "label": "9823011223",
+          "start": 577,
+          "end": 587
+        },
+        {
+          "id": "person:rahul jadhav",
+          "type": "person",
+          "label": "Rahul Jadhav",
+          "start": 626,
+          "end": 638
+        }
+      ]
+    },
+    {
+      "id": "case:FIR-2026-0057",
+      "fir_number": "FIR-2026-0057",
+      "station": "Hadapsar Police Station, Pune",
+      "incident_time": "2026-09-02T23:45:00+05:30",
+      "sections": [
+        "BNS 304(2)",
+        "BNS 309(4)",
+        "BNS 3(5)"
+      ],
+      "narrative": "On 2 September 2026 at about 23:45 hours the complainant Sunita Kale, who runs a jewellery shop at Hadapsar, Pune, was closing the shop when two persons on a black Pulsar bearing registration MH 14 CD 5678 snatched a bag containing cash of Rs. 4,50,000 and gold ornaments. The complainant identified the pillion rider as Farid Khan, a known member of the Hadapsar Syndicate run by Imran Shaikh. Witness Anil Bhosale, a former associate of Farid Khan, stated that Farid Khan had been watching the shop for a week. Offence registered under BNS 304(2), 309(4) and 3(5) against Imran Shaikh and Farid Khan.",
+      "entities": [
+        {
+          "id": "person:sunita kale",
+          "type": "person",
+          "label": "Sunita Kale",
+          "start": 57,
+          "end": 68
+        },
+        {
+          "id": "location:hadapsar pune",
+          "type": "location",
+          "label": "Hadapsar, Pune",
+          "start": 99,
+          "end": 113
+        },
+        {
+          "id": "vehicle:MH14CD5678",
+          "type": "vehicle",
+          "label": "MH14CD5678",
+          "start": 192,
+          "end": 205
+        },
+        {
+          "id": "person:farid khan",
+          "type": "person",
+          "label": "Farid Khan",
+          "start": 321,
+          "end": 331
+        },
+        {
+          "id": "org:hadapsar syndicate",
+          "type": "organization",
+          "label": "Hadapsar Syndicate",
+          "start": 355,
+          "end": 373
+        },
+        {
+          "id": "person:imran shaikh",
+          "type": "person",
+          "label": "Imran Shaikh",
+          "start": 381,
+          "end": 393
+        },
+        {
+          "id": "person:anil bhosale",
+          "type": "person",
+          "label": "Anil Bhosale",
+          "start": 403,
+          "end": 415
+        },
+        {
+          "id": "person:farid khan",
+          "type": "person",
+          "label": "Farid Khan",
+          "start": 439,
+          "end": 449
+        },
+        {
+          "id": "person:farid khan",
+          "type": "person",
+          "label": "Farid Khan",
+          "start": 463,
+          "end": 473
+        },
+        {
+          "id": "person:imran shaikh",
+          "type": "person",
+          "label": "Imran Shaikh",
+          "start": 574,
+          "end": 586
+        },
+        {
+          "id": "person:farid khan",
+          "type": "person",
+          "label": "Farid Khan",
+          "start": 591,
+          "end": 601
+        }
+      ]
+    }
+  ]
+}
