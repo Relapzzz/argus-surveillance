@@ -1,6 +1,6 @@
 # TASKS
 
-Current phase, Person A: Phase A5 (Phase 0 manual items still open, see Blockers)
+Current phase, Person A: Phase 4 integration once B's phases land; Phase 0 manual items still open, see Blockers
 Current phase, Person B: Phase 0
 MVP demo: 15 September 2026
 Full project: about 12 October 2026
@@ -61,9 +61,9 @@ Update this file before ending every session. Tick items, move the current phase
 
 ## Phase A5: Real API (A, 14 September)
 
-- [ ] Routers over the store, stub removed
-- [ ] app/security.py API key, CORS from env, upload validation
-- [ ] tests/test_api.py passing: 401 without key, 413 for 3 MB, ingest adds nodes
+- [x] Routers over the store, stub removed
+- [x] app/security.py API key, CORS from env, upload validation
+- [x] tests/test_api.py passing: 401 without key, 413 for 3 MB, ingest adds nodes (146 tests in the suite, 36 in test_api.py)
 
 ## Phase B3: Path finder, alerts on canvas, cases page (B, 14 September)
 
@@ -140,7 +140,8 @@ Notes for Person A:
 - To switch the LLM provider, copy backend/.env.groq or backend/.env.nvidia over backend/.env. All three are gitignored; .env.nvidia carries LLM_EXTRA_BODY with thinking disabled, which Nemotron needs. Cached FIRs need no provider at all.
 - Python HTTPS on this laptop fails certificate checks under Norton. The LLM client must call truststore.inject_into_ssl() before creating the OpenAI client; truststore is a dependency.
 - On this laptop Norton intercepts TLS, so every uv command needs --system-certs (uv sync --system-certs, uv add --system-certs ...). Large installs can freeze the machine, so install one package at a time and never chain long commands.
-- For A5: Store.reset() empties the store and Store.load(path) replaces it from graph.json. Decide whether uploads persist to data/graph.json (then /admin/reset must rebuild from data/seed, 4 seconds with the cache) or stay in memory (then reset is a load). store.to_response(G) serialises any subgraph for /graph and /ego; analytics.shortest_path raises nx.NodeNotFound and nx.NetworkXNoPath for the 404.
+- Tell B the real API is up: every GET serves data/graph.json, POST /ingest/fir, /ingest/cdr, /ingest/transactions and /admin/reset need X-API-Key, and uploads stay in memory until reset or restart.
+- For Phase 4: pre-cache the live-upload FIR by uploading the file once through POST /ingest/fir with the key (or by calling ingest_fir on its text), then reset. Since A5 an uploaded file and the same file read from disk share one cache key, so either route works.
 
 ## Decisions log
 
@@ -183,3 +184,8 @@ Notes for Person A:
 - 2026-09-14: Key player percentiles are the share of persons with a strictly smaller value, so ties at zero betweenness score zero; the bridges reason needs a percentile of at least 0.95 and therefore 20 or more persons. The composite score ranks the gang leaders first; the intermediary tops betweenness but sits 27th of 46 by score.
 - 2026-09-14: structuring alerts report forwarded_to, the largest outgoing transfer after the window starts, so each mule alert links to the leader's account. bridge_node entity_ids list the actor, its identifiers and its actor neighbours. CSV ingests cap reads at 20,000 rows through MAX_ROWS in app/ingest.
 - 2026-09-14: tests/conftest.py holds graph_of(edges) and the GANGS fixture shared by the analytics and pattern tests; tests/test_store.py covers the store and the CSV ingests, and two tests assert the demo claims on the committed graph.json.
+- 2026-09-14: Uploads stay in memory in the MVP. The API never writes data/graph.json; it loads it at startup in a lifespan and POST /admin/reset reloads it, so the committed seed survives every demo run and a restart is a reset. Neo4j makes uploads persistent in Phase 5. Store access goes through get_store in app/routers/__init__.py; app/stub.py is deleted.
+- 2026-09-14: Mutating endpoints answer 401 when the X-API-Key header is missing or wrong and also when API_KEY is empty, so an unconfigured server fails closed. The key is compared as bytes with secrets.compare_digest because Starlette decodes headers as latin-1 and a non-ASCII value made the str comparison raise. The check runs before any upload body is read: the ingest routes take the raw Request and parse the form inside the handler, and a Content-Length above 2 MB answers 413 before parsing.
+- 2026-09-14: Upload status codes: 413 above 2 MB (2 * 1024 * 1024 bytes, also enforced on the bytes read for chunked bodies), 415 for an extension other than .txt or .csv, 422 when pandas cannot parse the CSV (cdr.py and transactions.py read with usecols so a missing column raises) or the JSON body has no text. /ingest/fir accepts multipart or JSON {text} on one route by branching on Content-Type, so OpenAPI shows no body schema for it.
+- 2026-09-14: ingest_fir normalises CRLF to LF and the router decodes FIR uploads with utf-8-sig, because the Windows checkout has CRLF files and an upload of the cached injection fixture through the API produced a different LLM cache key and a real LLM call during the A5 live check. The stray cache file was deleted.
+- 2026-09-14: Deferred from the A5 review: running ingest_fir and recompute in a threadpool (the demo is single-user and the live FIR is cached) and an openapi_extra body schema for /ingest/fir.
