@@ -1,7 +1,7 @@
 # TASKS
 
 Current phase, Person A: Phase 4 integration once B's phases land; Phase 0 manual items still open, see Blockers
-Current phase, Person B: Phase 0
+Current phase, Person B: Phase 4 integration and demo polish
 MVP demo: 15 September 2026
 Full project: about 12 October 2026
 
@@ -16,10 +16,10 @@ Update this file before ending every session. Tick items, move the current phase
 - [x] A: .env.example written
 - [x] A: LLM keys confirmed with GET /models; backend/.env uses gemini-3.5-flash-lite, backend/.env.groq holds the Groq backup, backend/.env.nvidia the NVIDIA fallback
 - [x] A: Azure for Students and GitHub Pro activated from the Student Pack
-- [ ] B: frontend scaffold with Bun, Vite, Tailwind v4, shadcn/ui, react-router, TanStack Query, react-force-graph-2d
-- [ ] B: app shell with sidebar navigation and dark theme, four empty pages
-- [ ] B: src/api/client.ts typed against the contract, fixture fallback, .env.example
-- [ ] Both: Phase 0 verify commands pass (A passed on 13 September, B pending)
+- [x] B: frontend scaffold with Bun, Vite, Tailwind v4, shadcn/ui, react-router, TanStack Query, react-force-graph-2d
+- [x] B: app shell with sidebar navigation and dark theme, four empty pages
+- [x] B: src/api/client.ts typed against the contract, fixture fallback, .env.example
+- [x] Both: Phase 0 verify commands pass (A passed on 13 September, B passed on 14 September)
 
 ## Phase A1: Synthetic dataset (A, 13 September morning)
 
@@ -34,9 +34,9 @@ Update this file before ending every session. Tick items, move the current phase
 
 ## Phase B1: Graph canvas (B, 13 September)
 
-- [ ] GraphCanvas renders the fixture with color by type and size by pagerank
-- [ ] GraphFilters by type and community, search focuses a node
-- [ ] Node click selects and zooms
+- [x] GraphCanvas renders the fixture with color by type and size by pagerank
+- [x] GraphFilters by type and community, search focuses a node
+- [x] Node click selects and zooms
 
 ## Phase A3: LLM extraction and FIR ingest (A, 13 September afternoon)
 
@@ -48,8 +48,8 @@ Update this file before ending every session. Tick items, move the current phase
 
 ## Phase B2: Dashboard and entity panel (B, 13 September afternoon)
 
-- [ ] Dashboard stat cards, KeyPlayersTable, AlertsList
-- [ ] EntityPanel drawer with attributes, metrics, neighbors, sources, focus and expand
+- [x] Dashboard stat cards, KeyPlayersTable, AlertsList
+- [x] EntityPanel drawer with attributes, metrics, neighbors, sources, focus and expand
 
 ## Phase A4: Graph store, analytics, patterns, seed (A, 14 September)
 
@@ -67,14 +67,14 @@ Update this file before ending every session. Tick items, move the current phase
 
 ## Phase B3: Path finder, alerts on canvas, cases page (B, 14 September)
 
-- [ ] PathFinder highlights the shortest path
-- [ ] Alert click highlights its entities
-- [ ] Cases list and detail with narrative highlighting from spans
+- [x] PathFinder highlights the shortest path
+- [x] Alert click highlights its entities
+- [x] Cases list and detail with narrative highlighting from spans
 
 ## Phase B4: Ingest page (B, 14 September evening)
 
-- [ ] Drag-drop upload for FIR text, CDR CSV, transactions CSV with API key header
-- [ ] Result summary and link to the network with new nodes highlighted
+- [x] Drag-drop upload for FIR text, CDR CSV, transactions CSV with API key header
+- [x] Result summary and link to the network with new nodes highlighted (verified against the real API on 14 September: upload adds 8 entities, reset restores 225 nodes)
 
 ## Phase 4: Integration and demo (both, 15 September)
 
@@ -140,8 +140,13 @@ Notes for Person A:
 - To switch the LLM provider, copy backend/.env.groq or backend/.env.nvidia over backend/.env. All three are gitignored; .env.nvidia carries LLM_EXTRA_BODY with thinking disabled, which Nemotron needs. Cached FIRs need no provider at all.
 - Python HTTPS on this laptop fails certificate checks under Norton. The LLM client must call truststore.inject_into_ssl() before creating the OpenAI client; truststore is a dependency.
 - On this laptop Norton intercepts TLS, so every uv command needs --system-certs (uv sync --system-certs, uv add --system-certs ...). Large installs can freeze the machine, so install one package at a time and never chain long commands.
-- Tell B the real API is up: every GET serves data/graph.json, POST /ingest/fir, /ingest/cdr, /ingest/transactions and /admin/reset need X-API-Key, and uploads stay in memory until reset or restart.
 - For Phase 4: pre-cache the live-upload FIR by uploading the file once through POST /ingest/fir with the key (or by calling ingest_fir on its text), then reset. Since A5 an uploaded file and the same file read from disk share one cache key, so either route works.
+
+Notes for Person B:
+
+- The frontend branch had no common history with main, so it was merged with --allow-unrelated-histories and main's TASKS.md and IMPLEMENTATION_PLAN.md were kept. Pull main before continuing; do not rebase or force-push the old frontend branch.
+- The Playwright suite passes 4 of 4 after the selection fix below. Its B1 canvas-click test had failed because every selection restarted the force layout, so the pixel it hunted for moved.
+- Frontend setup: copy frontend/.env.example to frontend/.env, set VITE_API_URL=http://localhost:8000 and VITE_API_KEY to the backend key, keep VITE_USE_FIXTURE=false against the real backend. bun install --frozen-lockfile, bun run dev.
 
 ## Decisions log
 
@@ -189,3 +194,6 @@ Notes for Person A:
 - 2026-09-14: Upload status codes: 413 above 2 MB (2 * 1024 * 1024 bytes, also enforced on the bytes read for chunked bodies), 415 for an extension other than .txt or .csv, 422 when pandas cannot parse the CSV (cdr.py and transactions.py read with usecols so a missing column raises) or the JSON body has no text. /ingest/fir accepts multipart or JSON {text} on one route by branching on Content-Type, so OpenAPI shows no body schema for it.
 - 2026-09-14: ingest_fir normalises CRLF to LF and the router decodes FIR uploads with utf-8-sig, because the Windows checkout has CRLF files and an upload of the cached injection fixture through the API produced a different LLM cache key and a real LLM call during the A5 live check. The stray cache file was deleted.
 - 2026-09-14: Deferred from the A5 review: running ingest_fir and recompute in a threadpool (the demo is single-user and the live FIR is cached) and an openapi_extra body schema for /ingest/fir.
+- 2026-09-14: Person B delivered Phase 0, B1, B2, B3 and B4 in one commit on the frontend branch. It was merged into main with --allow-unrelated-histories, keeping main's TASKS.md and IMPLEMENTATION_PLAN.md and adding frontend/ and AGENTS.md (Person B's tool guidance, no secrets). Build, six vitest tests and three of four Playwright tests pass; every page was verified in the browser against the Phase A5 backend.
+- 2026-09-14: Before merging, Person A fixed two Important review findings in src/pages/Network.tsx: selecting an entity no longer resets the type and community filters (they are cleared only when the selected entity is hidden by them) and no longer creates new filter state, so the graph memo, the canvas data and the force layout keep their positions on every click, path and alert. playwright.config.ts now probes http://127.0.0.1:5173, the host vite binds, and reuses a running server outside CI. Fourteen Minor review findings stay with Person B, among them a tautological assertion in src/api/fixture.test.ts, Phase A5 wording in user-facing copy and the missing ESLint config.
+- 2026-09-14: The frontend uses the cn package (shadcn's clsx plus tailwind-merge replacement) and imports shadcn/tailwind.css from the shadcn package, so both are runtime dependencies on purpose.
