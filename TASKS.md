@@ -1,6 +1,6 @@
 # TASKS
 
-Current phase, Person A: Phase A4 (Phase 0 manual items still open, see Blockers)
+Current phase, Person A: Phase A5 (Phase 0 manual items still open, see Blockers)
 Current phase, Person B: Phase 0
 MVP demo: 15 September 2026
 Full project: about 12 October 2026
@@ -53,11 +53,11 @@ Update this file before ending every session. Tick items, move the current phase
 
 ## Phase A4: Graph store, analytics, patterns, seed (A, 14 September)
 
-- [ ] app/graph/store.py, analytics.py, patterns.py
-- [ ] app/ingest/cdr.py, transactions.py, persons.py
-- [ ] scripts/seed.py builds data/graph.json, committed
-- [ ] Key players lists kingpin and intermediary, alerts include structuring and night_calls
-- [ ] tests passing
+- [x] app/graph/store.py, analytics.py, patterns.py
+- [x] app/ingest/cdr.py, transactions.py, persons.py
+- [x] scripts/seed.py builds data/graph.json in 4 seconds from the cache, committed
+- [x] Key players lists kingpin and intermediary, alerts include structuring and night_calls (kingpin second by score; intermediary first by betweenness with degree 5 but 27th of 46 by composite score, so the demo reaches him through the bridge_node alert or the betweenness column)
+- [x] tests passing (127)
 
 ## Phase A5: Real API (A, 14 September)
 
@@ -140,6 +140,7 @@ Notes for Person A:
 - To switch the LLM provider, copy backend/.env.groq or backend/.env.nvidia over backend/.env. All three are gitignored; .env.nvidia carries LLM_EXTRA_BODY with thinking disabled, which Nemotron needs. Cached FIRs need no provider at all.
 - Python HTTPS on this laptop fails certificate checks under Norton. The LLM client must call truststore.inject_into_ssl() before creating the OpenAI client; truststore is a dependency.
 - On this laptop Norton intercepts TLS, so every uv command needs --system-certs (uv sync --system-certs, uv add --system-certs ...). Large installs can freeze the machine, so install one package at a time and never chain long commands.
+- For A5: Store.reset() empties the store and Store.load(path) replaces it from graph.json. Decide whether uploads persist to data/graph.json (then /admin/reset must rebuild from data/seed, 4 seconds with the cache) or stay in memory (then reset is a load). store.to_response(G) serialises any subgraph for /graph and /ego; analytics.shortest_path raises nx.NodeNotFound and nx.NetworkXNoPath for the 404.
 
 ## Decisions log
 
@@ -176,3 +177,9 @@ Notes for Person A:
 - 2026-09-13: find_spans allows spaces and hyphens between the label's characters so plates and phones written with spaces are highlighted. Case spans are non-overlapping, longest label first, sorted by start.
 - 2026-09-13: ingest_fir returns FirIngest {case, entities, relationships}. The case node carries fir_number, station, incident_time, sections and amounts; the narrative and spans stay in the Case record like the fixture's cases list. incident_time is the earliest date in the text and null when absent. A person node carries aliases and role and its mentioned_in edge repeats the role. One edge per pair within a FIR: a second type goes to attributes.types and weight stays 1 for the store to increment across sources. A text without a FIR number gets the id FIR-UPLOAD- plus eight hex characters of its sha256.
 - 2026-09-13: scripts/seed.py puts backend/ on sys.path so the documented uv run python scripts/seed.py works, and pauses 8 seconds after each uncached FIR when Groq is the provider.
+- 2026-09-14: Metrics are computed on the actor projection: persons absorb the phones, accounts and vehicles they own, locations stay out, and every node reports its actor's metrics (a location keeps its own degree, zero betweenness and pagerank, and the community of most of its neighbours). On the raw seed graph the intermediary ranked 23rd of 46 persons by betweenness, every gang leader had a cross-gang route through shared localities such as Kondhwa and Swargate, and Louvain split the graph into an FIR cluster, phone cliques and account clusters. On the actor graph the intermediary is the only cross-gang route, Louvain at resolution 0.5 gives the two gangs plus two background account clusters, and the bridge_node alert fires on him alone.
+- 2026-09-14: The generator's intermediary now calls the kingpin, one Gang A lieutenant, the Gang B leader, one Gang B member and one background phone. With one contact per gang the leaders were unique gateways to him and out-scored him on betweenness (0.605 against 0.503). cdr.csv and transactions.csv were regenerated; FIR files, the LLM cache and persons.csv are byte-identical.
+- 2026-09-14: graph.json holds {nodes, edges, cases, alerts} in the API's own shapes, the same top level as fixture_graph.json, because node_link_data overwrites source and target with NetworkX's endpoint order and owns edges need their direction. Called edges carry a sorted timestamps list, transacted edges a transfers list of {amount, ts, to}. On a repeated pair the store increments weight, unions types and sources and keeps existing attribute values, so re-uploading the same CSV is not a supported flow.
+- 2026-09-14: Key player percentiles are the share of persons with a strictly smaller value, so ties at zero betweenness score zero; the bridges reason needs a percentile of at least 0.95 and therefore 20 or more persons. The composite score ranks the gang leaders first; the intermediary tops betweenness but sits 27th of 46 by score.
+- 2026-09-14: structuring alerts report forwarded_to, the largest outgoing transfer after the window starts, so each mule alert links to the leader's account. bridge_node entity_ids list the actor, its identifiers and its actor neighbours. CSV ingests cap reads at 20,000 rows through MAX_ROWS in app/ingest.
+- 2026-09-14: tests/conftest.py holds graph_of(edges) and the GANGS fixture shared by the analytics and pattern tests; tests/test_store.py covers the store and the CSV ingests, and two tests assert the demo claims on the committed graph.json.

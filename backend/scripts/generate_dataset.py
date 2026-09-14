@@ -689,17 +689,17 @@ def generate_cdr(rng, universe, incidents, background_a, background_b):
             callee = rng.choice(gang_a_phones_no_lieutenant)
             add_row(universe["burner_phone"], callee, dt, incident.location)
 
-    gang_a_contact = universe["kingpin"].phone
-    gang_b_contact = universe["leader_b"].phone
-    background_contact = rng.choice(background_a)
-    intermediary_calls = (
-        [(universe["intermediary"].phone, gang_a_contact)] * 4
-        + [(universe["intermediary"].phone, gang_b_contact)] * 4
-        + [(universe["intermediary"].phone, background_contact)] * 2
-    )
-    for caller, callee in intermediary_calls:
-        dt = random_datetime_in_window(rng, START_DATE, END_DATE)
-        add_row(caller, callee, dt, rng.choice(TOWER_AREAS))
+    intermediary_contacts = [
+        (universe["kingpin"].phone, 4),
+        (universe["lieutenants"][1].phone, 2),
+        (universe["leader_b"].phone, 4),
+        (rng.choice(universe["members_b"]).phone, 2),
+        (rng.choice(background_a), 2),
+    ]
+    for callee, count in intermediary_contacts:
+        for _ in range(count):
+            dt = random_datetime_in_window(rng, START_DATE, END_DATE)
+            add_row(universe["intermediary"].phone, callee, dt, rng.choice(TOWER_AREAS))
 
     target_rows = 3000
     while len(rows) < target_rows:

@@ -1,5 +1,6 @@
 from app.schemas import EntityType
 
+MAX_ROWS = 20_000
 PREFIXES = {"organization": "org"}
 NAMED_TYPES = {"person", "location", "organization"}
 

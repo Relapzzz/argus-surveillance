@@ -169,7 +169,10 @@ class IngestResult(BaseModel):
     relationships_added: int
 
 
-class FirIngest(BaseModel):
+class Ingest(BaseModel):
+    entities: list[Entity] = []
+    relationships: list[Relationship] = []
+
+
+class FirIngest(Ingest):
     case: Case
-    entities: list[Entity]
-    relationships: list[Relationship]

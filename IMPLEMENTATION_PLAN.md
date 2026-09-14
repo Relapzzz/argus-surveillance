@@ -30,13 +30,13 @@ Fixed random seed 42. Names from curated Marathi and mixed Indian lists, address
 Planted structure:
 
 - Gang A, the Warje gang: 1 kingpin, 2 lieutenants, 9 members. Gang B, the Kondhwa group: 1 leader, 8 members. Every member has a phone, about a third have vehicles, leaders and lieutenants have bank accounts.
-- One intermediary connected to both gangs by calls and money, with few other contacts: low degree, highest betweenness. This is the hidden link the demo reveals.
+- One intermediary connected to both gangs by calls and money, with few other contacts: low degree, highest betweenness. This is the hidden link the demo reveals. His phone calls the kingpin, one Gang A lieutenant, the Gang B leader, one Gang B member and one background phone; with only the two leaders as contacts they were the unique gateways to him and out-scored him on betweenness.
 - One burner phone, linked to a Gang A lieutenant only in FIR text, used only between 00:00 and 04:00 on the nights before three incidents.
 - Three mule accounts each receiving 6 to 10 transfers of 40,000 to 49,999 INR inside a week, forwarding the total to the account of a leader.
 - About 20 civilians as complainants, witnesses and victims.
 - Ordinary background calls and transfers so the planted patterns are not the only edges.
 - One call burst: a Gang A phone pair exchanging 12 to 20 calls inside two hours on the evening before an incident, so the burst_calls alert has data.
-- No seed FIR names members of both gangs and each civilian is tied to one gang, so the intermediary's phone and account are the only cross-gang edges. The extortion calls the narratives describe also appear in cdr.csv, which gives the demo its path from a complainant's phone to the kingpin.
+- No seed FIR names members of both gangs and each civilian is tied to one gang, so the intermediary's phone and account are the only cross-gang edges. The extortion calls the narratives describe also appear in cdr.csv, which gives the demo its path from a complainant's phone to the kingpin. Incident localities are city-wide and do link FIRs of both gangs, which is why analytics leave locations out of the actor projection.
 
 Outputs in backend/data/seed/:
 
@@ -85,20 +85,22 @@ FIR ingest (app/ingest/fir.py) builds entities and relationships and returns Fir
 
 ### Graph, analytics, patterns
 
-Store (app/graph/store.py): a Store class holding graph (nx.Graph), cases (dict) and alerts (list). Methods: merge(entities, relationships), recompute(), save(path), load(path), reset(). Node attributes are the Entity fields plus metrics. One edge per unordered pair: the first type seen is the edge type, further types append to attributes.types, weight increments on every repeat. Called and transacted edges keep per-event lists in attributes (timestamps for calls, {amount, ts} for transfers) so patterns need no other storage. The Phase 0 fixture carries only count, night_count, first_seen and last_seen on these edges. graph.json holds {graph: node_link_data, cases, alerts}.
+Store (app/graph/store.py): a Store class holding graph (nx.Graph), cases (dict) and alerts (list). Methods: merge(entities, relationships) returning the counts of new nodes and edges, recompute(), save(path), load(path), reset(). Node attributes are the Entity fields plus metrics and edge attributes are the Relationship fields, so source and target keep the direction of owns edges. One edge per unordered pair: the first type seen is the edge type, further types append to attributes.types, weight increments on every repeat, sources are unioned and existing attribute values win over later ones. Called edges keep a sorted timestamps list and transacted edges a transfers list of {amount, ts, to}, with to naming the receiving account because a pair can move money both ways, so patterns need no other storage. The Phase 0 fixture carries only count, night_count, first_seen and last_seen on these edges. graph.json holds {nodes, edges, cases, alerts} in the API's own shapes, the same top level as fixture_graph.json, rather than node_link_data, which overwrites source and target with NetworkX's endpoint order. to_response(G) turns any graph or subgraph into a GraphResponse.
 
 Analytics (app/graph/analytics.py):
 
-- compute_metrics(G): degree, betweenness_centrality normalized, pagerank, louvain_communities(seed=42), all written back as node attributes. Phase 0 finding: on the fixture, weighted Louvain put phones and accounts in their own communities away from their owners, so start unweighted with resolution 0.5 and add log-scaled weights only if the seed graph needs them.
-- key_players(G, limit): persons only. Score = 0.4 * pagerank percentile + 0.4 * betweenness percentile + 0.2 * degree percentile. Reason: "bridges communities X and Y" when betweenness is in the top 5 percent and neighbors span two or more communities, else "most connected in community N" when degree is the highest in its community, else "high influence in community N".
-- communities(G), shortest_path(G, a, b), ego(G, id, depth). shortest_path skips case nodes unless one is an endpoint, because mentioned_in edges otherwise make a shared FIR the shortest link between any two of its entities.
+- Metrics are computed on the actor projection built by actor_graph(G): every person absorbs the phones, accounts and vehicles it owns, locations are left out, and cases, organizations and unowned identifiers stay as actors. Each node carries its actor's degree, normalized betweenness, pagerank and Louvain community (unweighted, resolution 0.5, seed 42, communities numbered by size); a location carries its own degree, zero betweenness and pagerank, and the community most common among its neighbours' actors. Why: on the raw graph a person's betweenness only measures the hop between its own identifiers and its cases, so the planted intermediary ranked 23rd of 46 persons, and shared localities link unrelated FIRs city-wide, which gave every gang leader a cross-gang route; Louvain on the raw graph also split the seed by modality into an FIR cluster, phone cliques and account clusters. On the actor graph the seed gives four communities: the two gangs with their civilians, cases and phones, and two clusters of background accounts.
+- key_players(G, limit): persons only. Score = 0.4 * pagerank percentile + 0.4 * betweenness percentile + 0.2 * degree percentile, where a percentile is the share of persons with a strictly smaller value. Reason: "bridges communities X and Y" when the betweenness percentile is at least 0.95 and the actor's neighbours span two or more communities, else "most connected in community N" when degree is the highest among the persons of its community, else "high influence in community N". The percentile rule can only fire with 20 or more persons.
+- communities(G), shortest_path(G, a, b), ego(G, id, depth) work on the raw graph. shortest_path skips case nodes unless one is an endpoint, because mentioned_in edges otherwise make a shared FIR the shortest link between any two of its entities; it raises nx.NodeNotFound and nx.NetworkXNoPath for the router to map to 404.
 
-Patterns (app/graph/patterns.py), each returning Alert objects with evidence:
+Patterns (app/graph/patterns.py), each returning Alert objects with evidence, run by detect(G) after the metrics:
 
 - burst_calls: a phone pair with 8 or more calls inside any 60 minute window. Severity high.
-- structuring: an account receiving 5 or more transfers between 40,000 and 49,999 INR inside any 7 day window. Severity high.
-- bridge_node: betweenness in the top 5 percent with degree below the median. Severity medium.
+- structuring: an account receiving 5 or more transfers between 40,000 and 49,999 INR inside any 7 day window. The largest outgoing transfer after the window starts is reported as forwarded_to, so each mule alert links to the leader's account. Severity high.
+- bridge_node: an actor whose betweenness is in the top 5 percent of actors with degree below the median actor degree. entity_ids list the actor, its identifiers and its actor neighbours, so the alert on the intermediary highlights his phone, his account and both leaders. Severity medium.
 - night_calls: a phone with at least 10 calls of which over 70 percent start between 00:00 and 04:00. Severity medium.
+
+Alert ids are alert:{type}:{node or edge id}. Descriptions name phones and accounts with their owner in brackets and format money as Rs 5,26,500.
 
 ### Security
 
@@ -218,7 +220,7 @@ Done: verify passes, build clean.
 
 Owner: A. Branch: a/phase-4. Date: 14 September.
 Goal: the whole seed dataset becomes one graph with metrics and alerts.
-Files: app/graph/store.py, app/graph/analytics.py, app/graph/patterns.py, app/ingest/cdr.py, app/ingest/transactions.py, app/ingest/persons.py, scripts/seed.py, data/graph.json, tests/test_analytics.py, tests/test_patterns.py.
+Files: app/graph/store.py, app/graph/analytics.py, app/graph/patterns.py, app/ingest/cdr.py, app/ingest/transactions.py, app/ingest/persons.py, scripts/seed.py, data/graph.json, tests/conftest.py, tests/test_store.py, tests/test_analytics.py, tests/test_patterns.py.
 Steps:
 
 1. Store per the design.
