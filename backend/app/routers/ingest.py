@@ -2,9 +2,9 @@ import io
 from collections.abc import Callable
 from pathlib import Path
 
-from fastapi import APIRouter, Depends, HTTPException, Request, UploadFile
+from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import ValidationError
-from starlette.datastructures import UploadFile as FormFile
+from starlette.datastructures import UploadFile
 
 from app.config import settings
 from app.graph.store import Store
@@ -15,11 +15,22 @@ from app.routers import StoreDep
 from app.schemas import FirText, Ingest, IngestResult, ResetResult
 from app.security import require_api_key
 
-router = APIRouter(dependencies=[Depends(require_api_key)])
 MAX_BYTES = 2 * 1024 * 1024
 
 
-async def read_upload(file: UploadFile, suffix: str) -> bytes:
+def reject_oversized_body(request: Request) -> None:
+    length = request.headers.get("content-length")
+    if length is not None and int(length) > MAX_BYTES:
+        raise HTTPException(413, "body too large")
+
+
+router = APIRouter(dependencies=[Depends(require_api_key), Depends(reject_oversized_body)])
+
+
+async def upload(request: Request, suffix: str) -> bytes:
+    file = (await request.form()).get("file")
+    if not isinstance(file, UploadFile):
+        raise HTTPException(422, "file field required")
     if Path(file.filename).suffix.lower() != suffix:
         raise HTTPException(415, "unsupported file type")
     data = await file.read(MAX_BYTES + 1)
@@ -39,12 +50,9 @@ async def read_body(request: Request) -> bytes:
 
 async def fir_text(request: Request) -> str:
     if request.headers.get("content-type", "").startswith("multipart/form-data"):
-        file = (await request.form()).get("file")
-        if not isinstance(file, FormFile):
-            raise HTTPException(422, "file field required")
-        data = await read_upload(file, ".txt")
+        data = await upload(request, ".txt")
         try:
-            return data.decode("utf-8")
+            return data.decode("utf-8-sig")
         except UnicodeDecodeError:
             raise HTTPException(422, "file is not utf-8 text")
     try:
@@ -73,13 +81,13 @@ async def fir(store: StoreDep, request: Request) -> IngestResult:
 
 
 @router.post("/ingest/cdr")
-async def cdr(store: StoreDep, file: UploadFile) -> IngestResult:
-    return merge_csv(store, ingest_cdr, await read_upload(file, ".csv"))
+async def cdr(store: StoreDep, request: Request) -> IngestResult:
+    return merge_csv(store, ingest_cdr, await upload(request, ".csv"))
 
 
 @router.post("/ingest/transactions")
-async def transactions(store: StoreDep, file: UploadFile) -> IngestResult:
-    return merge_csv(store, ingest_transactions, await read_upload(file, ".csv"))
+async def transactions(store: StoreDep, request: Request) -> IngestResult:
+    return merge_csv(store, ingest_transactions, await upload(request, ".csv"))
 
 
 @router.post("/admin/reset")

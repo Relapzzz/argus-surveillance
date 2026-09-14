@@ -56,6 +56,7 @@ def spans(text: str, entities: list[Entity]) -> list[Span]:
 
 
 def ingest_fir(text: str) -> FirIngest:
+    text = text.replace("\r\n", "\n")
     numbers = regex.fir_numbers(text)
     fir_number = numbers[0] if numbers else f"FIR-UPLOAD-{hashlib.sha256(text.encode()).hexdigest()[:8]}"
     station = STATION_RE.search(text)

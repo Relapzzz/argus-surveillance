@@ -34,7 +34,7 @@ def offline(monkeypatch):
 @pytest.fixture
 def restored(client):
     yield
-    client.post("/api/admin/reset", headers=KEY)
+    assert client.post("/api/admin/reset", headers=KEY).status_code == 200
 
 
 def graph(client, **params):
@@ -53,9 +53,9 @@ def test_stats_counts_every_entity_type(client):
 def test_graph_nodes_carry_metrics_and_edges_join_known_nodes(client):
     g = graph(client)
     ids = {n["id"] for n in g["nodes"]}
-    assert {n["type"] for n in g["nodes"]} <= ENTITY_TYPES
+    assert {n["type"] for n in g["nodes"]} == ENTITY_TYPES
     assert all(set(n["metrics"]) == METRICS for n in g["nodes"])
-    assert {e["type"] for e in g["edges"]} <= EDGE_TYPES
+    assert g["edges"] and {e["type"] for e in g["edges"]} <= EDGE_TYPES
     assert all(e["source"] in ids and e["target"] in ids for e in g["edges"])
 
 
@@ -158,6 +158,15 @@ def test_mutations_need_the_api_key(client, path, headers):
     assert client.post(f"/api{path}", headers=headers).status_code == 401
 
 
+def test_non_ascii_key_is_401(client):
+    assert client.post("/api/ingest/cdr", headers=[(b"x-api-key", b"k\xc3\xa9y")]).status_code == 401
+
+
+def test_oversized_csv_is_413(client):
+    csv = b"caller,callee,start_time,duration_sec,tower_id,tower_location\n" + BIG.encode()
+    assert client.post("/api/ingest/cdr", headers=KEY, files={"file": ("cdr.csv", csv)}).status_code == 413
+
+
 def test_oversized_upload_is_413(client):
     response = client.post("/api/ingest/fir", headers=KEY, files={"file": ("big.txt", BIG.encode())})
     assert response.status_code == 413
@@ -194,9 +203,20 @@ def test_fir_upload_adds_nodes_and_ignores_injected_entities(client, offline, re
     labels = {n["label"].lower() for n in graph(client)["nodes"]}
     assert "person:ganesh pawar" in {n["id"] for n in graph(client)["nodes"]}
     assert "admin user" not in labels
+    case = client.get(f"/api/cases/{result['case_id']}").json()
+    assert "admin user" not in {s["label"].lower() for s in case["entities"]}
     again = client.post("/api/ingest/fir", headers=KEY, json={"text": text}).json()
     assert again["case_id"] == result["case_id"]
     assert again["entities_added"] == 0
+
+
+def test_fir_upload_with_a_bom_and_crlf_uses_the_cached_narrative(client, offline, restored):
+    data = "﻿".encode() + INJECTION_FIR.read_text(encoding="utf-8").replace("\n", "\r\n").encode()
+    result = client.post("/api/ingest/fir", headers=KEY, files={"file": ("fir.txt", data)}).json()
+    assert result["case_id"] == "case:FIR-2026-0099"
+    narrative = client.get("/api/cases/case:FIR-2026-0099").json()["narrative"]
+    assert "\r" not in narrative
+    assert not narrative.startswith("﻿")
 
 
 def test_cdr_upload_links_two_new_phones(client, restored):
