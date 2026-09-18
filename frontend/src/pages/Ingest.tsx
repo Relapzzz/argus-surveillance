@@ -6,7 +6,7 @@ import { api, useFixture } from '@/api/client'
 import type { IngestKind } from '@/api/types'
 import { uploadWithGraphDiff } from '@/lib/ingest'
 import { formatCount, formatLabel, plural } from '@/lib/format'
-import { networkUrl, palette, profileUrl, typeNames } from '@/lib/graph'
+import { caseUrl, networkUrl, palette, profileUrl, typeNames } from '@/lib/graph'
 import { hi } from '@/lib/vocab'
 import { Bi } from '@/components/Bi'
 import { PageTitle } from '@/components/PageTitle'
@@ -52,7 +52,7 @@ export default function Ingest() {
     {upload.data && <section className="result" aria-label="Upload result">
       <div className="section-head"><h2>Record added</h2>{upload.data.result.case_id && <Link className="text-button" to={'/cases?' + new URLSearchParams({ case: upload.data.result.case_id })}>Open the FIR</Link>}</div>
       <div className="result-nums"><div><strong className="numeral">{formatCount(upload.data.result.entities_added)}</strong><span>{upload.data.result.entities_added === 1 ? 'entity added' : 'entities added'}</span></div><div><strong className="numeral">{formatCount(upload.data.result.relationships_added)}</strong><span>{upload.data.result.relationships_added === 1 ? 'relationship added' : 'relationships added'}</span></div><div><strong className="numeral">{formatCount(added.length)}</strong><span>{added.length === 1 ? 'new entity on the board' : 'new entities on the board'}</span></div></div>
-      {added.length > 0 && <div className="chips">{added.map(n => <Link key={n.id} to={profileUrl(n.id)}><i style={{ background: palette[n.type] }} /><span className="tabular">{formatLabel(n.type, n.label)}</span><small>{typeNames[n.type]}</small></Link>)}</div>}
+      {added.length > 0 && <div className="chips">{added.map(n => <Link key={n.id} to={n.type === 'case' ? caseUrl(n.id) : profileUrl(n.id)}><i style={{ background: palette[n.type] }} /><span className="tabular">{formatLabel(n.type, n.label)}</span><small>{typeNames[n.type]}</small></Link>)}</div>}
       {upload.data.refreshWarning ? <p role="status" className="result-note">{upload.data.refreshWarning}</p> : !added.length && <p className="result-note">No new entity appeared. Existing entities gained relationships or evidence instead.</p>}
       <div className="actions"><Link className={buttonVariants({ size: 'lg' })} to={networkUrl(added.map(n => n.id))}><Bi en="Show on network" hi={hi.showOnNetwork} /></Link></div>
     </section>}
