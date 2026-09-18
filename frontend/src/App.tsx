@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { Link, Route, Routes } from 'react-router'
 import Shell from './components/Shell'
-import Briefing from './pages/Briefing'
+import Overview from './pages/Overview'
 import Cases from './pages/Cases'
 import Ingest from './pages/Ingest'
 const Network = lazy(() => import('./pages/Network'))
@@ -14,7 +14,7 @@ export default function App() {
   return <Shell>
     <Suspense fallback={<p role="status" className="loading">Loading…</p>}>
       <Routes>
-        <Route path="/" element={<Briefing />} />
+        <Route path="/" element={<Overview />} />
         <Route path="/network" element={<Network />} />
         <Route path="/entity/:id" element={<Profile />} />
         <Route path="/timeline" element={<Timeline />} />

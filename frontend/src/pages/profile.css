@@ -1,0 +1,42 @@
+.profile-head { padding-bottom: 8px; }
+.profile-head .kicker { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; }
+.profile-head h1 { margin-top: 6px; font-size: 34px; overflow-wrap: anywhere; }
+.profile-head .alias { margin-top: 4px; color: var(--ink-2); font-size: 15px; }
+.profile-head .alias a { font-weight: 500; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--khaki); }
+.profile-head .actions { margin-top: 18px; }
+
+.profile .why { max-width: 70ch; margin-top: 10px; color: var(--ink); font-size: 16px; line-height: 1.7; }
+.profile .line { margin-top: 10px; color: var(--ink-2); }
+.profile .chips { margin-top: 10px; }
+.profile .chips.places i { border-radius: 2px; }
+
+.firs article { display: grid; grid-template-columns: 8rem minmax(0, 1fr) auto auto; gap: 4px 18px; align-items: baseline; font-size: 14px; }
+.firs a { font-weight: 600; font-variant-numeric: tabular-nums; }
+.firs a:hover { color: var(--string); }
+.firs span { color: var(--ink-2); }
+.firs .role { color: var(--khaki-ink); font-weight: 500; }
+
+.associate-group { margin-top: 14px; }
+.associate-group h3 { color: var(--khaki-ink); font-size: 13px; font-weight: 600; }
+.associate-group .chips i { border-radius: 2px; }
+
+.numbers { margin-top: 36px; padding-top: 14px; border-top: 1px solid var(--rule); }
+.numbers summary { color: var(--ink-3); font-size: 14px; }
+.numbers summary:hover { color: var(--ink); }
+.numbers dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 14px; }
+.numbers dt { font-size: 14px; font-weight: 600; }
+.numbers dt small { display: block; margin-top: 3px; color: var(--ink-3); font-size: 13px; font-weight: 400; line-height: 1.5; }
+.numbers dd { margin-top: 6px; font-family: var(--font-heading); font-variation-settings: "wdth" 85; font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+@media (max-width: 700px) {
+  .profile-head h1 { font-size: 28px; }
+  .firs article { grid-template-columns: 7rem minmax(0, 1fr); }
+}
+@media print {
+  .profile-head .actions, .profile .numbers { display: none; }
+  .profile, .profile .why, .profile .line, .profile .firs span, .profile .kicker { color: #000; }
+  .profile .section { margin-top: 18px; }
+  .profile .chips a { border-color: #999; background: none; }
+  .profile .sev, .profile .group-chip i, .profile .chips i { background: none; }
+  .profile-head h1 { font-size: 26px; }
+}

@@ -1,4 +1,5 @@
 import type { EntityType, GraphFilters, GraphResponse } from '@/api/types'
+import { listed } from './format'
 
 export const palette: Record<EntityType, string> = { person: '#132238', phone: '#1971C2', vehicle: '#6741D9', location: '#C2255C', organization: '#0C8599', account: '#2B8A3E', case: '#868E96' }
 export const typeNames: Record<EntityType, string> = { person: 'Person', phone: 'Phone', vehicle: 'Vehicle', location: 'Place', organization: 'Organization', account: 'Account', case: 'FIR' }
@@ -30,7 +31,7 @@ export const groupName = (names: Map<number, string> | undefined, id: number) =>
 export function humanize(text: string, names?: Map<number, string>) {
   const name = (n: string) => { const found = names?.get(Number(n)); return found && !found.startsWith('Group ') ? `the ${found}` : `group ${n}` }
   return text
-    .replace(/communities ((?:\d+(?:, | and ))*\d+)/g, (_, list: string) => list.split(/, | and /).map(name).join(' and '))
+    .replace(/communities ((?:\d+(?:, | and ))*\d+)/g, (_, list: string) => listed(list.split(/, | and /).map(name)))
     .replace(/community (\d+)/g, (_, n: string) => name(n))
 }
 export function labelFromId(id: string) {

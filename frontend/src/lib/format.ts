@@ -18,3 +18,4 @@ export const formatPhone = (number: string) => /^\d{10}$/.test(number) ? `${numb
 export const formatPlate = (plate: string) => plate.replace(/^([A-Z]{2})(\d{1,2})([A-Z]{1,3})(\d{1,4})$/, '$1 $2 $3 $4')
 export const formatLabel = (type: EntityType, label: string) => type === 'phone' ? formatPhone(label) : type === 'vehicle' ? formatPlate(label) : label
 export const plural = (n: number, one: string, many = one + 's') => `${formatCount(n)} ${n === 1 ? one : many}`
+export const listed = (items: (string | number)[]) => items.length < 3 ? items.join(' and ') : `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`
