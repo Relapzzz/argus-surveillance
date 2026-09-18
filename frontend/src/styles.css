@@ -150,15 +150,26 @@ main { flex: 1; min-width: 0; }
 .group a { color: var(--ink); font-weight: 500; }
 .group a:hover { color: var(--string); }
 
+.leads section { padding: 16px 0; border-bottom: 1px solid var(--rule); }
+.leads section:last-child { border-bottom: 0; }
+.leads h3 { margin-bottom: 8px; font-family: var(--font-heading); font-variation-settings: "wdth" 85; font-size: 19px; font-weight: 600; }
+.lead-item + .lead-item { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
+.lead-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; font-weight: 500; }
+.lead-evidence { margin-top: 4px; color: var(--ink-2); font-size: 14px; }
+.lead-links { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 8px; }
+.lead-links a { color: var(--ink); font-size: 13px; font-weight: 500; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--khaki); }
+.lead-links a:hover { text-decoration-color: var(--string); }
+.lead-detail { margin-top: 4px; color: var(--ink-2); font-size: 14px; }
+
 .alert { padding: 14px 18px; border-top: 1px solid var(--rule); }
 .alert-top { display: flex; align-items: center; gap: 8px; color: var(--ink-3); font-size: 12px; }
 .alert-title { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; width: 100%; padding: 8px 0 4px; border: 0; background: transparent; color: var(--ink); font-size: 14px; font-weight: 500; line-height: 1.45; text-align: left; }
 .alert-title:hover { color: var(--string); }
-.alert-title svg { margin-top: 2px; color: var(--ink-3); }
 .alert > p { color: var(--ink-2); font-size: 13px; line-height: 1.6; }
-.alert details { margin-top: 8px; }
-.alert summary { color: var(--ink-3); font-size: 12px; }
-.alert summary:hover { color: var(--ink); }
+.alert-links { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 8px; font-size: 13px; }
+.alert-links a { color: var(--ink); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--khaki); }
+.alert-links a:hover { text-decoration-color: var(--string); }
+.alert-links .text-button { font-size: 13px; }
 
 .stage-empty { flex: 1; display: grid; place-content: center; justify-items: center; gap: 8px; padding: 40px; text-align: center; color: var(--ink-2); }
 .stage-empty h2 { color: var(--ink); font-size: 20px; }

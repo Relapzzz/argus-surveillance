@@ -25,6 +25,7 @@ describe('group names', () => {
     expect(humanize('bridges communities 0 and 1', names)).toBe('bridges the Warje group and the Kondhwa group')
     expect(humanize('most connected in community 2', names)).toBe('most connected in group 2')
     expect(humanize('high influence in community 1')).toBe('high influence in group 1')
+    expect(humanize('totalling Rs 4,07,743 below the Rs 50,000 threshold')).toBe('totalling ₹4,07,743 below the ₹50,000 threshold')
   })
   it('builds routes', () => {
     expect(profileUrl('person:dinesh deshmukh')).toBe('/entity/person%3Adinesh%20deshmukh')

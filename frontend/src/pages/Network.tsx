@@ -77,7 +77,7 @@ export default function Network() {
       <div className="inspector-body">
         {tab === 'entity' && <EntityDetails key={selected} id={selected} onSelect={select} onEgo={(ego, expand) => { showAll(); setFocused(expand && graph ? mergeGraphs(graph, ego) : ego) }} />}
         {tab === 'route' && <PathFinder key={`${from}|${to}`} nodes={nodes} selected={selected} initialFrom={from} initialTo={to} onClear={() => setPath(undefined)} onPath={result => { setFocused(undefined); showAll(); setPath(result); setParams(previous => { previous.delete('highlight'); return previous }) }} />}
-        {tab === 'alerts' && <><QueryState error={alerts.error} pending={alerts.isPending} retry={() => alerts.refetch()} />{alerts.data && <AlertsList alerts={alerts.data} onSelect={alert => { setPath(undefined); setFocused(undefined); showAll(); const next = new URLSearchParams(); alert.entity_ids.forEach(id => next.append('highlight', id)); if (alert.entity_ids[0]) next.set('entity', alert.entity_ids[0]); setParams(next); setTab('entity') }} />}</>}
+        {tab === 'alerts' && <><QueryState error={alerts.error} pending={alerts.isPending} retry={() => alerts.refetch()} />{alerts.data && <AlertsList alerts={alerts.data} names={names} onSelect={alert => { setPath(undefined); setFocused(undefined); showAll(); const next = new URLSearchParams(); alert.entity_ids.forEach(id => next.append('highlight', id)); if (alert.entity_ids[0]) next.set('entity', alert.entity_ids[0]); setParams(next); setTab('entity') }} />}</>}
       </div>
     </aside>
   </div>

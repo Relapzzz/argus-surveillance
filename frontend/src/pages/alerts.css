@@ -1,0 +1,13 @@
+.filters { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 14px; }
+.filters button { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px; border: 1px solid var(--rule-2); border-radius: 999px; background: var(--sheet); color: var(--ink-2); font-size: 14px; font-weight: 500; transition: border-color .15s, background .15s, color .15s; }
+.filters button b { color: var(--ink-3); font-weight: 500; font-variant-numeric: tabular-nums; }
+.filters button:hover { border-color: var(--khaki); }
+.filters button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.filters button[aria-pressed="true"] b { color: var(--paper); opacity: .8; }
+.filters-gap { width: 12px; }
+.sev-filter { text-transform: capitalize; }
+.sev-filter.high[aria-pressed="true"] { border-color: var(--string); background: var(--string); }
+.sev-filter.medium[aria-pressed="true"] { border-color: var(--amber); background: var(--amber); }
+.sev-filter.low[aria-pressed="true"] { border-color: var(--low); background: var(--low); }
+.alerts-count { margin-bottom: 4px; color: var(--ink-3); font-size: 13px; }
+.page .leads { max-width: 72ch; }

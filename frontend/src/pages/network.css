@@ -79,3 +79,7 @@ select.control { height: 36px; padding: 0 28px 0 10px; border: 1px solid var(--r
   .legend { max-width: calc(100% - 28px); bottom: 58px; }
   .graph-frame { height: 70vh; }
 }
+.entity-alias { margin-top: 2px; color: var(--ink-2); font-size: 14px; }
+.entity-why { margin-top: 10px; color: var(--ink); font-size: 14px; line-height: 1.55; }
+.entity-owner { margin-top: 12px; color: var(--ink-2); font-size: 14px; }
+.inspector .chips { margin-top: 4px; }
