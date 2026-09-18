@@ -33,7 +33,7 @@ export function humanize(text: string, names?: Map<number, string>) {
   return text
     .replace(/communities ((?:\d+(?:, | and ))*\d+)/g, (_, list: string) => listed(list.split(/, | and /).map(name)))
     .replace(/community (\d+)/g, (_, n: string) => name(n))
-    .replace(/Rs (?=\d)/g, '₹')
+    .replace(/\bRs (?=\d)/g, '₹')
 }
 export function labelFromId(id: string) {
   const at = id.indexOf(':')
