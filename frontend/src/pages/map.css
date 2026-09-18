@@ -1,0 +1,53 @@
+.map-picker { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-bottom: 18px; }
+.map-picker .search { flex: 1 1 260px; max-width: 360px; }
+.map-picker .picked { flex: 0 1 auto; }
+.layer-toggles { display: flex; flex-wrap: wrap; gap: 6px; margin-left: auto; }
+.layer-toggles button { display: inline-flex; align-items: center; gap: 7px; height: 36px; padding: 0 12px; border: 1px solid var(--rule-2); border-radius: 6px; background: var(--sheet); color: var(--ink-2); font-size: 13px; font-weight: 500; transition: border-color .15s, background .15s, color .15s; }
+.layer-toggles button i { width: 9px; height: 9px; border-radius: 50%; }
+.layer-toggles button:hover { border-color: var(--khaki); background: var(--khaki-wash); }
+.layer-toggles button[aria-pressed="true"] { border-color: var(--ink); color: var(--ink); background: var(--khaki-wash); }
+.layer-toggles button[aria-pressed="false"] { opacity: .55; }
+.layer-toggles button[aria-pressed="false"] i { background: var(--rule-2) !important; }
+
+.map-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 380px); gap: 18px; align-items: start; }
+.map-frame { overflow: hidden; border: 1px solid var(--rule); border-radius: 6px; background: var(--board); }
+.place-map { height: 560px; width: 100%; }
+.map-note { padding: 10px 14px; border-top: 1px solid var(--rule); background: var(--sheet); color: var(--ink-3); font-size: 13px; }
+
+.map-list .count { margin-left: auto; }
+.map-list .rows { max-height: 560px; overflow-y: auto; }
+.place-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 10px 10px 10px 12px; border-bottom: 1px solid var(--rule); }
+.place-row[aria-current="true"] { background: var(--khaki-wash); box-shadow: inset 3px 0 0 var(--string); }
+.place-row > button { display: grid; gap: 2px; flex: 1; padding: 0; border: 0; background: transparent; color: var(--ink); text-align: left; }
+.place-row b { font-weight: 600; }
+.place-row span { color: var(--ink-2); font-size: 13px; }
+.place-row > button:hover b { color: var(--string); }
+.place-row .text-button { font-size: 13px; white-space: nowrap; }
+
+.leaflet-container { background: var(--board); font: 400 14px/1.5 var(--font-sans); }
+.leaflet-tile-pane { filter: grayscale(1) opacity(.75); }
+.leaflet-popup-content-wrapper, .leaflet-tooltip { border: 1px solid var(--rule-2); border-radius: 6px; background: var(--sheet); color: var(--ink); box-shadow: 0 8px 24px rgba(19, 34, 56, .16); }
+.leaflet-popup-tip { border: 1px solid var(--rule-2); background: var(--sheet); }
+.leaflet-popup-content { margin: 12px 14px; width: 248px !important; }
+.leaflet-popup-content h3 { font-family: var(--font-heading); font-variation-settings: "wdth" 85; font-weight: 600; font-size: 17px; }
+.leaflet-popup-content p { margin-top: 3px; color: var(--ink-2); font-size: 13px; }
+.leaflet-popup-content h4 { margin: 12px 0 5px; padding-bottom: 3px; border-bottom: 1px solid var(--khaki); color: var(--khaki-ink); font-size: 12px; font-weight: 600; }
+.leaflet-popup-content ul { margin: 0; padding: 0; list-style: none; }
+.leaflet-popup-content li { padding: 3px 0; font-size: 13px; }
+.leaflet-popup-content li a { color: var(--ink); font-weight: 500; border-bottom: 1px solid var(--khaki); }
+.leaflet-popup-content li a:hover { color: var(--string); border-bottom-color: var(--string); }
+.leaflet-popup-content li span { color: var(--ink-3); font-size: 12px; }
+.leaflet-popup-content .place-people { display: flex; flex-wrap: wrap; gap: 4px 12px; }
+.leaflet-popup-content .place-more, .leaflet-popup-content .place-layers { color: var(--ink-3); font-size: 12px; }
+.leaflet-tooltip { padding: 3px 8px; color: var(--ink-2); font-size: 12px; font-weight: 500; box-shadow: 0 2px 6px rgba(19, 34, 56, .12); }
+.leaflet-tooltip::before { display: none; }
+.leaflet-control-attribution { background: rgba(255, 255, 255, .86) !important; color: var(--ink-3); font-size: 11px; }
+.leaflet-control-attribution a { color: var(--ink-2); }
+.leaflet-bar a { color: var(--ink); background: var(--sheet); border-bottom-color: var(--rule); }
+.leaflet-bar a:hover { background: var(--khaki-wash); }
+
+@media (max-width: 1000px) {
+  .map-grid { grid-template-columns: 1fr; }
+  .layer-toggles { margin-left: 0; }
+  .map-list .rows { max-height: none; }
+}
