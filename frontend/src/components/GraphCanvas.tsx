@@ -4,7 +4,7 @@ import type { ForceGraphMethods, LinkObject, NodeObject } from 'react-force-grap
 import { Maximize2, Minus, Plus } from 'lucide-react'
 import type { GraphNode, GraphResponse, Relationship, RelationshipType } from '@/api/types'
 import { formatLabel } from '@/lib/format'
-import { groupColor, groupName, palette } from '@/lib/graph'
+import { groupColor, groupName, palette, tone } from '@/lib/graph'
 import { Button } from './ui/button'
 
 type EdgeData = Omit<Relationship, 'source' | 'target'>
@@ -13,9 +13,7 @@ type CanvasEdge = LinkObject<GraphNode, EdgeData>
 type Point = { x: number; y: number }
 
 const REL_SIZE = 3
-const STRING = '#B42318'
-const INK = '#132238'
-const PAPER = '#F7F7F4'
+const STRING = tone.string, INK = tone.ink, PAPER = tone.paper
 const edgeHue: Record<RelationshipType, string> = { called: '#1971C2', transacted: '#2B8A3E', co_accused: '#132238', associate_of: '#132238', member_of: '#0C8599', owns: '#5C6B7D', resides_at: '#C2255C', seen_at: '#C2255C', mentioned_in: '#868E96' }
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 const nodeVal = (n: GraphNode) => n.type === 'person' ? 2.2 + n.metrics.pagerank * 260 : n.type === 'case' ? 0.7 : 1 + n.metrics.pagerank * 90
@@ -109,7 +107,7 @@ export default function GraphCanvas({ graph, names, selected, onSelect, onDesele
     if (n.type === 'case') ctx.rect(x - r, y - r, 2 * r, 2 * r); else ctx.arc(x, y, r, 0, 2 * Math.PI)
     ctx.fillStyle = colorBy === 'group' && n.type !== 'case' && n.type !== 'location' ? groupColor(n.metrics.community) : palette[n.type]
     ctx.fill()
-    ctx.lineWidth = (emphasised ? 2 : 0.8) / scale; ctx.strokeStyle = emphasised ? STRING : '#FFFFFF'; ctx.stroke()
+    ctx.lineWidth = (emphasised ? 2 : 0.8) / scale; ctx.strokeStyle = emphasised ? STRING : tone.white; ctx.stroke()
     if (hovered || emphasised || scale >= 2.2 || labelled.has(n.id)) {
       const fontSize = Math.max(11 / scale, 2.6), label = formatLabel(n.type, n.label)
       ctx.font = `500 ${fontSize}px Mukta, sans-serif`

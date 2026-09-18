@@ -4,18 +4,16 @@ import { latLngBounds } from 'leaflet'
 import { CircleMarker, MapContainer, Popup, TileLayer, Tooltip, useMap } from 'react-leaflet'
 import type { Place } from '@/lib/places'
 import { describePlace } from '@/lib/places'
-import { caseUrl, palette, profileUrl } from '@/lib/graph'
-import { formatDate, formatLabel, plural } from '@/lib/format'
+import { caseUrl, palette, profileUrl, tone } from '@/lib/graph'
+import { formatDate, formatLabel, listed, plural } from '@/lib/format'
 
 export type Layer = 'firs' | 'homes' | 'calls'
 export const layers: Layer[] = ['firs', 'homes', 'calls']
 export const layerNames: Record<Layer, string> = { firs: 'FIR places', homes: 'Homes', calls: 'Call activity' }
 const layerPhrases: Record<Layer, string> = { firs: 'FIR places', homes: 'homes', calls: 'call activity' }
-export const layerHues: Record<Layer, string> ={ firs: palette.location, homes: palette.person, calls: palette.phone }
-const selectedStroke = '#B42318'
+export const layerHues: Record<Layer, string> = { firs: palette.location, homes: palette.person, calls: palette.phone }
 const centre: [number, number] = [18.5204, 73.8567]
-const tiles: string = import.meta.env.VITE_MAP_TILES ||'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
-const listed = (items: string[]) => items.length < 3 ? items.join(' and ') : `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`
+const tiles: string = import.meta.env.VITE_MAP_TILES || 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
 
 const weigh = (place: Place): Record<Layer, number> => ({ firs: 3 * place.firs.length, homes: place.residents.length, calls: Math.log1p(place.calls) })
 
@@ -52,7 +50,7 @@ export default function PlaceMap({ places, shown, selected, onSelect }: { places
         key={place.id}
         center={[place.lat, place.lon]}
         radius={Math.min(26, 6 + 3 * Math.sqrt(place.size))}
-        pathOptions={{ color: picked ? selectedStroke : '#FFFFFF', weight: picked ? 3 : 1.5, fillColor: layerHues[dominant], fillOpacity: 0.55 }}
+        pathOptions={{ color: picked ? tone.string : tone.white, weight: picked ? 3 : 1.5, fillColor: layerHues[dominant], fillOpacity: 0.55 }}
         eventHandlers={{ click: () => onSelect(place.id) }}
       >
         <Tooltip permanent={labelled.has(place.id)} direction="top" offset={[0, -4]}>{place.label}</Tooltip>

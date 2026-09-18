@@ -13,9 +13,23 @@ const str = (value: unknown) => typeof value === 'string' ? value : undefined
 const transfersOf = (edge: Relationship) => Array.isArray(edge.attributes.transfers) ? edge.attributes.transfers as Transfer[] : []
 const counterpart = (edge: Relationship, ids: Set<string>) => ids.has(edge.source) ? edge.target : ids.has(edge.target) ? edge.source : undefined
 
+export const owners = (graph: GraphResponse) => new Map(graph.edges.filter(e => e.type === 'owns').map(e => [e.target, e.source]))
+
 export function ownerOf(graph: GraphResponse, id: string) {
-  const edge = graph.edges.find(e => e.type === 'owns' && e.target === id)
-  return edge ? nodesById(graph).get(edge.source) : undefined
+  const owner = owners(graph).get(id)
+  return owner ? nodesById(graph).get(owner) : undefined
+}
+
+export function placesInAddress(address: string, places: GraphNode[]) {
+  let rest = address
+  const found: GraphNode[] = []
+  for (const place of [...places].filter(p => p.label !== 'Pune').sort((a, b) => b.label.length - a.label.length)) {
+    const pattern = new RegExp(`\\b${place.label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i')
+    if (!pattern.test(rest)) continue
+    rest = rest.replace(pattern, ' ')
+    found.push(place)
+  }
+  return found
 }
 
 export function ownedBy(graph: GraphResponse, id: string) {
@@ -54,16 +68,7 @@ export function placesOf(graph: GraphResponse, id: string): PlaceLink[] {
     add(byId.get(counterpart(edge, ids) ?? ''), edge.type === 'resides_at' ? 'home' : 'seen')
   }
   const address = str(byId.get(id)?.attributes.address)
-  if (address) {
-    let rest = address.toLowerCase()
-    const places = graph.nodes.filter(n => n.type === 'location' && n.label !== 'Pune').sort((a, b) => b.label.length - a.label.length)
-    for (const place of places) {
-      const at = rest.indexOf(place.label.toLowerCase())
-      if (at === -1) continue
-      rest = rest.slice(0, at) + rest.slice(at + place.label.length)
-      add(place, 'home')
-    }
-  }
+  if (address) for (const place of placesInAddress(address, graph.nodes.filter(n => n.type === 'location'))) add(place, 'home')
   const caseIds = caseRoles(graph, ids)
   for (const node of graph.nodes) if (node.sources.some(s => caseIds.has(s))) add(node, 'FIR place')
   return [...found.values()]
@@ -72,7 +77,7 @@ export function placesOf(graph: GraphResponse, id: string): PlaceLink[] {
 export function associatesOf(graph: GraphResponse, id: string): Associates {
   const byId = nodesById(graph)
   const ids = new Set(identifiersOf(graph, id))
-  const owner = new Map(graph.edges.filter(e => e.type === 'owns').map(e => [e.target, e.source]))
+  const owner = owners(graph)
   const coAccused = new Map<string, Associate>(), associates = new Map<string, Associate>(), called = new Map<string, Associate>(), money = new Map<string, Associate>()
   const push = (into: Map<string, Associate>, nodeId: string, count: number) => {
     const node = byId.get(nodeId)

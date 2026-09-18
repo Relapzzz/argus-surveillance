@@ -33,12 +33,6 @@
 .entity-kind i { width: 9px; height: 9px; border-radius: 50%; }
 .entity-kind .group-chip { margin-left: auto; }
 .entity-name { margin: 8px 0 2px; font-size: 24px; overflow-wrap: anywhere; }
-.entity-id { margin-bottom: 16px; color: var(--ink-3); font-size: 12px; overflow-wrap: anywhere; }
-.metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.metric { padding: 10px 12px; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper); }
-.metric dt { color: var(--ink-2); font-size: 12px; font-weight: 500; }
-.metric dt small { display: block; color: var(--ink-3); font-size: 11px; font-weight: 400; }
-.metric dd { margin-top: 4px; color: var(--ink); font-size: 18px; font-weight: 600; font-variant-numeric: tabular-nums; }
 .neighbors button { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 10px; width: 100%; padding: 8px 0; border: 0; border-bottom: 1px solid var(--rule); background: transparent; color: var(--ink); font-size: 14px; text-align: left; }
 .neighbors button:hover { color: var(--string); }
 .neighbors i { width: 8px; height: 8px; border-radius: 50%; }

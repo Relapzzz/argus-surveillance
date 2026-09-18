@@ -1,5 +1,6 @@
 import type { CaseSummary, GraphNode, GraphResponse, Relationship } from '@/api/types'
 import { plural } from '@/lib/format'
+import { identifiersOf, placesInAddress } from '@/lib/profile'
 
 export interface Place {
   id: string
@@ -14,8 +15,6 @@ export interface Place {
 }
 export interface PlaceReport { places: Place[]; unknownCells: number }
 
-const city = 'Pune'
-const escape = (text: string) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 const cellsOf = (edge: Relationship): string[] => {
   const cells = edge.attributes.cells
   return Array.isArray(cells) ? cells.filter((cell): cell is string => typeof cell === 'string' && cell !== '') : []
@@ -38,17 +37,14 @@ export function aggregatePlaces(graph: GraphResponse, cases: CaseSummary[], enti
     const lat = node.attributes.lat, lon = node.attributes.lon
     return node.type === 'location' && typeof lat === 'number' && typeof lon === 'number' ? [{ node, lat, lon }] : []
   })
-  const identifiers = entityId
-    ? new Set([entityId, ...graph.edges.filter(edge => edge.type === 'owns' && edge.source === entityId && ['phone', 'account'].includes(nodes.get(edge.target)?.type ?? '')).map(edge => edge.target)])
-    : undefined
+  const identifiers = entityId ? new Set(identifiersOf(graph, entityId)) : undefined
 
   const placeCases = new Map<string, string[]>()
   const casePeople = new Map<string, GraphNode[]>()
   const ownCases = new Set<string>()
   for (const edge of graph.edges) {
     if (edge.type !== 'mentioned_in' && edge.type !== 'seen_at') continue
-    const from = nodes.get(edge.source), to = nodes.get(edge.target)
-    if (!from || !to) continue
+    const from = nodes.get(edge.source)!, to = nodes.get(edge.target)!
     const [other, record] = from.type === 'case' ? [to, from] : [from, to]
     if (record.type !== 'case') continue
     if (other.type === 'location') push(placeCases, other.id, record.id)
@@ -59,25 +55,18 @@ export function aggregatePlaces(graph: GraphResponse, cases: CaseSummary[], enti
   const placeResidents = new Map<string, GraphNode[]>()
   for (const edge of graph.edges) {
     if (edge.type !== 'resides_at') continue
-    const from = nodes.get(edge.source), to = nodes.get(edge.target)
-    if (!from || !to) continue
+    const from = nodes.get(edge.source)!, to = nodes.get(edge.target)!
     const [person, place] = from.type === 'location' ? [to, from] : [from, to]
     if (person.type !== 'person' || place.type !== 'location') continue
     if (identifiers && !identifiers.has(person.id)) continue
     push(placeResidents, place.id, person)
   }
-  const byLength = locations.map(place => place.node).filter(place => place.label !== city).sort((a, b) => b.label.length - a.label.length)
+  const known = locations.map(place => place.node)
   for (const person of graph.nodes) {
     if (person.type !== 'person' || (identifiers && !identifiers.has(person.id))) continue
     const address = person.attributes.address
     if (typeof address !== 'string') continue
-    let rest = address
-    for (const place of byLength) {
-      const pattern = new RegExp(`\\b${escape(place.label)}\\b`, 'i')
-      if (!pattern.test(rest)) continue
-      rest = rest.replace(pattern, ' ')
-      if (!placeResidents.get(place.id)?.some(resident => resident.id === person.id)) push(placeResidents, place.id, person)
-    }
+    for (const place of placesInAddress(address, known)) if (!placeResidents.get(place.id)?.some(resident => resident.id === person.id)) push(placeResidents, place.id, person)
   }
 
   const idByLabel = new Map(locations.map(place => [place.node.label, place.node.id]))

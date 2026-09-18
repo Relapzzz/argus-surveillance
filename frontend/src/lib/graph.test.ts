@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { GraphResponse } from '@/api/types'
+import * as graphHelpers from './graph'
 import { groupNames, humanize, profileUrl, routeUrl } from './graph'
 
 const node = (id: string, type: GraphResponse['nodes'][number]['type'], label: string, community: number): GraphResponse['nodes'][number] => ({ id, type, label, attributes: {}, sources: [], metrics: { degree: 1, betweenness: 0, pagerank: 0, community } })
@@ -30,5 +31,28 @@ describe('group names', () => {
   it('builds routes', () => {
     expect(profileUrl('person:dinesh deshmukh')).toBe('/entity/person%3Adinesh%20deshmukh')
     expect(routeUrl('phone:9774964990', 'person:aslam khan')).toBe('/network?tab=route&from=phone%3A9774964990&to=person%3Aaslam+khan')
+  })
+})
+
+describe('graph helpers', () => {
+  it('filters to induced subgraphs and merges by id', () => {
+    const { filterGraph, mergeGraphs } = graphHelpers
+    const persons = filterGraph(graph, { types: ['person'] })
+    expect(persons.nodes.map(n => n.id)).toEqual(['person:a', 'person:b', 'person:c'])
+    expect(persons.edges).toEqual([])
+    const merged = mergeGraphs(persons, filterGraph(graph, { community: 0 }))
+    expect(merged.nodes.map(n => n.id)).toEqual(['person:a', 'person:b', 'person:c', 'location:warje'])
+    expect(merged.edges).toHaveLength(2)
+  })
+  it('builds the network, case, timeline and map urls and title-cases ids', () => {
+    const { networkUrl, caseUrl, timelineUrl, mapUrl, labelFromId } = graphHelpers
+    expect(networkUrl()).toBe('/network')
+    expect(networkUrl(['person:a', 'phone:1'])).toBe('/network?highlight=person%3Aa&highlight=phone%3A1&entity=person%3Aa')
+    expect(caseUrl('case:FIR-2026-0001')).toBe('/cases?case=case%3AFIR-2026-0001')
+    expect(timelineUrl('person:a', 'person:b')).toBe('/timeline?entity=person%3Aa&with=person%3Ab')
+    expect(mapUrl()).toBe('/map')
+    expect(mapUrl('person:a')).toBe('/map?entity=person%3Aa')
+    expect(labelFromId('person:aslam khan')).toBe('Aslam Khan')
+    expect(labelFromId('account:13389083863')).toBe('13389083863')
   })
 })

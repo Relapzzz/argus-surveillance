@@ -2,6 +2,7 @@ import type { EntityType, GraphFilters, GraphResponse } from '@/api/types'
 import { listed } from './format'
 
 export const palette: Record<EntityType, string> = { person: '#132238', phone: '#1971C2', vehicle: '#6741D9', location: '#C2255C', organization: '#0C8599', account: '#2B8A3E', case: '#868E96' }
+export const tone = { ink: '#132238', paper: '#F7F7F4', string: '#B42318', white: '#FFFFFF' }
 export const typeNames: Record<EntityType, string> = { person: 'Person', phone: 'Phone', vehicle: 'Vehicle', location: 'Place', organization: 'Organization', account: 'Account', case: 'FIR' }
 const groupHues = ['#3B6BC4', '#D9480F', '#2F9E44', '#7048E8', '#B8860B', '#0CA678', '#D6336C', '#5F6B7A']
 export const groupColor = (id: number) => groupHues[Math.abs(id) % groupHues.length]
@@ -11,8 +12,7 @@ export function groupNames(graph: GraphResponse): Map<number, string> {
   const tally = new Map<number, Map<string, number>>()
   for (const e of graph.edges) {
     if (e.type !== 'resides_at') continue
-    const a = nodes.get(e.source), b = nodes.get(e.target)
-    if (!a || !b) continue
+    const a = nodes.get(e.source)!, b = nodes.get(e.target)!
     const [person, place] = a.type === 'location' ? [b, a] : [a, b]
     if (person.type !== 'person' || place.type !== 'location' || place.label === 'Pune') continue
     const counts = tally.get(person.metrics.community) ?? new Map<string, number>()

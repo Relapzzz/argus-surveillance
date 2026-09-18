@@ -35,6 +35,18 @@ export default function Overview() {
   const total = s ? Object.values(s.entities).reduce((a, b) => a + b, 0) : 0
   const stations = cases.data ? new Set(cases.data.map(c => c.station)).size : 0
   const groups = graph.data ? new Set(graph.data.nodes.filter(n => n.type === 'person').map(n => n.metrics.community)).size : 0
+  const sharedFir = useMemo(() => {
+    if (!graph.data) return false
+    const community = new Map(graph.data.nodes.map(n => [n.id, n.type === 'person' ? n.metrics.community : undefined]))
+    const perCase = new Map<string, Set<number>>()
+    for (const e of graph.data.edges) {
+      if (e.type !== 'mentioned_in') continue
+      const [person, record] = e.source.startsWith('case:') ? [e.target, e.source] : [e.source, e.target]
+      const group = community.get(person)
+      if (group !== undefined) perCase.set(record, (perCase.get(record) ?? new Set()).add(group))
+    }
+    return [...perCase.values()].some(set => set.size > 1)
+  }, [graph.data])
   const tasks = guideTasks({ alerts: alerts.data, players: players.data, cases: cases.data, firstCase: firstCase.data, graph: graph.data })
 
   return <div className="page overview">
@@ -58,10 +70,10 @@ export default function Overview() {
           <b>{formatCount(total)}</b> people, phones, accounts and places
           {s.relationships > 0 ? <>, linked by <b>{formatCount(s.relationships)}</b> relationships.</> : <>, not linked to each other yet.</>}
           {groups === 1 && <> One group so far.</>}
-          {groups > 1 && <> <b>{formatCount(groups)}</b> groups that never share an FIR
+          {groups > 1 && <> <b>{formatCount(groups)}</b> groups{!sharedFir && <> that never share an FIR</>}
             {bridgeEntity.data
-              ? <>, and one person whose phone talks {groups === 2 ? 'to both' : 'across them'}: <Link to={networkUrl(bridge!.entity_ids)}>{bridgeEntity.data.entity.label}</Link>.</>
-              : <>, with no go-between between them yet.</>}
+              ? <>, and one person every route between them runs through: <Link to={networkUrl(bridge!.entity_ids)}>{bridgeEntity.data.entity.label}</Link>.</>
+              : <>, with no single go-between yet.</>}
           </>}
         </p>
       </section>

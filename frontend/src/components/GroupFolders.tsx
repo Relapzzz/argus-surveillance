@@ -15,8 +15,7 @@ export default function GroupFolders({ graph, names }: { graph: GraphResponse; n
     const homes = new Map<string, number>()
     for (const edge of graph.edges) {
       if (edge.type !== 'resides_at') continue
-      const a = byId.get(edge.source), b = byId.get(edge.target)
-      if (!a || !b) continue
+      const a = byId.get(edge.source)!, b = byId.get(edge.target)!
       const [person, place] = a.type === 'location' ? [b, a] : [a, b]
       if (person.type !== 'person' || place.type !== 'location' || person.metrics.community !== id) continue
       homes.set(place.label, (homes.get(place.label) ?? 0) + 1)

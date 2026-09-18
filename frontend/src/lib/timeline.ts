@@ -1,5 +1,6 @@
 import type { EntityType, GraphNode, GraphResponse } from '@/api/types'
 import { formatLabel, parseTime } from './format'
+import { identifiersOf, owners } from './profile'
 
 export type EventKind = 'call' | 'transfer' | 'fir'
 export interface CallEvent { kind: 'call'; at: Date; counterpart: string; via: string; cell: string }
@@ -16,11 +17,6 @@ interface CaseAttributes { fir_number: string; station: string; incident_time: s
 const monthFormat = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata', year: 'numeric', month: '2-digit' })
 const dayFormat = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata', year: 'numeric', month: '2-digit', day: '2-digit' })
 
-const owners = (graph: GraphResponse) => new Map(graph.edges.filter(e => e.type === 'owns').map(e => [e.target, e.source]))
-function identifiersOf(graph: GraphResponse, id: string) {
-  return [id, ...graph.edges.filter(e => e.type === 'owns' && e.source === id).map(e => e.target)]
-}
-
 export const dayKey = (at: Date) => dayFormat.format(at)
 export const dayStart = (day: string) => new Date(day + 'T00:00:00+05:30')
 export const monthStart = (at: Date) => new Date(monthFormat.format(at) + '-01T00:00:00+05:30')
@@ -32,7 +28,7 @@ export function monthAfter(at: Date) {
 export function actors(graph: GraphResponse) {
   const nodes = new Map(graph.nodes.map(n => [n.id, n]))
   const own = owners(graph)
-  return (id: string) => nodes.get(own.get(id) ?? id) as GraphNode
+  return (id: string) => nodes.get(own.get(id) ?? id)
 }
 
 export function buildEvents(graph: GraphResponse, id: string): TimelineEvent[] {
@@ -67,7 +63,7 @@ export function lanes(graph: GraphResponse, events: TimelineEvent[], withId?: st
   for (const event of events) {
     if (event.kind === 'fir') continue
     const node = actorOf(event.counterpart)
-    if (keep && !keep.has(node.id)) continue
+    if (!node || (keep && !keep.has(node.id))) continue
     let lane = found.get(node.id)
     if (!lane) {
       lane = { id: node.id, label: formatLabel(node.type, node.label), type: node.type, group: node.metrics.community, calls: 0, transfers: 0, events: [] }

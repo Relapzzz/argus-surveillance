@@ -1,4 +1,6 @@
 import io
+
+import pytest
 from datetime import datetime
 
 from conftest import GANGS, graph_of
@@ -26,6 +28,18 @@ PERSONS = """name,alias,phone,account,address,prior_case_count
 Aslam Khan,Chotu,9800000001,11111111111,"H.No. 33, Satara Road, Swargate, Pune",8
 Sachin Patil,,,,"H.No. 795, Atul Nagar, Warje, Pune",1
 """
+
+
+BARE_CDR = """caller,callee,start_time
+9800000001,9800000002,2026-07-02T11:00:00+05:30
+"""
+
+
+def test_cdr_without_tower_columns_leaves_cells_blank():
+    result = ingest_cdr(io.StringIO(BARE_CDR))
+    assert result.relationships[0].attributes["cells"] == [""]
+    with pytest.raises(ValueError):
+        ingest_cdr(io.StringIO("caller,callee\n9800000001,9800000002\n"))
 
 
 def test_cdr_groups_calls_per_pair():

@@ -1,6 +1,7 @@
 import raw from '@/fixtures/graph.json'
 import { ApiError } from './errors'
 import { entityTypes } from './types'
+import { listed } from '@/lib/format'
 import type { Alert, CaseDetail, Community, EntityDetail, GraphFilters, GraphNode, GraphResponse, KeyPlayer, PathResponse, Stats } from './types'
 
 const graph = raw as unknown as GraphResponse & { alerts: Alert[]; cases: Omit<CaseDetail, 'entity_count'>[] }
@@ -14,7 +15,6 @@ const node = (id: string) => {
   return found
 }
 const neighbors = (id: string) => graph.edges.filter(e => e.source === id || e.target === id).map(e => ({ edge: e, node: node(e.source === id ? e.target : e.source) }))
-const listed = (items: number[]) => items.length < 3 ? items.join(' and ') : `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`
 const percentile = (sorted: number[], value: number) => { const at = sorted.findIndex(v => v >= value); return (at === -1 ? sorted.length : at) / sorted.length }
 
 function actorNeighbors(person: GraphNode) {
