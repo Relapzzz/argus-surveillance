@@ -64,9 +64,9 @@ App at http://localhost:5173.
 
 Everything below is synthetic and was generated with a fixed seed, but it is built the way a real investigation looks: 40 FIRs from nine Pune police stations between June and August 2026, about 3,000 call detail records and 800 bank transfers. Read separately, the FIRs are eight extortion cases, eight assaults, eight thefts, eight drug seizures and eight cyber frauds. Read together, they describe two gangs and the man who connects them.
 
-The Warje gang (Group 0 on the network). Aslam Khan alias Chotu runs it from Swargate and drives the car MH 14 JX 0154 that appears in several complaints. His lieutenants are Ramesh More alias Baba and Kiran Desai alias Dada, both from Warje. Nine members do the street work: Sachin Patil, Vaibhav Sawant, Salman Khan, Prakash Jadhav, Ramesh Kulkarni, Sunil Thorat, Deepak Shinde, Ajay Deshmukh and Vaibhav Patil. Their extortion and assault cases cluster around Warje, Kothrud and Swargate.
+The Warje gang, shown on the board as the Swargate group because groups are named after where most of their people live. Aslam Khan alias Chotu runs it from Swargate and drives the car MH 14 JX 0154 that appears in several complaints. His lieutenants are Ramesh More alias Baba and Kiran Desai alias Dada, both from Warje. Nine members do the street work: Sachin Patil, Vaibhav Sawant, Salman Khan, Prakash Jadhav, Ramesh Kulkarni, Sunil Thorat, Deepak Shinde, Ajay Deshmukh and Vaibhav Patil. Their extortion and assault cases cluster around Warje, Kothrud and Swargate.
 
-The Kondhwa group (Group 1). Vijay Desai alias Vicky leads it from Kondhwa with eight members: Rohit Kamble, Javed Ansari, Imran Shaikh, Tanveer Sayyed, Sanjay Jadhav, Santosh Kadam, Ravindra Chavan and Irfan Shaikh. Sanjay Jadhav is the most frequently named accused in the whole corpus, with nine FIRs. Their cases sit around Kondhwa, Hadapsar and Camp, and include the drug seizures and cyber frauds.
+The Kondhwa group, shown on the board as the Camp group. Vijay Desai alias Vicky leads it from Kondhwa with eight members: Rohit Kamble, Javed Ansari, Imran Shaikh, Tanveer Sayyed, Sanjay Jadhav, Santosh Kadam, Ravindra Chavan and Irfan Shaikh. Sanjay Jadhav is the most frequently named accused in the whole corpus, with nine FIRs. Their cases sit around Kondhwa, Hadapsar and Camp, and include the drug seizures and cyber frauds.
 
 No FIR names members of both gangs. An investigator reading the register would see two unrelated sets of cases. The system finds what links them:
 
@@ -80,19 +80,21 @@ The live upload closes the story. backend/data/demo/FIR-2026-0041.txt is a new c
 
 ## Presenting the demo
 
-The seed network is committed, so the demo needs no network access and no LLM key.
+The seed network is committed, so the demo needs no network access and no LLM key. Open the Guide from the header: each step below is one of its tasks, and every page also has the Hindi line an officer expects.
 
-1. Briefing. Read the summary sentence aloud: 40 FIRs become 225 linked entities, the network splits into groups, and one person with five connections is the only link between them. Point at the leads: each alert is phrased as the question an investigator would ask.
-2. Network. The shaded areas are the groups. Open the go-between lead: Dinesh Deshmukh lights up between the two gangs while everything else fades, and the inspector says he is not named in any FIR.
-3. Route tab. Trace phone 9774964990 to Aslam Khan. Three hops from a complainant's phone to the gang leader.
-4. Alerts tab. Open a structuring alert and read the evidence: the amounts, the week, and where the money went.
-5. Case files. Open FIR-2026-0001. Every highlighted span is an entity the system extracted; click one to jump to it on the network.
-6. Add records. Upload backend/data/demo/FIR-2026-0041.txt. Four new entities appear, and the key players now include Kiran Desai and Imran Shaikh as bridges.
-7. Restore the demo dataset from the same page before the next run.
+1. Overview. Read the finding aloud: 40 FIRs from nine stations become 225 linked people, phones, accounts and places, two groups that never share an FIR, and one man whose phone talks to both. The strip underneath shows how the picture was built, in the order the records were read.
+2. See who connects the groups. The board lights Dinesh Deshmukh in red between the two group areas while everything else fades, and the inspector says he is the only route between them and is not named in any FIR. Open full profile shows his phone, account, address, his associates on both sides and the money that moved through him, and prints as one sheet.
+3. Trace a complainant's phone to a leader. The route from 97749 64990 to Aslam Khan is drawn as the red string: three hops from a complaint to the head of a group.
+4. Follow the money. The Alerts page, filtered to structuring, reads each mule account in plain words: nine transfers just under Rs 50,000 in a week, then the whole sum moved on to the leader's account.
+5. See when they talked. The timeline of Dinesh Deshmukh shows his calls to both groups on their own lanes with the money squares between them; click a mark to read that day.
+6. See where it happened. The map shows the FIR places, homes and cell towers of Pune; follow one person to see only their places.
+7. Read an FIR. FIR-2026-0001 opens as the sheet it was written on, with every extracted entity highlighted; click a name to open the profile.
+8. Add a new FIR. Upload backend/data/demo/FIR-2026-0041.txt: four new entities appear and the key people now include Kiran Desai and Imran Shaikh as bridges.
+9. Restore the demo records from the same page before the next run.
 
 ## Using it for a new case
 
-The demo dataset is only a starting point. On the Add records page, Start a new investigation empties the workspace. Add the FIRs of the new case as text files, then the call detail records and bank statements as CSV files in the formats shown on the page. Entities with the same phone number, account number, plate or name are matched automatically, so each file adds to the same picture. The Briefing rewrites itself from whatever records are present, and the demo dataset can be restored at any time.
+The demo dataset is only a starting point. On the Add records page, Start a new investigation empties the workspace. Add the FIRs of the new case as text files, then the call detail records and bank statements as CSV files in the formats shown on the page. Entities with the same phone number, account number, plate or name are matched automatically, so each file adds to the same picture. The Overview rewrites itself from whatever records are present, and the demo dataset can be restored at any time.
 
 By default the workspace lives in memory and is lost when the backend restarts. To keep it, create a free Neo4j AuraDB instance (no card needed), paste the credentials file it offers for download into backend/.env as it is, add GRAPH_STORE=neo4j, and run the seed script once so the demo dataset is loaded into the database:
 

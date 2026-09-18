@@ -56,7 +56,7 @@ export default function Network() {
   return <div className="stage">
     <title>Network, Argus</title>
     <section className="stage-main">
-      <header className="stage-head"><h1 className="display">Network<span className="hi" lang="hi">नेटवर्क</span></h1>
+      <header className="stage-head"><h1 className="display">Network</h1><span className="hi" lang="hi">नेटवर्क</span>
         <Search items={items} label="Search entities" placeholder="Search a name, phone, account or plate" onPick={i => select(i.id)} />
         <select className="control" aria-label="Group" value={community ?? ''} onChange={e => setCommunity(e.target.value === '' ? undefined : Number(e.target.value))}><option value="">All groups</option>{groups.map(id => <option key={id} value={id}>{groupName(names, id)}</option>)}</select>
         <span className="seg-label">Colour by</span><div className="seg" role="group" aria-label="Colour nodes by"><button type="button" aria-pressed={colorBy === 'type'} onClick={() => setColorBy('type')}>Type</button><button type="button" aria-pressed={colorBy === 'group'} onClick={() => setColorBy('group')}>Group</button></div>

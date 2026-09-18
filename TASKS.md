@@ -1,7 +1,7 @@
 # TASKS
 
-Current phase, Person A: Phase 5 done on 18 September; next is Phase 6 cloud deployment from 19 September
-Current phase, Person B: Phase 5 timeline and map from 16 September; read the 14 September frontend entries in the decisions log first
+Current phase: Phase 5 complete on 18 September, including the frontend rework and its timeline and map; next is Phase 6 cloud deployment and hosted frontend from 19 September
+Person B left the team on 18 September; Person A owns the frontend as well
 MVP demo: 15 September 2026
 Full project: about 12 October 2026
 
@@ -87,7 +87,7 @@ Update this file before ending every session. Tick items, move the current phase
 ## Phase 5: Neo4j AuraDB Free persistence (A) and timeline plus map (B), 16 to 18 September
 
 - [x] A: AuraDB instance, store writes with MERGE, metrics from Neo4j load, Cypher for lookup, ego and path
-- [ ] B: timeline view, map view
+- [x] A: timeline view, map view, delivered inside the frontend rework of 18 September with Overview, Profile, Alerts, Guide and the light case board
 
 ## Phase 6: Cloud deployment (A) and hosted frontend (B), 19 to 20 September
 
@@ -147,9 +147,19 @@ Notes for Person A:
 - backend/.env holds the AuraDB credentials pasted from Aura's file plus GRAPH_STORE=json; set GRAPH_STORE=neo4j to run the API against AuraDB (the backend launch config reads .env). The database holds the committed seed. Any uv run pytest with NEO4J_URI set rewrites it with the seed.
 - AuraDB Free is deleted after 30 days without activity; reload with GRAPH_STORE=neo4j uv run python scripts/seed.py.
 
-Notes for Person B:
+Frontend follow-ups for later phases, all on the new pages:
 
-- Person A redesigned the frontend in Phase 4 (14 September) and rewrote tests/e2e/frontend.spec.ts for it: 4 of 4 pass in fixture mode. Read the 14 September decisions before changing src/components/GraphCanvas.tsx or src/styles.css.
+- Phase 6: Vercel builds frontend/ as it is; set VITE_API_URL, VITE_API_KEY and, for the hosted map, VITE_MAP_TILES with a CARTO key if OpenStreetMap volume becomes a problem.
+- Phase 7: the engine selector belongs on the Add records page beside the FIR upload; the comparison view is a new page; the evaluation table goes on the Overview under the pipeline strip.
+- Phase 8: new drop zones join the Add records page; the duplicate review screen is a new page linked from the upload result.
+- Phase 9: per-pair call volume charts go on the Alerts page under each alert and reuse the timeline lanes.
+- Phase 10: the query bar sits in the Network header beside search; the report builder collects from Profile and Alerts and reuses the print stylesheet.
+- Phase 11: login lives in the header where the Guide button is; masking applies on Profile and in Search; the audit viewer is a new page.
+
+Notes for the frontend:
+
+- The frontend was rebuilt on 18 September as a light case board; read the 18 September decisions before changing src/components/GraphCanvas.tsx, src/index.css or src/styles.css. tests/e2e/frontend.spec.ts has 7 tests that run in fixture mode against the seed graph; stop any dev server on 5173 first.
+- Hindi strings live in src/lib/vocab.ts and need a teammate's review.
 - Frontend setup: copy frontend/.env.example to frontend/.env, set VITE_API_URL=http://localhost:8000 and VITE_API_KEY to the backend key, keep VITE_USE_FIXTURE=false against the real backend. bun install --frozen-lockfile, bun run dev.
 - Open review items from the merge: a tautological assertion in src/api/fixture.test.ts and the missing ESLint config.
 
@@ -216,3 +226,9 @@ Notes for Person B:
 - 2026-09-18: Settings ignores extra .env keys and uses Aura's variable names NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD and NEO4J_DATABASE, so the credentials file Aura offers for download is pasted into backend/.env unchanged. GRAPH_STORE=json stays the default, tests force it through a session fixture, and tests/test_neo4j.py runs only when NEO4J_URI is set.
 - 2026-09-18: The AuraDB Free instance (200K nodes, 400K relationships, deleted after 30 days idle) was created during the session and seeded with 225 nodes and 1820 edges. The neo4j+s connection worked on the Norton laptop without truststore. Every GET endpoint returns the same data from both stores (tests/test_neo4j.py::test_endpoints_match_json_store); shortest routes may differ among equal-length alternatives.
 - 2026-09-18: Phase 5 verify: uv run pytest 160 passed including the 8 live Neo4j tests, GRAPH_STORE=neo4j seed.py loaded 225 nodes and 1820 edges into AuraDB, and the API started against AuraDB returned the same /api/stats as the JSON store (verifier, 18 September). Running seed.py again rewrote graph.json with floating point noise only and the committed file was kept.
+- 2026-09-18: Person B left the team; Person A owns the frontend. The frontend was rebuilt as a light case board (branch b/phase-5, phases F0 to F7 of that day's plan): paper surfaces, navy ink, khaki file chrome and one red string for routes, selection and highlights; Anek Latin Variable for display and Mukta for text and the Hindi lines, both from Fontsource; no monospace, identifiers use tabular figures and Indian formats from src/lib/format.ts; navigation, page titles and primary buttons carry a Hindi line from src/lib/vocab.ts. Tailwind v4 and the shadcn base-nova primitives stay; every visible style is hand-written CSS on the tokens in src/index.css, with src/styles.css for the shell and shared pieces and one stylesheet beside each page.
+- 2026-09-18: Pages are Overview (the finding as a sentence, the pipeline strip, Start with, People who matter, Leads, Groups as folders, ledger), Network (URL state entity, highlight, tab, from and to; the canvas fits every highlighted entity when an alert or route lights several), Profile at /entity/:id (why this matters from src/lib/why.ts, identifiers, FIRs, associates, activity, print stylesheet), Timeline (swimlanes from src/lib/timeline.ts), Map (react-leaflet 5, CircleMarkers, OpenStreetMap tiles muted by a CSS filter, URL from VITE_MAP_TILES because CARTO raster tiles now need a key), Case files (register plus the FIR sheet with a ruled header block; narrative highlights open profiles), Alerts (filters in the URL, evidence sentences from src/lib/alerts.ts), Add records. The Guide drawer derives its tasks from live data (src/lib/guide.ts) and the header search finds entities and FIR numbers.
+- 2026-09-18: Groups are named after the locality where most of their people live (groupNames in src/lib/graph.ts): the Warje gang appears as the Swargate group and the Kondhwa group as the Camp group; humanize() rewrites API reasons with those names and turns Rs into the rupee sign. README uses the same names.
+- 2026-09-18: Backend support for time and place: app/places.py holds the tower table and locality coordinates (the generator imports it), called edges carry a cells list parallel to timestamps, location nodes carry lat and lon; graph.json was regenerated (225 nodes, 1820 edges) and AuraDB reloaded. The frontend fixture is now a copy of the seed graph.json; the fixture module skips FIR nodes on routes and ranks key players with the API's percentile composite, so fixture mode phrases the go-between like the API.
+- 2026-09-18: Two cascade lessons: unlayered element resets in styles.css beat Tailwind utilities, so the button and link resets sit in @layer base; buttonVariants() merges its classes through cn so link-styled outline buttons keep their border.
+- 2026-09-18: Verify: uv run pytest 164 passed; bun run test 40 passed; bun run build clean; bun run test:e2e 7 tests in fixture mode; the demo walked in the browser against the live backend.

@@ -312,6 +312,8 @@ B files: src/pages/Timeline.tsx, src/pages/Map.tsx.
 B steps: a timeline of calls, transfers and incidents for a selected entity or pair built from the edge event lists; a Leaflet map of towers and incident locations using the coordinates the dataset provides; both reachable from the entity panel.
 B verify: selecting the intermediary shows its calls to both gangs on the timeline; incidents appear on the map.
 
+Outcome, 18 September: Person B left the team and Person A rebuilt the whole frontend on branch b/phase-5 as the light case board described in the Frontend design above, delivering the timeline and map inside it. The backend gained app/places.py, a cells list on called edges and lat and lon on location nodes so both views have real data; graph.json was regenerated with the same 225 nodes and 1820 edges and AuraDB reloaded, and the frontend fixture is now the seed graph. Verify: uv run pytest 164 passed, bun run test 40 passed, bun run build clean, bun run test:e2e 7 passed in fixture mode, and the demo walked in the browser against the live backend: the go-between lit between the two groups, the route from the complainant's phone to Aslam Khan drawn in three hops, the structuring alerts read in words, FIR-2026-0001 as a sheet, the go-between's timeline with lanes for both groups, the map with FIR places, homes and towers.
+
 ### Phase 6: Cloud deployment (A), hosted frontend (B)
 
 Dates: 19 to 20 September. Branches: a/phase-6, b/phase-6.
