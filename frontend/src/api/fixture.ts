@@ -1,17 +1,31 @@
 import raw from '@/fixtures/graph.json'
 import { ApiError } from './errors'
 import { entityTypes } from './types'
-import type { Alert, CaseDetail, Community, EntityDetail, GraphFilters, GraphResponse, KeyPlayer, PathResponse, Stats } from './types'
+import type { Alert, CaseDetail, Community, EntityDetail, GraphFilters, GraphNode, GraphResponse, KeyPlayer, PathResponse, Stats } from './types'
 
 const graph = raw as unknown as GraphResponse & { alerts: Alert[]; cases: Omit<CaseDetail, 'entity_count'>[] }
 const cases: CaseDetail[] = graph.cases.map(c => ({ ...c, entity_count: new Set(c.entities.map(e => e.id)).size }))
+const byId = new Map(graph.nodes.map(n => [n.id, n]))
+const owner = new Map(graph.edges.filter(e => e.type === 'owns').map(e => [e.target, e.source]))
 const subgraph = (ids: Set<string>): GraphResponse => structuredClone({ nodes: graph.nodes.filter(n => ids.has(n.id)), edges: graph.edges.filter(e => ids.has(e.source) && ids.has(e.target)) })
 const node = (id: string) => {
-  const found = graph.nodes.find(n => n.id === id)
+  const found = byId.get(id)
   if (!found) throw new ApiError(404, 'Entity not found.')
   return found
 }
 const neighbors = (id: string) => graph.edges.filter(e => e.source === id || e.target === id).map(e => ({ edge: e, node: node(e.source === id ? e.target : e.source) }))
+const listed = (items: number[]) => items.length < 3 ? items.join(' and ') : `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`
+const percentile = (sorted: number[], value: number) => { const at = sorted.findIndex(v => v >= value); return (at === -1 ? sorted.length : at) / sorted.length }
+
+function actorNeighbors(person: GraphNode) {
+  const own = [person.id, ...graph.edges.filter(e => e.type === 'owns' && e.source === person.id).map(e => e.target)]
+  const set = new Set<string>()
+  for (const id of own) for (const { node: n } of neighbors(id)) {
+    const actor = owner.get(n.id) ?? n.id
+    if (actor !== person.id && n.type !== 'location') set.add(actor)
+  }
+  return [...set].map(id => node(id))
+}
 
 export const fixture = {
   graph(filters: GraphFilters = {}): GraphResponse {
@@ -35,7 +49,15 @@ export const fixture = {
     return subgraph(ids)
   },
   keyPlayers(limit = 10): KeyPlayer[] {
-    return graph.nodes.filter(n => n.type === 'person').sort((a, b) => b.metrics.pagerank - a.metrics.pagerank).slice(0, limit).map(n => ({ entity_id: n.id, label: n.label, score: n.metrics.pagerank, ...n.metrics, reason: `PageRank ${n.metrics.pagerank.toFixed(3)} with ${n.metrics.degree} connections in community ${n.metrics.community}` }))
+    const persons = graph.nodes.filter(n => n.type === 'person')
+    const ranked = { pagerank: persons.map(p => p.metrics.pagerank).sort((a, b) => a - b), betweenness: persons.map(p => p.metrics.betweenness).sort((a, b) => a - b), degree: persons.map(p => p.metrics.degree).sort((a, b) => a - b) }
+    return persons.map((p): KeyPlayer => {
+      const pct = { pagerank: percentile(ranked.pagerank, p.metrics.pagerank), betweenness: percentile(ranked.betweenness, p.metrics.betweenness), degree: percentile(ranked.degree, p.metrics.degree) }
+      const spanned = [...new Set(actorNeighbors(p).map(n => n.metrics.community))].sort((a, b) => a - b)
+      const peers = persons.filter(q => q.metrics.community === p.metrics.community).map(q => q.metrics.degree)
+      const reason = pct.betweenness >= 0.95 && spanned.length > 1 ? `bridges communities ${listed(spanned)}` : p.metrics.degree === Math.max(...peers) ? `most connected in community ${p.metrics.community}` : `high influence in community ${p.metrics.community}`
+      return { entity_id: p.id, label: p.label, score: Math.round((0.4 * pct.pagerank + 0.4 * pct.betweenness + 0.2 * pct.degree) * 1e4) / 1e4, ...p.metrics, reason }
+    }).sort((a, b) => b.score - a.score).slice(0, limit)
   },
   communities(): Community[] {
     return [...new Set(graph.nodes.map(n => n.metrics.community))].sort((a, b) => a - b).map(id => {
@@ -52,11 +74,12 @@ export const fixture = {
   },
   path(source: string, target: string): PathResponse {
     node(source); node(target)
+    const allowed = (n: GraphNode) => n.type !== 'case' || n.id === source || n.id === target
     const parents = new Map<string, { id: string; edge: string } | null>([[source, null]])
     const queue = [source]
     for (let i = 0; i < queue.length && !parents.has(target); i++) {
       for (const { node: n, edge } of neighbors(queue[i])) {
-        if (!parents.has(n.id)) { parents.set(n.id, { id: queue[i], edge: edge.id }); queue.push(n.id) }
+        if (allowed(n) && !parents.has(n.id)) { parents.set(n.id, { id: queue[i], edge: edge.id }); queue.push(n.id) }
       }
     }
     if (!parents.has(target)) throw new ApiError(404, 'These entities are not connected.')

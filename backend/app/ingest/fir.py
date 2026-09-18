@@ -5,6 +5,7 @@ from itertools import combinations
 from app.extract import regex
 from app.extract.engine import extract
 from app.ingest import edge_id, entity_id
+from app.places import coordinates
 from app.schemas import Case, Entity, EntityType, FirIngest, Relationship, RelationshipType, Span
 
 STATION_RE = re.compile(r"Police Station\s+([^,.\n]+)")
@@ -82,9 +83,10 @@ def ingest_fir(text: str) -> FirIngest:
     accused = list(dict.fromkeys(entity_id("person", p.name) for p in extraction.persons if p.role == "accused"))
     for a, b in combinations(accused, 2):
         builder.edge(a, b, "co_accused")
-    for type, labels in (("organization", extraction.organizations), ("location", extraction.locations)):
-        for label in labels:
-            builder.edge(builder.entity(type, label), case_id, "mentioned_in")
+    for label in extraction.organizations:
+        builder.edge(builder.entity("organization", label), case_id, "mentioned_in")
+    for label in extraction.locations:
+        builder.edge(builder.entity("location", label, **coordinates(label)), case_id, "mentioned_in")
     for phone in extraction.phones:
         builder.identifier("phone", phone.number, phone.owner)
     for vehicle in extraction.vehicles:

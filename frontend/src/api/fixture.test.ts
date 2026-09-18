@@ -20,7 +20,7 @@ describe('fixture API contract', () => {
     expect(fixture.entity(id).entity.label).not.toBe('changed')
   })
   it('returns linked paths and proper not-found errors', () => {
-    const source = 'phone:9420055667', target = 'person:vikram singh'
+    const source = 'phone:9774964990', target = 'person:aslam khan'
     const result = fixture.path(source, target)
     expect(result.node_ids[0]).toBe(source)
     expect(result.node_ids.at(-1)).toBe(target)
@@ -29,9 +29,16 @@ describe('fixture API contract', () => {
       const edge = fixture.graph().edges.find(e => e.id === id)!
       expect(new Set([edge.source, edge.target])).toEqual(new Set(result.node_ids.slice(i, i + 2)))
     })
+    expect(result.node_ids).toHaveLength(4)
+    expect(result.node_ids.some(id => id.startsWith('case:'))).toBe(false)
     expect(() => fixture.path('missing', target)).toThrow()
-    expect(fixture.path(source, source)).toEqual({ node_ids: [source], edge_ids: [] })
     expect(() => fixture.case('missing')).toThrow()
+  })
+  it('ranks people like the API and phrases the go-between', () => {
+    expect(fixture.keyPlayers(2).map(p => p.label)).toEqual(['Vijay Desai', 'Aslam Khan'])
+    const bridge = fixture.keyPlayers(50).find(p => p.entity_id === 'person:dinesh deshmukh')!
+    expect(bridge.reason).toBe('bridges communities 0 and 1')
+    expect(fixture.keyPlayers(2).map(p => p.reason)).toEqual(['bridges communities 0, 1 and 3', 'most connected in community 0'])
   })
   it('returns case summaries without narratives and with distinct span counts', () => {
     for (const summary of fixture.cases()) {

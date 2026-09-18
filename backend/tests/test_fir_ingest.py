@@ -99,6 +99,11 @@ def test_seed_fir_case_carries_header_fields(first_fir):
     assert node.attributes["incident_time"] == "2026-06-14T15:59:00"
 
 
+def test_seed_fir_locations_carry_coordinates(first_fir):
+    place = next(e for e in first_fir.entities if e.id == "location:shivajinagar")
+    assert (place.attributes["lat"], place.attributes["lon"]) == (18.5308, 73.8475)
+
+
 def test_seed_fir_spans_match_labels_without_overlap(first_fir):
     case = first_fir.case
     entities = {e.id: e for e in first_fir.entities}

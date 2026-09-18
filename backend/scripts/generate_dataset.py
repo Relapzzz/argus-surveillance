@@ -1,9 +1,14 @@
 import csv
 import random
 import shutil
+import sys
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from app.places import TOWERS
 
 SEED = 42
 OUT_DIR = Path(__file__).resolve().parents[1] / "data" / "seed"
@@ -11,18 +16,6 @@ START_DATE = datetime(2026, 6, 1)
 LAST_INCIDENT_DATE = datetime(2026, 8, 30)
 END_DATE = datetime(2026, 8, 31, 23, 59, 59)
 
-TOWERS = [
-    ("T01", "Kothrud", 18.5074, 73.8077),
-    ("T02", "Shivajinagar", 18.5308, 73.8475),
-    ("T03", "Hadapsar", 18.5089, 73.9260),
-    ("T04", "Warje", 18.4783, 73.8072),
-    ("T05", "Kondhwa", 18.4636, 73.8872),
-    ("T06", "Yerwada", 18.5580, 73.8827),
-    ("T07", "Hinjewadi", 18.5908, 73.7397),
-    ("T08", "Swargate", 18.5006, 73.8580),
-    ("T09", "Camp", 18.5157, 73.8794),
-    ("T10", "Baner", 18.5590, 73.7868),
-]
 TOWER_AREAS = [t[1] for t in TOWERS]
 TOWER_BY_AREA = {t[1]: t[0] for t in TOWERS}
 

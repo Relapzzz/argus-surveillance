@@ -14,6 +14,8 @@ CDR = """caller,callee,start_time,duration_sec,tower_id,tower_location
 9800000001,9800000002,2026-07-02T11:00:00+05:30,60,T01,Kothrud
 9800000002,9800000001,2026-07-01T10:00:00+05:30,60,T01,Kothrud
 9800000001,9800000003,2026-06-30T09:00:00+05:30,60,T02,Warje
+9800000002,9800000003,2026-07-05T12:00:00+05:30,60,T05,Kondhwa
+9800000003,9800000002,2026-07-04T08:00:00+05:30,60,T09,Camp
 """
 TXN = """txn_id,from_account,to_account,amount,timestamp,mode
 TXN1,22222222222,11111111111,5000,2026-07-03T10:00:00+05:30,UPI
@@ -34,8 +36,17 @@ def test_cdr_groups_calls_per_pair():
     pair = edges["phone:9800000001|phone:9800000002"]
     assert (pair.source, pair.target, pair.type, pair.weight) == ("phone:9800000001", "phone:9800000002", "called", 2)
     stamps = ["2026-07-01T10:00:00+05:30", "2026-07-02T11:00:00+05:30"]
-    assert pair.attributes == {"count": 2, "first_seen": stamps[0], "last_seen": stamps[1], "timestamps": stamps}
+    assert pair.attributes == {
+        "count": 2,
+        "first_seen": stamps[0],
+        "last_seen": stamps[1],
+        "timestamps": stamps,
+        "cells": ["Kothrud", "Kothrud"],
+    }
     assert edges["phone:9800000001|phone:9800000003"].weight == 1
+    towers = edges["phone:9800000002|phone:9800000003"]
+    assert towers.attributes["timestamps"] == ["2026-07-04T08:00:00+05:30", "2026-07-05T12:00:00+05:30"]
+    assert towers.attributes["cells"] == ["Camp", "Kondhwa"]
 
 
 def test_transactions_keep_direction_per_transfer():
