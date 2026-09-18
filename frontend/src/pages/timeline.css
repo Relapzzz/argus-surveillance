@@ -1,0 +1,40 @@
+.picker { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto; gap: 12px 16px; align-items: end; margin-bottom: 8px; }
+.picker .pick { gap: 5px; }
+.picker .picked { min-height: 40px; }
+.picker .seg { align-self: end; height: 40px; }
+.picker .seg button { height: 38px; }
+
+.swim { position: relative; overflow-x: auto; margin-top: 12px; border: 1px solid var(--rule); border-radius: 6px; background: var(--board); }
+.swim svg { display: block; }
+.swim-field { fill: var(--sheet); }
+.swim-week { stroke: var(--rule); stroke-width: .5; }
+.swim-month { stroke: var(--rule-2); stroke-width: 1; }
+.swim-day { stroke: var(--string); stroke-width: 1.2; }
+.swim-rule { stroke: var(--rule); stroke-width: .75; }
+.swim-tick { fill: var(--ink-3); font-size: 11px; }
+.swim-label { fill: var(--ink); font-size: 12.5px; }
+.swim-strip { fill: transparent; cursor: crosshair; }
+.swim-mark { cursor: pointer; }
+.swim-mark:hover { stroke: var(--string); stroke-width: 1.5; }
+.swim-flag { cursor: pointer; }
+.swim-flag line { stroke: var(--khaki); stroke-width: 1; }
+.swim-flag rect { fill: var(--khaki); }
+.swim-flag text { fill: var(--khaki-ink); font-size: 10px; }
+.swim-flag:hover rect, .swim-flag:hover line { fill: var(--string); stroke: var(--string); }
+.swim-tip { position: absolute; z-index: 5; display: grid; gap: 2px; padding: 7px 10px; border: 1px solid var(--rule-2); border-radius: 6px; background: var(--sheet); color: var(--ink); font-size: 12.5px; white-space: nowrap; pointer-events: none; transform: translate(-50%, calc(-100% - 10px)); box-shadow: 0 10px 24px rgba(19, 34, 56, .16); }
+.swim-tip span:first-child { color: var(--ink-3); font-size: 11.5px; }
+.swim-more { margin-top: 12px; }
+
+.activity { margin: 0; padding: 0; list-style: none; }
+.activity li { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 14px; align-items: baseline; font-size: 14px; }
+.activity li > span:first-child { color: var(--ink-3); }
+.activity a { font-weight: 600; border-bottom: 1px solid var(--khaki); }
+.activity a:hover { color: var(--string); border-bottom-color: var(--string); }
+
+.timeline-foot { margin-top: 28px; padding-top: 14px; border-top: 1px solid var(--rule); color: var(--ink-2); font-size: 14px; }
+
+@media (max-width: 900px) {
+  .picker { grid-template-columns: 1fr; }
+  .picker .seg { align-self: start; }
+  .activity li { grid-template-columns: 78px minmax(0, 1fr); gap: 10px; }
+}
