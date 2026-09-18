@@ -1,6 +1,6 @@
 # TASKS
 
-Current phase, Person A: Phase 4 done on 14 September except the backup video; next is Phase 5 AuraDB persistence from 16 September
+Current phase, Person A: Phase 5 done on 18 September; next is Phase 6 cloud deployment from 19 September
 Current phase, Person B: Phase 5 timeline and map from 16 September; read the 14 September frontend entries in the decisions log first
 MVP demo: 15 September 2026
 Full project: about 12 October 2026
@@ -86,7 +86,7 @@ Update this file before ending every session. Tick items, move the current phase
 
 ## Phase 5: Neo4j AuraDB Free persistence (A) and timeline plus map (B), 16 to 18 September
 
-- [ ] A: AuraDB instance, store writes with MERGE, metrics from Neo4j load, Cypher for lookup, ego and path
+- [x] A: AuraDB instance, store writes with MERGE, metrics from Neo4j load, Cypher for lookup, ego and path
 - [ ] B: timeline view, map view
 
 ## Phase 6: Cloud deployment (A) and hosted frontend (B), 19 to 20 September
@@ -144,6 +144,8 @@ Notes for Person A:
 - On this laptop Norton intercepts TLS, so every uv command needs --system-certs (uv sync --system-certs, uv add --system-certs ...). Large installs can freeze the machine, so install one package at a time and never chain long commands.
 - Demo upload: backend/data/demo/FIR-2026-0041.txt names Kiran Desai (Gang A) and Imran Shaikh (Gang B) as co-accused with a new complainant, phone and vehicle. It adds 4 entities and 11 relationships, after which Kiran Desai and Imran Shaikh rank as bridges beside Dinesh Deshmukh and the bridge_node alert still fires. Its LLM response is cached, so the upload needs no key. Reset from the Add records page or restart the backend afterwards.
 - Before running the Playwright suite stop any dev server on 5173, otherwise playwright.config.ts reuses it against the live backend instead of fixture mode.
+- backend/.env holds the AuraDB credentials pasted from Aura's file plus GRAPH_STORE=json; set GRAPH_STORE=neo4j to run the API against AuraDB (the backend launch config reads .env). The database holds the committed seed. Any uv run pytest with NEO4J_URI set rewrites it with the seed.
+- AuraDB Free is deleted after 30 days without activity; reload with GRAPH_STORE=neo4j uv run python scripts/seed.py.
 
 Notes for Person B:
 
@@ -209,3 +211,8 @@ Notes for Person B:
 - 2026-09-14: The demo FIR lives in backend/data/demo, outside data/seed so seed.py ignores it. Running seed.py again reproduced graph.json except floating point noise in the last digits of betweenness and pagerank; the committed file was kept.
 - 2026-09-14: Phase 4 verify ran the upload, path and reset routes through the FastAPI TestClient with LLM_API_KEY=wrong-key and LLM_BASE_URL=http://127.0.0.1:9/v1; everything came from the cache. The backup video stays open for the teammate.
 - 2026-09-14: POST /admin/clear empties the in-memory workspace (nodes 0, edges 0) so a new investigation starts from its own records; the Add records page offers Start a new investigation and Restore the demo dataset behind one confirmation dialog, and Briefing, Network and Case files show plain-language empty states that point to Add records. README.md now tells the story of the seeded case for presenters and explains the new-case flow. The workspace stays in memory until Phase 5.
+- 2026-09-18: AGENTS.md was removed from the repository and added to .gitignore; README gained a "Why this approach" section with the alternatives table.
+- 2026-09-18: Persistence: Neo4jStore(Store) in app/graph/store.py, selected by GRAPH_STORE=neo4j, keeps the NetworkX replica that analytics run on; pull() reads the database at startup and push() writes the whole workspace after every recompute (MERGE on the deterministic ids, label Entity plus a label from the type, upper-case relationship types, attributes as JSON strings, CaseRecord and Alert nodes holding the model JSON); reset() also runs DETACH DELETE and load(path) wipes then pushes, which is what seed.py and POST /admin/reset use. entity, ego and path run as Cypher on the Neo4j store (one query with collect, one parameterised hop per depth, shortestPath with case nodes skipped unless they are endpoints); routers call store.entity, store.ego and store.path. Dynamic labels need Neo4j 5.26 or later. The replica is per process, so GRAPH_STORE=neo4j runs one worker.
+- 2026-09-18: Settings ignores extra .env keys and uses Aura's variable names NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD and NEO4J_DATABASE, so the credentials file Aura offers for download is pasted into backend/.env unchanged. GRAPH_STORE=json stays the default, tests force it through a session fixture, and tests/test_neo4j.py runs only when NEO4J_URI is set.
+- 2026-09-18: The AuraDB Free instance (200K nodes, 400K relationships, deleted after 30 days idle) was created during the session and seeded with 225 nodes and 1820 edges. The neo4j+s connection worked on the Norton laptop without truststore. Every GET endpoint returns the same data from both stores (tests/test_neo4j.py::test_endpoints_match_json_store); shortest routes may differ among equal-length alternatives.
+- 2026-09-18: Phase 5 verify: uv run pytest 160 passed including the 8 live Neo4j tests, GRAPH_STORE=neo4j seed.py loaded 225 nodes and 1820 edges into AuraDB, and the API started against AuraDB returned the same /api/stats as the JSON store (verifier, 18 September). Running seed.py again rewrote graph.json with floating point noise only and the committed file was kept.
