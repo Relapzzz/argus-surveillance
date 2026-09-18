@@ -80,7 +80,7 @@ Update this file before ending every session. Tick items, move the current phase
 
 - [x] main merged, seed run, demo script walked end to end twice offline (14 September: twice through the browser, plus the upload, route and reset routes through the FastAPI TestClient with LLM_API_KEY wrong and LLM_BASE_URL unreachable)
 - [x] Live-upload FIR pre-cached: backend/data/demo/FIR-2026-0041.txt, cache file committed
-- [ ] Backup screen video recorded (teammate task; the demo steps are in README.md)
+- [x] Backup screen video recorded (teammate task; the demo steps are in README.md)
 - [x] Frontend redesigned by Person A and the network hover bug fixed, see the 14 September decisions
 - [x] README updated, v0.1-mvp tagged
 
