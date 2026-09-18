@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { ArrowUpRight } from 'lucide-react'
 import { api } from '@/api/client'
 import { entityTypes } from '@/api/types'
-import { PageHeading } from '@/components/PageHeading'
+import { PageTitle } from '@/components/PageTitle'
 import { QueryState } from '@/components/QueryState'
 import KeyPlayersTable from '@/components/KeyPlayersTable'
 import Leads from '@/components/Leads'
@@ -24,7 +24,7 @@ export default function Briefing() {
   const total = s ? Object.values(s.entities).reduce((a, b) => a + b, 0) : 0
   const largest = communities.data ? [...communities.data].sort((a, b) => b.size - a.size).slice(0, 2) : []
   return <div className="page">
-    <PageHeading title="Briefing" description="What the records say, and where to look next."><Link className={buttonVariants({ size: 'lg' })} to="/network">Open the network<ArrowUpRight data-icon="inline-end" /></Link></PageHeading>
+    <PageTitle title="Overview" hi="अवलोकन" description="What the records say, and where to look next."><Link className={buttonVariants({ size: 'lg' })} to="/network">Open the network<ArrowUpRight data-icon="inline-end" /></Link></PageTitle>
     <QueryState pending={stats.isPending} error={stats.error} retry={() => stats.refetch()} />
     {s && total === 0 && <section className="panel start" aria-label="Getting started"><div className="panel-head"><div><h2>No records yet</h2><p>This workspace is empty. Add the first record and the briefing writes itself.</p></div></div>
       <ol className="start-steps"><li><b>1</b><span>Add an FIR as a .txt file. People, phones, vehicles, places and organizations are extracted from the narrative.</span></li><li><b>2</b><span>Add call detail records and bank transactions as .csv files. Phones and accounts are matched to the people who own them.</span></li><li><b>3</b><span>Come back here. Groups, key players and suspicious patterns appear as soon as the records connect.</span></li></ol>

@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router'
 import { useQuery } from '@tanstack/react-query'
 import { Search } from 'lucide-react'
 import { api } from '@/api/client'
-import { PageHeading } from '@/components/PageHeading'
+import { PageTitle } from '@/components/PageTitle'
 import { QueryState } from '@/components/QueryState'
 import Narrative from '@/components/Narrative'
 import { networkUrl, palette, typeNames } from '@/lib/graph'
@@ -17,7 +17,7 @@ export default function Cases() {
   const matches = cases.data?.filter(c => `${c.fir_number} ${c.station}`.toLowerCase().includes(search.toLowerCase()))
   const unique = detail.data ? [...new Map(detail.data.entities.map(s => [s.id, s])).values()] : []
   return <div className="page">
-    <PageHeading title="Case files" description="The original FIR behind every link. Highlighted text is an extracted entity." />
+    <PageTitle title="Case files" hi="केस फ़ाइलें" description="The original FIR behind every link. Highlighted text is an extracted entity." />
     <QueryState pending={cases.isPending} error={cases.error} retry={() => cases.refetch()} />
     <div className="cases">
       <section className="panel" aria-label="Case list"><div className="panel-head"><h2>FIRs</h2><span className="count">{cases.data?.length ?? '—'}</span></div>

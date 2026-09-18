@@ -1,0 +1,24 @@
+export const nav = [
+  { to: '/', en: 'Overview', hi: 'अवलोकन' },
+  { to: '/network', en: 'Network', hi: 'नेटवर्क' },
+  { to: '/timeline', en: 'Timeline', hi: 'समयरेखा' },
+  { to: '/map', en: 'Map', hi: 'नक्शा' },
+  { to: '/cases', en: 'Case files', hi: 'केस फ़ाइलें' },
+  { to: '/alerts', en: 'Alerts', hi: 'अलर्ट' },
+  { to: '/ingest', en: 'Add records', hi: 'रिकॉर्ड जोड़ें' },
+]
+export const hi = {
+  profile: 'प्रोफ़ाइल',
+  guide: 'मार्गदर्शिका',
+  find: 'खोजें',
+  showOnNetwork: 'नेटवर्क पर देखें',
+  traceRoute: 'रास्ता खोजें',
+  openProfile: 'पूरी प्रोफ़ाइल खोलें',
+  timeline: 'समयरेखा',
+  map: 'नक्शा',
+  print: 'प्रिंट करें',
+  upload: 'अपलोड करें',
+  newInvestigation: 'नई जाँच शुरू करें',
+  restoreDemo: 'डेमो रिकॉर्ड वापस लाएँ',
+  addRecords: 'रिकॉर्ड जोड़ें',
+}

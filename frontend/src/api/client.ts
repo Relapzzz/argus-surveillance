@@ -9,17 +9,17 @@ const fixtureModule = () => import('./fixture').then(m => m.fixture)
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   let response: Response
   try { response = await fetch(apiBase + path, init) }
-  catch { throw new ApiError(0, 'Cannot reach the API. Check the backend and VITE_API_URL, or enable fixture mode for offline viewing.') }
+  catch { throw new ApiError(0, 'The records service is not reachable. Start the backend, or open the demo records with VITE_USE_FIXTURE=true.') }
   if (!response.ok) {
     const body = await response.json().catch(() => null)
     const detail = typeof body?.detail === 'string' ? body.detail : ''
-    const message = response.status === 501 ? 'This operation is unavailable in the backend stub. Phase A5 must implement it.' : response.status === 401 ? 'API key rejected. Check VITE_API_KEY and restart the frontend.' : detail || `Request failed (${response.status}).`
+    const message = response.status === 501 ? 'This action is not available on this records service.' : response.status === 401 ? 'The records service rejected the key. Check VITE_API_KEY and restart the app.' : detail || `Request failed (${response.status}).`
     throw new ApiError(response.status, message)
   }
   return response.json() as Promise<T>
 }
 function mutation<T>(path: string, body?: BodyInit, json = false) {
-  if (useFixture) return Promise.reject(new ApiError(501, 'Fixture mode is read-only. Connect to the Phase A5 backend to upload or reset.'))
+  if (useFixture) return Promise.reject(new ApiError(501, 'The demo records are read only. Connect to the records service to add records.'))
   const headers: Record<string, string> = { 'X-API-Key': import.meta.env.VITE_API_KEY || '' }
   if (json) headers['Content-Type'] = 'application/json'
   return request<T>(path, { method: 'POST', headers, body })

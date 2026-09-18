@@ -6,7 +6,7 @@ import { entityTypes } from '@/api/types'
 import type { EntityType, GraphResponse, PathResponse } from '@/api/types'
 import { QueryState } from '@/components/QueryState'
 import GraphCanvas from '@/components/GraphCanvas'
-import EntitySearch from '@/components/EntitySearch'
+import Search, { nodeItems } from '@/components/Search'
 import EntityDetails from '@/components/Inspector'
 import PathFinder from '@/components/PathFinder'
 import AlertsList from '@/components/AlertsList'
@@ -47,7 +47,7 @@ export default function Network() {
   return <div className="stage">
     <section className="stage-main">
       <header className="stage-head"><h1 className="display">Network</h1>
-        <EntitySearch nodes={nodes} label="Search entities" placeholder="Search a name, phone, account or plate" onPick={n => select(n.id)} />
+        <Search items={nodeItems(nodes)} label="Search entities" placeholder="Search a name, phone, account or plate" onPick={i => select(i.id)} />
         <select className="control" aria-label="Group" value={community ?? ''} onChange={e => setCommunity(e.target.value === '' ? undefined : Number(e.target.value))}><option value="">All groups</option>{groups.map(id => <option key={id} value={id}>Group {id}</option>)}</select>
         <span className="seg-label">Colour by</span><div className="seg" role="group" aria-label="Colour nodes by"><button type="button" aria-pressed={colorBy === 'type'} onClick={() => setColorBy('type')}>Type</button><button type="button" aria-pressed={colorBy === 'group'} onClick={() => setColorBy('group')}>Group</button></div>
         <label className="check"><input type="checkbox" checked={showGroups} onChange={e => setShowGroups(e.target.checked)} />Group areas</label>

@@ -1,29 +1,14 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/archivo/wdth.css";
-@import "@fontsource/ibm-plex-mono/400.css";
-@import "@fontsource/ibm-plex-mono/500.css";
-
-@custom-variant dark (&:is(.dark *));
+@import "@fontsource-variable/anek-latin/wdth.css";
+@import "@fontsource/mukta/400.css";
+@import "@fontsource/mukta/500.css";
+@import "@fontsource/mukta/600.css";
 
 @theme inline {
-    --font-sans: 'Archivo Variable', 'Segoe UI', system-ui, sans-serif;
-    --font-heading: var(--font-sans);
-    --font-mono: 'IBM Plex Mono', Consolas, monospace;
-    --color-sidebar-ring: var(--sidebar-ring);
-    --color-sidebar-border: var(--sidebar-border);
-    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-    --color-sidebar-accent: var(--sidebar-accent);
-    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-    --color-sidebar-primary: var(--sidebar-primary);
-    --color-sidebar-foreground: var(--sidebar-foreground);
-    --color-sidebar: var(--sidebar);
-    --color-chart-5: var(--chart-5);
-    --color-chart-4: var(--chart-4);
-    --color-chart-3: var(--chart-3);
-    --color-chart-2: var(--chart-2);
-    --color-chart-1: var(--chart-1);
+    --font-sans: 'Mukta', 'Segoe UI', system-ui, sans-serif;
+    --font-heading: 'Anek Latin Variable', 'Mukta', sans-serif;
     --color-ring: var(--ring);
     --color-input: var(--input);
     --color-border: var(--border);
@@ -52,54 +37,44 @@
 }
 
 :root {
-    --ink: #0f1216;
-    --ink-2: #0b0e12;
-    --slate: #161b22;
-    --slate-2: #1e2530;
-    --rule: #2a323d;
-    --rule-2: #384250;
-    --chalk: #e9ecf0;
-    --ash: #9aa4b1;
-    --dust: #6b7684;
-    --tape: #f5b942;
-    --tape-ink: #2a1d05;
-    --paper: #f3eee4;
-    --paper-ink: #1d1b17;
-    --high: #ff6f6f;
-    --low: #7fa7d9;
+    --paper: #F7F7F4;
+    --board: #EEEDE7;
+    --sheet: #FFFFFF;
+    --ink: #132238;
+    --ink-2: #3A4A5E;
+    --ink-3: #5C6B7D;
+    --rule: #D9D8D0;
+    --rule-2: #C2C1B7;
+    --khaki: #A89468;
+    --khaki-ink: #6E5F38;
+    --khaki-wash: #F1ECDD;
+    --string: #B42318;
+    --string-wash: #FBE9E7;
+    --amber: #8C6110;
+    --amber-wash: #FBF1DC;
+    --low: #4A6FA5;
+    --low-wash: #E8EEF7;
+    --ok: #2B6E3F;
 
-    --background: var(--ink);
-    --foreground: var(--chalk);
-    --card: var(--slate);
-    --card-foreground: var(--chalk);
-    --popover: #1b212a;
-    --popover-foreground: var(--chalk);
-    --primary: var(--tape);
-    --primary-foreground: var(--tape-ink);
-    --secondary: var(--slate-2);
-    --secondary-foreground: var(--chalk);
-    --muted: var(--slate-2);
-    --muted-foreground: var(--ash);
-    --accent: var(--slate-2);
-    --accent-foreground: var(--chalk);
-    --destructive: var(--high);
+    --background: var(--paper);
+    --foreground: var(--ink);
+    --card: var(--sheet);
+    --card-foreground: var(--ink);
+    --popover: var(--sheet);
+    --popover-foreground: var(--ink);
+    --primary: var(--ink);
+    --primary-foreground: var(--paper);
+    --secondary: var(--khaki-wash);
+    --secondary-foreground: var(--ink);
+    --muted: var(--board);
+    --muted-foreground: var(--ink-3);
+    --accent: var(--khaki-wash);
+    --accent-foreground: var(--ink);
+    --destructive: var(--string);
     --border: var(--rule);
     --input: var(--rule-2);
-    --ring: var(--tape);
-    --chart-1: #4f9cff;
-    --chart-2: #ff7a5c;
-    --chart-3: #7ed957;
-    --chart-4: #c98bff;
-    --chart-5: #ffd166;
-    --radius: 0.5rem;
-    --sidebar: var(--ink);
-    --sidebar-foreground: var(--chalk);
-    --sidebar-primary: var(--tape);
-    --sidebar-primary-foreground: var(--tape-ink);
-    --sidebar-accent: var(--slate-2);
-    --sidebar-accent-foreground: var(--chalk);
-    --sidebar-border: var(--rule);
-    --sidebar-ring: var(--tape);
+    --ring: var(--ink);
+    --radius: 0.375rem;
 }
 
 @layer base {

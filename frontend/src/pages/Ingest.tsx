@@ -6,7 +6,7 @@ import { api, useFixture } from '@/api/client'
 import type { IngestKind } from '@/api/types'
 import { uploadWithGraphDiff } from '@/lib/ingest'
 import { networkUrl, palette, typeNames } from '@/lib/graph'
-import { PageHeading } from '@/components/PageHeading'
+import { PageTitle } from '@/components/PageTitle'
 import { QueryState } from '@/components/QueryState'
 import UploadZone from '@/components/UploadZone'
 import { Button, buttonVariants } from '@/components/ui/button'
@@ -31,7 +31,7 @@ export default function Ingest() {
   const pending = confirm === 'clear' ? clear : reset
   const added = upload.data?.added ?? []
   return <div className="page">
-    <PageHeading title="Add records" description="Feed an FIR, a call detail record or a bank statement into the network." />
+    <PageTitle title="Add records" hi="रिकॉर्ड जोड़ें" description="Feed an FIR, a call detail record or a bank statement into the network." />
     {useFixture && <div className="notice warn">Fixture data is read only. Uploads and reset need the backend with VITE_USE_FIXTURE=false and a matching VITE_API_KEY.</div>}
     <div className="pipeline"><div><b>1 · Extract</b><p>Regex and a language model pull people, phones, vehicles, accounts, places and organizations out of the text or CSV.</p></div><div><b>2 · Resolve</b><p>Every entity gets a deterministic id, so a phone in a CDR and the same phone in an FIR become one node.</p></div><div><b>3 · Recompute</b><p>The graph is merged and influence, bridging, groups and pattern alerts are recalculated at once.</p></div></div>
     <div className="uploads"><UploadZone kind="fir" title="FIR" description="A narrative as a .txt file" disabled={busy || useFixture} onUpload={start} /><UploadZone kind="cdr" title="Call records" description="A CDR export as .csv" columns="caller, callee, start_time, duration_sec, tower_id, tower_location" disabled={busy || useFixture} onUpload={start} /><UploadZone kind="transactions" title="Transactions" description="Bank transfers as .csv" columns="txn_id, from_account, to_account, amount, timestamp, mode" disabled={busy || useFixture} onUpload={start} /></div>
