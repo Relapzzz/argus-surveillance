@@ -29,6 +29,10 @@ def edge_data(props: dict[str, Any]) -> dict[str, Any]:
     return {**props, "attributes": json.loads(props["attributes"])}
 
 
+def detail_of(id: str, data: dict[str, Any], neighbors: list[Neighbor]) -> EntityDetail:
+    return EntityDetail(entity={"id": id, **data}, metrics=data["metrics"], neighbors=neighbors, sources=data["sources"])
+
+
 class Store:
     def __init__(self) -> None:
         self.graph = nx.Graph()
@@ -101,7 +105,7 @@ class Store:
             )
             for other, edge in self.graph[id].items()
         ]
-        return EntityDetail(entity={"id": id, **data}, metrics=data["metrics"], neighbors=neighbors, sources=data["sources"])
+        return detail_of(id, data, neighbors)
 
     def ego(self, id: str, depth: int = 1) -> GraphResponse | None:
         if id not in self.graph:
@@ -117,12 +121,12 @@ class Store:
 
 class Neo4jStore(Store):
     def __init__(self) -> None:
-        self.driver = GraphDatabase.driver(settings.neo4j_uri, auth=(settings.neo4j_user, settings.neo4j_password))
+        self.driver = GraphDatabase.driver(settings.neo4j_uri, auth=(settings.neo4j_username, settings.neo4j_password))
         super().__init__()
         self.run("CREATE CONSTRAINT entity_id IF NOT EXISTS FOR (n:Entity) REQUIRE n.id IS UNIQUE")
 
     def run(self, query: str, **params: Any) -> list[Any]:
-        records, _, _ = self.driver.execute_query(query, database_="neo4j", **params)
+        records, _, _ = self.driver.execute_query(query, database_=settings.neo4j_database, **params)
         return records
 
     def close(self) -> None:
@@ -141,6 +145,7 @@ class Neo4jStore(Store):
         self.push()
 
     def pull(self) -> None:
+        Store.__init__(self)
         for record in self.run("MATCH (n:Entity) RETURN n"):
             id, data = node_data(dict(record["n"]))
             self.graph.add_node(id, **data)
@@ -214,7 +219,7 @@ class Neo4jStore(Store):
             Neighbor(id=m["id"], type=m["type"], label=m["label"], relationship=r["type"], edge_id=r["id"])
             for m, r in zip(record["neighbours"], record["edges"])
         ]
-        return EntityDetail(entity={"id": node_id, **data}, metrics=data["metrics"], neighbors=neighbors, sources=data["sources"])
+        return detail_of(node_id, data, neighbors)
 
     def ego(self, id: str, depth: int = 1) -> GraphResponse | None:
         ids = {id}

@@ -135,7 +135,9 @@ def test_ego_grows_with_depth():
     assert {n.id for n in near.nodes} == {"person:m", "person:a0", "person:b0"}
     assert {e.id for e in near.edges} == {edge_id("person:m", "person:a0"), edge_id("person:m", "person:b0")}
     far = store.ego("person:m", 2)
-    assert len(far.nodes) == 21 and len(far.edges) == 92
+    gang = {f"person:{side}{i}" for side in "ab" for i in range(10)}
+    assert {n.id for n in far.nodes} == gang | {"person:m"}
+    assert {e.id for e in far.edges} == {edge_id(a, b) for a, b, _ in GANGS}
     assert store.ego("person:nobody") is None
 
 
