@@ -71,6 +71,7 @@ export default function GraphCanvas({ graph, names, selected, onSelect, onDesele
   useEffect(() => { canvas.current?.d3Force('charge')?.strength(-55) }, [])
   const center = (node: CanvasNode) => { canvas.current?.centerAt(node.x ?? 0, node.y ?? 0, 500); canvas.current?.zoom(Math.max(canvas.current.zoom(), 2.2), 500) }
   useEffect(() => { const node = selected ? previous.current.get(selected) : undefined; if (node?.x !== undefined) center(node) }, [selected])
+  useEffect(() => { if (nodeHighlights.size > 1 && fittedFor.current === data.nodes.length) canvas.current?.zoomToFit(500, 80, n => nodeHighlights.has(n.id)) }, [nodeHighlights])
 
   const labelBoxes = useRef<{ x1: number; y1: number; x2: number; y2: number }[]>([])
   const paintGroups = (ctx: CanvasRenderingContext2D, scale: number) => {
@@ -134,7 +135,7 @@ export default function GraphCanvas({ graph, names, selected, onSelect, onDesele
       linkWidth={e => edgeHighlights.has(e.id) ? 2.6 : Math.min(1.8, 0.4 + Math.log1p(e.weight) / 4)}
       linkDirectionalParticles={e => !reduceMotion && edgeHighlights.has(e.id) ? 3 : 0} linkDirectionalParticleWidth={2.8} linkDirectionalParticleColor={() => STRING} linkDirectionalParticleSpeed={0.008}
       onNodeHover={n => { hover.current = n?.id }} onNodeClick={n => { onSelect(n.id); center(n) }} onBackgroundClick={onDeselect}
-      onEngineStop={() => { if (fittedFor.current === data.nodes.length) return; fittedFor.current = data.nodes.length; const node = selected ? previous.current.get(selected) : undefined; if (node?.x !== undefined) center(node); else canvas.current?.zoomToFit(400, 60) }} />
+      onEngineStop={() => { if (fittedFor.current === data.nodes.length) return; fittedFor.current = data.nodes.length; const node = selected ? previous.current.get(selected) : undefined; if (nodeHighlights.size > 1) canvas.current?.zoomToFit(500, 80, n => nodeHighlights.has(n.id)); else if (node?.x !== undefined) center(node); else canvas.current?.zoomToFit(400, 60) }} />
     {children}
     <div className="zoom-controls"><Button variant="outline" size="icon" aria-label="Zoom in" onClick={() => canvas.current?.zoom(canvas.current.zoom() * 1.4, 250)}><Plus /></Button><Button variant="outline" size="icon" aria-label="Zoom out" onClick={() => canvas.current?.zoom(canvas.current.zoom() / 1.4, 250)}><Minus /></Button><Button variant="outline" size="icon" aria-label="Fit network to view" onClick={() => canvas.current?.zoomToFit(400, 50)}><Maximize2 /></Button></div>
     {!graph.nodes.length && <div className="graph-empty">No entities match these filters.</div>}

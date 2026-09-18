@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router'
 import { useQuery } from '@tanstack/react-query'
-import { ArrowUpRight, X } from 'lucide-react'
+import { X } from 'lucide-react'
 import { api } from '@/api/client'
 import { Bi } from '@/components/Bi'
 import { PageTitle } from '@/components/PageTitle'
@@ -87,7 +87,7 @@ export default function Timeline() {
           <Activity graph={graph.data} events={drawn} day={day} />
         </section>
         <p className="timeline-foot">{record} between {formatDate(events[0].at.toISOString())} and {formatDate(events[events.length - 1].at.toISOString())}.</p>
-        <div className="actions"><Link className={buttonVariants({ size: 'lg' })} to={networkUrl(withId ? [entity, withId] : [entity])}><Bi en="Show on the network" hi={hi.showOnNetwork} /><ArrowUpRight data-icon="inline-end" /></Link></div>
+        <div className="actions"><Link className={buttonVariants({ size: 'lg' })} to={networkUrl(withId ? [entity, withId] : [entity])}><Bi en="Show on network" hi={hi.showOnNetwork} /></Link></div>
       </>}
     </>}
   </div>
