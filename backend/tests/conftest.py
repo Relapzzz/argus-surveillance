@@ -1,8 +1,16 @@
 from itertools import combinations
 
+import pytest
+
+from app.config import settings
 from app.graph.store import Store
 from app.ingest import edge_id
 from app.schemas import Entity, Relationship
+
+
+@pytest.fixture(scope="session", autouse=True)
+def json_store() -> None:
+    settings.graph_store = "json"
 
 
 def clique(type: str, ids: list[str], edge_type: str) -> list[tuple[str, str, str]]:

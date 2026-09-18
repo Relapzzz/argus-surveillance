@@ -14,6 +14,10 @@ class Settings(BaseSettings):
     extraction_engine: Literal["llm", "custom"] = "llm"
     api_key: str = ""
     cors_origin: str = "http://localhost:5173"
+    graph_store: Literal["json", "neo4j"] = "json"
+    neo4j_uri: str = ""
+    neo4j_user: str = "neo4j"
+    neo4j_password: str = ""
     data_dir: Path = Path(__file__).resolve().parent.parent / "data"
 
 

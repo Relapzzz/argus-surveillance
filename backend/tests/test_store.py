@@ -1,7 +1,10 @@
 import io
 from datetime import datetime
 
+from conftest import GANGS, graph_of
+
 from app.graph.store import Store, to_response
+from app.ingest import edge_id
 from app.ingest.cdr import ingest_cdr
 from app.ingest.persons import ingest_persons
 from app.ingest.transactions import ingest_transactions
@@ -102,3 +105,49 @@ def test_save_load_and_reset(tmp_path):
     assert loaded.graph.nodes["phone:9800000001"]["metrics"]["degree"] == 2
     loaded.reset()
     assert loaded.graph.number_of_nodes() == 0 and loaded.cases == {} and loaded.alerts == []
+
+
+ROUTES = [
+    ("person:x", "case:c1", "mentioned_in"),
+    ("case:c1", "person:y", "mentioned_in"),
+    ("person:x", "phone:9800000001", "owns"),
+    ("phone:9800000001", "phone:9800000002", "called"),
+    ("phone:9800000002", "person:y", "owns"),
+    ("person:v", "person:w", "co_accused"),
+]
+
+
+def test_entity_reports_neighbors():
+    store = graph_of(GANGS)
+    detail = store.entity("person:m")
+    assert detail.entity.id == "person:m"
+    assert detail.metrics.degree == 2
+    assert {(n.id, n.type, n.label, n.relationship, n.edge_id) for n in detail.neighbors} == {
+        ("person:a0", "person", "a0", "associate_of", edge_id("person:m", "person:a0")),
+        ("person:b0", "person", "b0", "associate_of", edge_id("person:m", "person:b0")),
+    }
+    assert store.entity("person:nobody") is None
+
+
+def test_ego_grows_with_depth():
+    store = graph_of(GANGS)
+    near = store.ego("person:m", 1)
+    assert {n.id for n in near.nodes} == {"person:m", "person:a0", "person:b0"}
+    assert {e.id for e in near.edges} == {edge_id("person:m", "person:a0"), edge_id("person:m", "person:b0")}
+    far = store.ego("person:m", 2)
+    assert len(far.nodes) == 21 and len(far.edges) == 92
+    assert store.ego("person:nobody") is None
+
+
+def test_path_skips_case_nodes_unless_endpoint():
+    store = graph_of(ROUTES)
+    route = store.path("person:x", "person:y")
+    assert route.node_ids == ["person:x", "phone:9800000001", "phone:9800000002", "person:y"]
+    assert route.edge_ids == [
+        edge_id("person:x", "phone:9800000001"),
+        edge_id("phone:9800000001", "phone:9800000002"),
+        edge_id("phone:9800000002", "person:y"),
+    ]
+    assert store.path("case:c1", "person:y").node_ids == ["case:c1", "person:y"]
+    assert store.path("person:x", "person:v") is None
+    assert store.path("person:x", "person:nobody") is None

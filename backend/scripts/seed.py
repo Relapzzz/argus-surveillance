@@ -8,7 +8,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from app.config import settings
 from app.extract import llm
 from app.graph.analytics import communities, key_players
-from app.graph.store import Store
+from app.graph.store import Neo4jStore, Store
 from app.ingest.cdr import ingest_cdr
 from app.ingest.fir import ingest_fir
 from app.ingest.persons import ingest_persons
@@ -39,6 +39,11 @@ def main() -> None:
     store.save(GRAPH_PATH)
     G = store.graph
     print(f"{G.number_of_nodes()} nodes, {G.number_of_edges()} edges, {len(store.cases)} cases, {len(store.alerts)} alerts -> {GRAPH_PATH}")
+    if settings.graph_store == "neo4j":
+        db = Neo4jStore()
+        db.load(GRAPH_PATH)
+        db.close()
+        print(f"{G.number_of_nodes()} nodes, {G.number_of_edges()} edges -> Neo4j")
     for c in communities(G):
         print(f"community {c.id}: {c.size} members, top {c.top_member}")
     everyone = key_players(G, limit=G.number_of_nodes())

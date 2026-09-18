@@ -1,4 +1,3 @@
-import networkx as nx
 from fastapi import APIRouter, HTTPException
 
 from app.graph import analytics
@@ -25,7 +24,7 @@ def alerts(store: StoreDep) -> list[Alert]:
 
 @router.get("/path")
 def path(store: StoreDep, source: str, target: str) -> PathResponse:
-    try:
-        return analytics.shortest_path(store.graph, source, target)
-    except (nx.NodeNotFound, nx.NetworkXNoPath):
+    response = store.path(source, target)
+    if response is None:
         raise HTTPException(404, "no path")
+    return response

@@ -4,16 +4,25 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
-from app.graph.store import Store
+from app.graph.store import Neo4jStore, Store
 from app.routers import analytics, cases, graph, ingest
+
+
+def open_store() -> Store:
+    if settings.graph_store == "neo4j":
+        store = Neo4jStore()
+        store.pull()
+        return store
+    store = Store()
+    store.load(settings.data_dir / "graph.json")
+    return store
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    store = Store()
-    store.load(settings.data_dir / "graph.json")
-    app.state.store = store
+    app.state.store = open_store()
     yield
+    app.state.store.close()
 
 
 app = FastAPI(title="Criminal Network Analysis API", lifespan=lifespan)
