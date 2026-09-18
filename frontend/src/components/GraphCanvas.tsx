@@ -3,7 +3,8 @@ import ForceGraph2D from 'react-force-graph-2d'
 import type { ForceGraphMethods, LinkObject, NodeObject } from 'react-force-graph-2d'
 import { Maximize2, Minus, Plus } from 'lucide-react'
 import type { GraphNode, GraphResponse, Relationship, RelationshipType } from '@/api/types'
-import { groupColor, palette } from '@/lib/graph'
+import { formatLabel } from '@/lib/format'
+import { groupColor, groupName, palette } from '@/lib/graph'
 import { Button } from './ui/button'
 
 type EdgeData = Omit<Relationship, 'source' | 'target'>
@@ -12,9 +13,10 @@ type CanvasEdge = LinkObject<GraphNode, EdgeData>
 type Point = { x: number; y: number }
 
 const REL_SIZE = 3
-const HIGHLIGHT = '#f5b942'
-const IDENTIFIERS = new Set<string>(['phone', 'account', 'vehicle', 'case'])
-const edgeHue: Record<RelationshipType, string> = { called: '#5fc3ff', transacted: '#5fd39a', co_accused: '#f3ead8', associate_of: '#f3ead8', member_of: '#4dd4c6', owns: '#9aa4b1', resides_at: '#ff8da1', seen_at: '#ff8da1', mentioned_in: '#7d8794' }
+const STRING = '#B42318'
+const INK = '#132238'
+const PAPER = '#F7F7F4'
+const edgeHue: Record<RelationshipType, string> = { called: '#1971C2', transacted: '#2B8A3E', co_accused: '#132238', associate_of: '#132238', member_of: '#0C8599', owns: '#5C6B7D', resides_at: '#C2255C', seen_at: '#C2255C', mentioned_in: '#868E96' }
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 const nodeVal = (n: GraphNode) => n.type === 'person' ? 2.2 + n.metrics.pagerank * 260 : n.type === 'case' ? 0.7 : 1 + n.metrics.pagerank * 90
 const radiusOf = (n: GraphNode) => Math.sqrt(nodeVal(n)) * REL_SIZE
@@ -39,7 +41,7 @@ function tracePadded(ctx: CanvasRenderingContext2D, ring: Point[], pad: number) 
   ctx.closePath()
 }
 
-export default function GraphCanvas({ graph, selected, onSelect, onDeselect, highlightNodes = [], highlightEdges = [], colorBy, showGroups, children }: { graph: GraphResponse; selected?: string; onSelect: (id: string) => void; onDeselect: () => void; highlightNodes?: string[]; highlightEdges?: string[]; colorBy: 'type' | 'group'; showGroups: boolean; children?: ReactNode }) {
+export default function GraphCanvas({ graph, names, selected, onSelect, onDeselect, highlightNodes = [], highlightEdges = [], colorBy, showGroups, children }: { graph: GraphResponse; names?: Map<number, string>; selected?: string; onSelect: (id: string) => void; onDeselect: () => void; highlightNodes?: string[]; highlightEdges?: string[]; colorBy: 'type' | 'group'; showGroups: boolean; children?: ReactNode }) {
   const container = useRef<HTMLDivElement>(null)
   const canvas = useRef<ForceGraphMethods<CanvasNode, CanvasEdge> | undefined>(undefined)
   const [size, setSize] = useState({ width: 800, height: 600 })
@@ -74,9 +76,8 @@ export default function GraphCanvas({ graph, selected, onSelect, onDeselect, hig
   const paintGroups = (ctx: CanvasRenderingContext2D, scale: number) => {
     labelBoxes.current = []
     if (!showGroups) return
-    const members = new Map<number, Point[]>(), totals = new Map<number, number>()
+    const members = new Map<number, Point[]>()
     for (const n of data.nodes) {
-      totals.set(n.metrics.community, (totals.get(n.metrics.community) ?? 0) + 1)
       if (n.x === undefined || n.y === undefined || n.type === 'location' || n.type === 'case') continue
       let list = members.get(n.metrics.community)
       if (!list) members.set(n.metrics.community, list = [])
@@ -88,11 +89,11 @@ export default function GraphCanvas({ graph, selected, onSelect, onDeselect, hig
       if (ring.length < 3) continue
       const hue = groupColor(group), pad = 14 + 6 / scale
       tracePadded(ctx, ring, pad)
-      ctx.fillStyle = alpha(hue, 0.07); ctx.fill()
-      ctx.strokeStyle = alpha(hue, 0.3); ctx.lineWidth = 1 / scale; ctx.stroke()
+      ctx.fillStyle = alpha(hue, 0.1); ctx.fill()
+      ctx.setLineDash([4 / scale, 3 / scale]); ctx.strokeStyle = alpha(hue, 0.5); ctx.lineWidth = 1 / scale; ctx.stroke(); ctx.setLineDash([])
       const top = ring.reduce((a, p) => p.y < a.y ? p : a)
-      ctx.font = `500 ${Math.max(10 / scale, 2.4)}px "IBM Plex Mono", monospace`; ctx.textAlign = 'center'; ctx.textBaseline = 'bottom'
-      ctx.fillStyle = alpha(hue, 0.9); ctx.fillText(`GROUP ${group} · ${totals.get(group)}`, top.x, top.y - pad - 4 / scale)
+      ctx.font = `600 ${Math.max(11 / scale, 2.6)}px Mukta, sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'bottom'
+      ctx.fillStyle = alpha(hue, 0.9); ctx.fillText(groupName(names, group), top.x, top.y - pad - 4 / scale)
     }
     ctx.restore()
   }
@@ -101,25 +102,25 @@ export default function GraphCanvas({ graph, selected, onSelect, onDeselect, hig
     const emphasised = n.id === selected || nodeHighlights.has(n.id), hovered = n.id === hover.current
     const dim = Boolean(focus && !focus.has(n.id))
     ctx.save()
-    ctx.globalAlpha = dim && !hovered ? 0.18 : 1
-    if (emphasised) { ctx.beginPath(); ctx.arc(x, y, r + 3 / scale + 1.5, 0, 2 * Math.PI); ctx.fillStyle = alpha(HIGHLIGHT, 0.25); ctx.fill() }
+    ctx.globalAlpha = dim && !hovered ? 0.22 : 1
+    if (emphasised) { ctx.beginPath(); ctx.arc(x, y, r + 3 / scale + 1.5, 0, 2 * Math.PI); ctx.fillStyle = alpha(STRING, 0.22); ctx.fill() }
     ctx.beginPath()
     if (n.type === 'case') ctx.rect(x - r, y - r, 2 * r, 2 * r); else ctx.arc(x, y, r, 0, 2 * Math.PI)
     ctx.fillStyle = colorBy === 'group' && n.type !== 'case' && n.type !== 'location' ? groupColor(n.metrics.community) : palette[n.type]
     ctx.fill()
-    ctx.lineWidth = (emphasised ? 2 : 0.8) / scale; ctx.strokeStyle = emphasised ? HIGHLIGHT : '#0b0e12'; ctx.stroke()
+    ctx.lineWidth = (emphasised ? 2 : 0.8) / scale; ctx.strokeStyle = emphasised ? STRING : '#FFFFFF'; ctx.stroke()
     if (hovered || emphasised || scale >= 2.2 || labelled.has(n.id)) {
-      const mono = IDENTIFIERS.has(n.type), fontSize = Math.max(11 / scale, 2.6)
-      ctx.font = mono ? `400 ${fontSize * 0.92}px "IBM Plex Mono", monospace` : `500 ${fontSize}px "Archivo Variable", sans-serif`
+      const fontSize = Math.max(11 / scale, 2.6), label = formatLabel(n.type, n.label)
+      ctx.font = `500 ${fontSize}px Mukta, sans-serif`
       ctx.textAlign = 'center'; ctx.textBaseline = 'top'; ctx.lineJoin = 'round'
-      const ly = y + r + 2.5 / scale, half = ctx.measureText(n.label).width / 2
+      const ly = y + r + 2.5 / scale, half = ctx.measureText(label).width / 2
       const box = { x1: x - half, y1: ly, x2: x + half, y2: ly + fontSize }
       const priority = hovered || emphasised
       if (priority || !labelBoxes.current.some(b => b.x1 < box.x2 && b.x2 > box.x1 && b.y1 < box.y2 && b.y2 > box.y1)) {
         labelBoxes.current.push(box)
-        ctx.lineWidth = 3.5 / scale; ctx.strokeStyle = 'rgba(11,14,18,0.92)'; ctx.strokeText(n.label, x, ly)
-        ctx.fillStyle = priority ? '#ffffff' : n.type === 'person' ? '#e9ecf0' : '#b8c1cc'
-        ctx.fillText(n.label, x, ly)
+        ctx.lineWidth = 3.5 / scale; ctx.strokeStyle = alpha(PAPER, 0.92); ctx.strokeText(label, x, ly)
+        ctx.fillStyle = priority || n.type === 'person' ? INK : palette[n.type]
+        ctx.fillText(label, x, ly)
       }
     }
     ctx.restore()
@@ -129,9 +130,9 @@ export default function GraphCanvas({ graph, selected, onSelect, onDeselect, hig
     <ForceGraph2D<GraphNode, EdgeData> ref={canvas} width={size.width} height={size.height} graphData={data} backgroundColor="rgba(0,0,0,0)"
       nodeVal={nodeVal} nodeRelSize={REL_SIZE} nodeLabel="" linkLabel="" autoPauseRedraw={false} minZoom={0.15} maxZoom={12} warmupTicks={60} cooldownTicks={120}
       nodeCanvasObjectMode={() => 'replace'} nodeCanvasObject={paintNode} onRenderFramePre={paintGroups}
-      linkColor={e => edgeHighlights.has(e.id) ? HIGHLIGHT : alpha(edgeHue[e.type], edgeDimmed(e) ? 0.05 : 0.32)}
-      linkWidth={e => edgeHighlights.has(e.id) ? 2.4 : Math.min(1.8, 0.4 + Math.log1p(e.weight) / 4)}
-      linkDirectionalParticles={e => !reduceMotion && edgeHighlights.has(e.id) ? 3 : 0} linkDirectionalParticleWidth={2.6} linkDirectionalParticleColor={() => HIGHLIGHT} linkDirectionalParticleSpeed={0.008}
+      linkColor={e => edgeHighlights.has(e.id) ? STRING : alpha(edgeHue[e.type], edgeDimmed(e) ? 0.05 : 0.24)}
+      linkWidth={e => edgeHighlights.has(e.id) ? 2.6 : Math.min(1.8, 0.4 + Math.log1p(e.weight) / 4)}
+      linkDirectionalParticles={e => !reduceMotion && edgeHighlights.has(e.id) ? 3 : 0} linkDirectionalParticleWidth={2.8} linkDirectionalParticleColor={() => STRING} linkDirectionalParticleSpeed={0.008}
       onNodeHover={n => { hover.current = n?.id }} onNodeClick={n => { onSelect(n.id); center(n) }} onBackgroundClick={onDeselect}
       onEngineStop={() => { if (fittedFor.current === data.nodes.length) return; fittedFor.current = data.nodes.length; const node = selected ? previous.current.get(selected) : undefined; if (node?.x !== undefined) center(node); else canvas.current?.zoomToFit(400, 60) }} />
     {children}
