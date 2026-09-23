@@ -54,7 +54,7 @@ export default function Network() {
   const selectedNode = selected ? nodes.find(n => n.id === selected) : undefined
   const highlighted = path?.node_ids ?? highlights
   return <div className="stage">
-    <title>Network, Argus</title>
+    <title>Network, VYUHA</title>
     <section className="stage-main">
       <header className="stage-head"><h1 className="display">Network</h1><span className="hi" lang="hi">नेटवर्क</span>
         <Search items={items} label="Search entities" placeholder="Search a name, phone, account or plate" onPick={i => select(i.id)} />

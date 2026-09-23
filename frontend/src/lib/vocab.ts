@@ -8,6 +8,7 @@ export const nav = [
   { to: '/ingest', en: 'Add records', hi: 'रिकॉर्ड जोड़ें' },
 ]
 export const hi = {
+  brand: 'व्यूह',
   profile: 'प्रोफ़ाइल',
   guide: 'मार्गदर्शिका',
   find: 'खोजें',

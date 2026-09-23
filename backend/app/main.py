@@ -25,7 +25,7 @@ async def lifespan(app: FastAPI):
     app.state.store.close()
 
 
-app = FastAPI(title="Criminal Network Analysis API", lifespan=lifespan)
+app = FastAPI(title="VYUHA API", lifespan=lifespan)
 app.add_middleware(CORSMiddleware, allow_origins=[settings.cors_origin], allow_methods=["*"], allow_headers=["*"])
 for module in (graph, analytics, cases, ingest):
     app.include_router(module.router, prefix="/api")

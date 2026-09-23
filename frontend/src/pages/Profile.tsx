@@ -44,7 +44,7 @@ export default function Profile() {
     : []
 
   return <div className="page profile">
-    <title>{`${entity.label}, Argus`}</title>
+    <title>{`${entity.label}, VYUHA`}</title>
     <header className="profile-head">
       <p className="kicker"><span>{typeNames[type]}</span><span className="group-chip"><i style={{ background: groupColor(metrics.community) }} />{groupName(names, metrics.community)}</span></p>
       <h1 className="display">{formatLabel(type, entity.label)}</h1>

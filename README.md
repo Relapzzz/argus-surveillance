@@ -1,4 +1,4 @@
-# AI-Powered Criminal Network Analysis System
+# VYUHA
 
 Smart India Hackathon 2026 project for the National Crime Records Bureau. It reads FIRs, call records and bank transactions, extracts people, phones, vehicles, places and organizations, links them into a network, ranks the key players, flags suspicious patterns and shows it all on an interactive graph.
 

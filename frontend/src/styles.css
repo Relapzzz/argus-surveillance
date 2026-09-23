@@ -29,8 +29,9 @@ svg { flex-shrink: 0; }
 .shell { display: flex; flex-direction: column; min-height: 100vh; }
 .topbar { position: sticky; top: 0; z-index: 30; display: flex; align-items: stretch; gap: 6px; height: 60px; padding: 0 20px; border-bottom: 1px solid var(--rule); background: var(--paper); }
 .brand { display: flex; align-items: center; gap: 9px; margin-right: 8px; padding-right: 18px; border-right: 1px solid var(--rule); color: var(--ink); }
-.brand svg { width: 24px; height: 24px; }
+.brand svg { width: 28px; height: 28px; }
 .wordmark { font-family: var(--font-heading); font-variation-settings: "wdth" 75; font-weight: 700; font-size: 20px; letter-spacing: .12em; line-height: 1; }
+.wordmark small { letter-spacing: 0; }
 .tabs { display: flex; align-items: stretch; gap: 2px; min-width: 0; overflow-x: auto; scrollbar-width: none; }
 .tab { position: relative; display: flex; align-items: center; padding: 0 12px; color: var(--ink-2); white-space: nowrap; transition: background .15s, color .15s; }
 .tab .bi > span { font-size: 14px; font-weight: 500; }
